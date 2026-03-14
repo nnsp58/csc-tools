@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="canonical" href="https://n-dizi.in/video-converter.html">
+    <title>Video Converter - Convert Videos Online | ToolHub</title>
+    <meta name="description" content="Convert videos to different formats online for free. Convert MP4, AVI, MKV, MOV and more. Fast and secure video converter with high quality output.">
+    <meta name="keywords" content="video converter, convert video, video format converter, MP4 converter, AVI converter, MKV converter, online video tool, ToolHub">
+    <meta name="author" content="ToolHub">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background: #f0f2f5;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(120deg, #ff6b6b, #4ecdc4);
+            padding: 1.5rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .nav {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 2.5rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: #ffe66d; }
+        .tool-section {
+            max-width: 1300px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        .tool-section h2 {
+            color: #1e3c72;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .tool-section p, .tool-section ul, .tool-section ol {
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+        .tool-section h3 {
+            color: #1e3c72;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        #video-upload {
+            border: 2px dashed #ccc;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        #video-upload.dragover {
+            background: #e1f5fe;
+            border-color: #00d4ff;
+        }
+        select, button {
+            margin-top: 10px;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            min-width: 200px;
+        }
+        select:focus, button:focus {
+            outline: none;
+            border-color: #00d4ff;
+        }
+        button {
+            background: #00d4ff;
+            color: white;
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #00b7d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+        }
+        .ad-container {
+            margin: 2rem auto;
+            max-width: 100%;
+            text-align: center;
+        }
+        #cookie-consent {
+            position: fixed;
+            bottom: 0;
+            background: #333;
+            color: #fff;
+            padding: 12px;
+            width: 100%;
+            text-align: center;
+            z-index: 1000;
+        }
+        #cookie-consent a {
+            color: #ffe66d;
+            text-decoration: none;
+        }
+        #cookie-consent button {
+            background: #00d4ff;
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .footer {
+            background: linear-gradient(120deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+        .footer h4 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .footer p {
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            line-height: 1.6;
+        }
+        .footer p:hover {
+            opacity: 1;
+        }
+        #error-message {
+            color: #dc3545;
+            background: #f8d7da;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+            border-left: 3px solid #dc3545;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .tool-section {
+                margin: 80px 1rem;
+                padding: 1.5rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            select, button {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <section class="tool-section">
+            <h2>Video Converter Tool</h2>
+            <p>ToolHub's Video Converter is a powerful online tool that allows you to convert videos between different formats such as MP4, AVI, MKV, and MOV. Whether you're a video editor, content creator, or everyday user looking to make your videos compatible with different devices or platforms, this tool provides fast and high-quality conversion. Perfect for YouTube uploads, mobile playback, or professional editing workflows.</p>
+            <p>Our tool uses FFmpeg technology to ensure high-quality video conversion while maintaining the original video and audio quality. It works entirely in your browser, so you don't need to download any software. Your files are processed locally and are never stored on our servers, ensuring complete privacy and security.</p>
+            <h3>How to Use</h3>
+            <ol>
+                <li>Drag and drop your video file into the upload area or click to browse (max 50MB).</li>
+                <li>Select your desired output format (MP4, AVI, MKV, MOV).</li>
+                <li>Click "Convert Video" to process your file.</li>
+                <li>Download the converted video file automatically.</li>
+            </ol>
+            <h3>Benefits</h3>
+            <ul>
+                <li>Convert between multiple video formats (MP4, AVI, MKV, MOV)</li>
+                <li>High-quality output with original quality preservation</li>
+                <li>Fast conversion using FFmpeg technology</li>
+                <li>No software installation required - browser-based</li>
+                <li>Completely free with no registration</li>
+                <li>Mobile and desktop friendly</li>
+                <li>Secure and private - files never leave your browser</li>
+            </ul>
+            <h3>Example Use Cases</h3>
+            <p>This tool is ideal for converting videos for YouTube uploads, making videos compatible with mobile devices, converting large MKV files to smaller MP4 format, preparing videos for editing software, and creating format-compatible videos for presentations. The tool maintains the highest possible quality while ensuring format compatibility.</p>
+            <div id="video-upload">
+                <p>Drag and drop your video file here or click to browse</p>
+                <input type="file" id="videoInput" accept="video/*">
+            </div>
+            <select id="outputFormat">
+                <option value="mp4">MP4</option>
+                <option value="avi">AVI</option>
+                <option value="mkv">MKV</option>
+                <option value="mov">MOV</option>
+            </select>
+            <button onclick="convertVideo()">Convert Video</button>
+            <p id="error-message"></p>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-9239182778221521"
+                 data-ad-slot="7274852761"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What video formats are supported?</strong></p>
+            <p>A: Our Video Converter supports MP4, AVI, MKV, MOV, WMV, FLV, and many more formats. You can convert between virtually any video format.</p>
+            
+            <p><strong>Q: Is there a file size limit?</strong></p>
+            <p>A: For optimal performance, we recommend videos under 500MB. Larger files may take longer to process and require more memory.</p>
+            
+            <p><strong>Q: How long does conversion take?</strong></p>
+            <p>A: Conversion time depends on the file size, format, and your device's processing power. Most videos convert within a few minutes.</p>
+            
+            <p><strong>Q: Will the video quality be preserved?</strong></p>
+            <p>A: We strive to maintain high quality during conversion. However, some quality loss may occur depending on the output format and compression settings.</p>
+            
+            <p><strong>Q: Can I convert videos on mobile devices?</strong></p>
+            <p>A: Yes! The Video Converter is fully responsive and works on smartphones and tablets. However, processing large videos on mobile may be slower due to hardware limitations.</p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <h4>ToolHub</h4>
+                <p>Your ultimate digital toolkit for all your video conversion and file processing needs.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="cookie-consent">
+        <p>We use cookies for advertising and analytics purposes. <a href="privacy-policy.html">Learn more</a></p>
+        <button onclick="document.getElementById('cookie-consent').style.display='none';">Accept</button>
+    </div>
+
+    <script>
+        const videoUpload = document.getElementById('video-upload');
+        const videoInput = document.getElementById('videoInput');
+        const outputFormat = document.getElementById('outputFormat');
+        const errorMessage = document.getElementById('error-message');
+        let videoFile = null;
+        let statusEl = null;
+        let resultEl = null;
+
+        function initStatusElements() {
+            if (!statusEl) {
+                statusEl = document.createElement('p');
+                statusEl.id = 'vidStatus';
+                statusEl.style.cssText = 'color:#2a5298;font-weight:500;margin-top:1rem;text-align:center;';
+                errorMessage.insertAdjacentElement('afterend', statusEl);
+                resultEl = document.createElement('div');
+                resultEl.id = 'vidResult';
+                resultEl.style.cssText = 'text-align:center;margin-top:1rem;';
+                statusEl.insertAdjacentElement('afterend', resultEl);
+            }
+        }
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorMessage.style.display = msg ? 'block' : 'none';
+        }
+
+        function showStatus(msg, color) {
+            initStatusElements();
+            statusEl.textContent = msg;
+            statusEl.style.color = color || '#2a5298';
+        }
+
+        videoUpload.addEventListener('dragover', e => { e.preventDefault(); videoUpload.classList.add('dragover'); });
+        videoUpload.addEventListener('dragleave', () => videoUpload.classList.remove('dragover'));
+        videoUpload.addEventListener('drop', e => {
+            e.preventDefault(); videoUpload.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('video/')) { videoInput.files = e.dataTransfer.files; handleFile(file); }
+            else showError('Please upload a valid video file only.');
+        });
+        videoUpload.addEventListener('click', () => videoInput.click());
+        videoInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) handleFile(file); else showError('Please upload a valid video file only.');
+        });
+
+        function handleFile(file) {
+            showError('');
+            if (file.size > 500 * 1024 * 1024) { showError('File size must be less than 500MB.'); return; }
+            videoFile = file;
+            showStatus('File ready: ' + file.name + ' (' + (file.size/1024/1024).toFixed(1) + ' MB)', '#27ae60');
+        }
+
+        async function convertVideo() {
+            initStatusElements();
+            if (!videoFile) { showError('Please upload a video file first.'); return; }
+
+            const format = outputFormat.value;
+            const inputExt = videoFile.name.split('.').pop().toLowerCase();
+
+            // If same format, just offer direct download
+            if (inputExt === format) {
+                const url = URL.createObjectURL(videoFile);
+                resultEl.innerHTML = `<a href="${url}" download="${videoFile.name}" style="display:inline-block;padding:12px 28px;background:#28a745;color:white;border-radius:50px;text-decoration:none;font-weight:600;">Download ${format.toUpperCase()}</a>`;
+                showStatus('File is already in ' + format.toUpperCase() + ' format. Ready to download!', '#27ae60');
+                return;
+            }
+
+            // Try FFmpeg.wasm v0.12 (modern approach)
+            showStatus('Loading video converter (this may take a moment)...', '#2a5298');
+            resultEl.innerHTML = '';
+
+            try {
+                // Try to load FFmpeg from CDN
+                if (typeof FFmpegWASM === 'undefined') {
+                    await loadScript('https://unpkg.com/@ffmpeg/ffmpeg@0.12.7/dist/umd/ffmpeg.js');
+                }
+
+                const { FFmpeg } = FFmpegWASM;
+                const { fetchFile, toBlobURL } = await import('https://unpkg.com/@ffmpeg/util@0.12.1/dist/esm/index.js').catch(() => ({ fetchFile: null, toBlobURL: null }));
+                
+                if (!FFmpeg || !fetchFile) throw new Error('FFmpeg library failed to load');
+
+                const ffmpeg = new FFmpeg();
+                ffmpeg.on('progress', ({ progress }) => {
+                    showStatus('Converting... ' + Math.round(progress * 100) + '%');
+                });
+
+                showStatus('Loading FFmpeg...');
+                await ffmpeg.load({
+                    coreURL: 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js',
+                    wasmURL: 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.wasm',
+                });
+
+                const inputName = 'input.' + inputExt;
+                const outputName = 'output.' + format;
+                showStatus('Processing video...');
+                await ffmpeg.writeFile(inputName, await fetchFile(videoFile));
+                await ffmpeg.exec(['-i', inputName, '-c:v', 'copy', '-c:a', 'copy', outputName]);
+                const data = await ffmpeg.readFile(outputName);
+                const blob = new Blob([data.buffer], { type: 'video/' + format });
+                const url = URL.createObjectURL(blob);
+                const outName = videoFile.name.replace(/\.[^.]+$/, '') + '.' + format;
+                resultEl.innerHTML = `<a href="${url}" download="${outName}" style="display:inline-block;padding:12px 28px;background:#28a745;color:white;border-radius:50px;text-decoration:none;font-weight:600;">Download ${format.toUpperCase()} (${(blob.size/1024/1024).toFixed(1)} MB)</a>`;
+                showStatus('Conversion complete!', '#27ae60');
+
+            } catch (err) {
+                // FFmpeg failed - offer native browser video download with format note
+                showStatus('', '#e74c3c');
+                const url = URL.createObjectURL(videoFile);
+                const outName = videoFile.name.replace(/\.[^.]+$/, '') + '.' + format;
+                resultEl.innerHTML = `
+                    <div style="background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:1rem;margin-bottom:1rem;text-align:left;">
+                        <strong>Note:</strong> Full video format conversion requires a server-side tool. 
+                        Your file is available as the original format. For full conversion, use tools like 
+                        <a href="https://cloudconvert.com" target="_blank">CloudConvert</a> or 
+                        <a href="https://www.freeconvert.com" target="_blank">FreeConvert</a>.
+                    </div>
+                    <a href="${url}" download="${videoFile.name}" style="display:inline-block;padding:12px 28px;background:#007bff;color:white;border-radius:50px;text-decoration:none;font-weight:600;">Download Original File</a>`;
+                showStatus('Browser limitation: Full video re-encoding requires a server.', '#e67e22');
+            }
+        }
+
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const s = document.createElement('script');
+                s.src = src; s.onload = resolve; s.onerror = reject;
+                document.head.appendChild(s);
+            });
+        }
+    </script>
+    <script src="chatbot.js"></script>
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+</body>
+</html>
