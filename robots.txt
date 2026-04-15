@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://n-dizi.in/sitemap.xml
+
+# Allow all search engines to index all pages
+Disallow:
+
+# Specific rules for tool pages (allow indexing)
+Allow: /*.html
+
+# Block sensitive directories (none in this project)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl delay for polite crawling
+Crawl-delay: 1

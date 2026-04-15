@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta name="description" content="Generate QR codes online for free. Create QR codes for URLs, text, contact information, and more. Fast and easy QR code generator.">
+    <meta name="keywords" content="QR code generator, create QR code, QR code online, QR code maker, ToolHub">
+    <meta name="author" content="ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/qr-generator.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>QR Code Generator - Create QR Codes Online | ToolHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
+        .input-area { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin: 1.5rem 0; border-radius: 12px; transition: all 0.3s; }
+        .input-area:focus-within { border-color: #00d4ff; background: #f8fdff; }
+        .input-area input { width: 100%; padding: 15px; border: none; font-size: 16px; outline: none; text-align: center; }
+        .generate-btn { padding: 14px 32px; background: #00d4ff; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .generate-btn:hover { background: #00b7d9; transform: translateY(-2px); }
+        #status { text-align: center; margin: 1rem 0; padding: 12px; border-radius: 8px; font-weight: 500; }
+        #status.error { background: #ffebee; color: #c62828; }
+        #qr-result { display: none; text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; }
+        #qr-result img { max-width: 300px; border-radius: 12px; border: 2px solid #ddd; }
+        .download-link { display: inline-block; padding: 12px 24px; background: #28a745; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; margin: 1rem 0.5rem; transition: all 0.3s; }
+        .download-link:hover { background: #218838; transform: translateY(-2px); }
+        @media (max-width: 768px) {
+            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
+            .generate-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <h2>QR Code Generator Tool</h2>
+            <p>Create QR codes for URLs, text, contact information, and more instantly. Our free online QR code generator produces high-quality, scannable codes that work with all QR readers. Perfect for business cards, marketing materials, and personal use.</p>
+
+            <h3>How to Use</h3>
+            <ol>
+                <li>Enter the text or URL you want to encode</li>
+                <li>Click "Generate QR Code" button</li>
+                <li>Download or share your QR code</li>
+            </ol>
+
+            <h3>Supported Data Types</h3>
+            <ul>
+                <li><strong>URLs</strong> - Website links, social media, etc.</li>
+                <li><strong>Text</strong> - Plain text, notes, messages</li>
+                <li><strong>Email</strong> - Email addresses with subject</li>
+                <li><strong>Phone</strong> - Phone numbers</li>
+                <li><strong>WiFi</strong> - WiFi network credentials</li>
+            </ul>
+
+            <div class="input-area">
+                <input type="text" id="qrText" placeholder="Enter URL, text, or data to encode...">
+            </div>
+
+            <div style="text-align: center;">
+                <button class="generate-btn" onclick="generateQR()">Generate QR Code</button>
+            </div>
+
+            <div id="status"></div>
+            <div id="qr-result"></div>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What types of data can I encode?</strong></p>
+            <p>A: You can encode URLs, plain text, email addresses, phone numbers, WiFi credentials, and more.</p>
+            
+            <p><strong>Q: Is there a character limit?</strong></p>
+            <p>A: For best results, keep URLs under 2000 characters. QR codes have capacity limits based on data type.</p>
+            
+            <p><strong>Q: Can I customize the QR code?</strong></p>
+            <p>A: Currently we generate standard black and white QR codes for maximum compatibility.</p>
+            
+            <p><strong>Q: Are these QR codes free for commercial use?</strong></p>
+            <p>A: Yes! All generated QR codes are free for both personal and commercial use.</p>
+            
+            <p><strong>Q: Can I scan with any smartphone?</strong></p>
+            <p>A: Yes! Our QR codes work with all QR code readers including iOS and Android camera apps.</p>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+
+    <script>
+        const qrText = document.getElementById('qrText');
+        const qrResult = document.getElementById('qr-result');
+        const statusDiv = document.getElementById('status');
+
+        qrText.addEventListener('keypress', e => {
+            if (e.key === 'Enter') generateQR();
+        });
+
+        function showStatus(msg, type) {
+            statusDiv.textContent = msg;
+            statusDiv.className = type;
+            statusDiv.style.display = msg ? 'block' : 'none';
+        }
+
+        function generateQR() {
+            const text = qrText.value.trim();
+
+            if (!text) {
+                showStatus('Please enter text or URL to encode.', 'error');
+                qrResult.style.display = 'none';
+                return;
+            }
+
+            showStatus('Generating QR code...', '');
+            qrResult.style.display = 'none';
+
+            const size = 300;
+            const imgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encodeURIComponent(text)}`;
+            
+            const qrImg = new Image();
+            qrImg.crossOrigin = 'anonymous';
+            qrImg.onload = () => {
+                qrResult.innerHTML = `
+                    <p style="color: #28a745; font-weight: 600; margin-bottom: 1rem;">QR Code Generated!</p>
+                    <img src="${imgUrl}" alt="QR Code">
+                    <br>
+                    <a href="${imgUrl}" download="qrcode.png" class="download-link">Download QR Code</a>
+                `;
+                qrResult.style.display = 'block';
+                showStatus('', '');
+            };
+            qrImg.onerror = () => {
+                showStatus('Error generating QR code. Please try again.', 'error');
+            };
+            qrImg.src = imgUrl;
+        }
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

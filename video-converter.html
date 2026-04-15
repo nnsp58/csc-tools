@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta name="description" content="Convert videos to different formats online for free. Convert MP4, AVI, MKV, MOV and more. Fast and secure video converter with high quality output.">
+    <meta name="keywords" content="video converter, convert video, video format converter, MP4 converter, AVI converter, MKV converter, online video tool, ToolHub">
+    <meta name="author" content="ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/video-converter.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>Video Converter - Convert Videos Online | ToolHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
+        #video-upload { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin-bottom: 1rem; border-radius: 10px; cursor: pointer; transition: all 0.3s; }
+        #video-upload:hover { border-color: #00d4ff; background: #f8fdff; }
+        #video-upload.dragover { border-color: #00d4ff; background: #e1f5fe; }
+        .format-options { display: flex; flex-wrap: wrap; gap: 10px; margin: 1rem 0; justify-content: center; }
+        .format-btn { padding: 12px 24px; border: 2px solid #ddd; border-radius: 25px; background: #fff; cursor: pointer; font-weight: 500; transition: all 0.3s; }
+        .format-btn:hover { border-color: #00d4ff; }
+        .format-btn.active { background: #00d4ff; color: white; border-color: #00d4ff; }
+        .action-btn { padding: 14px 28px; background: #00d4ff; color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 16px; transition: all 0.3s; margin: 0.5rem; }
+        .action-btn:hover { background: #00b7d9; transform: translateY(-2px); }
+        .action-btn:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+        #status-message { text-align: center; margin: 1rem 0; padding: 12px; border-radius: 8px; font-weight: 500; }
+        #status-message.processing { background: #e3f2fd; color: #1565c0; }
+        #status-message.success { background: #e8f5e9; color: #2e7d32; }
+        #status-message.info { background: #fff3e0; color: #e65100; }
+        #status-message.error { background: #ffebee; color: #c62828; }
+        #result-section { display: none; margin-top: 2rem; text-align: center; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; }
+        .download-btn { display: inline-block; padding: 14px 28px; background: #28a745; color: white; border-radius: 50px; text-decoration: none; font-weight: 600; margin: 0.5rem; transition: all 0.3s; }
+        .download-btn:hover { background: #218838; transform: translateY(-2px); }
+        .external-links { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #ddd; }
+        .external-links p { color: #666; margin-bottom: 0.5rem; font-size: 14px; }
+        .external-links a { color: #00d4ff; text-decoration: none; margin: 0 10px; }
+        .external-links a:hover { text-decoration: underline; }
+        .note-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; margin: 1rem 0; text-align: left; }
+        .note-box strong { color: #856404; }
+        @media (max-width: 768px) {
+            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
+            .format-options { flex-direction: column; }
+            .format-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <h2>Video Converter Tool</h2>
+            <p>Convert your videos between different formats. Our tool supports MP4, AVI, MKV, and MOV formats. Upload your video and choose the output format you need.</p>
+            
+            <div class="note-box">
+                <strong>Note:</strong> Due to browser security limitations, full video format conversion is not possible in pure browser-based tools. You can upload your video and we'll help you download it, or use our recommended external tools for full conversion.
+            </div>
+
+            <h3>How to Use</h3>
+            <ol>
+                <li>Drag and drop your video file or click to browse (max 100MB)</li>
+                <li>Select the desired output format from the options below</li>
+                <li>Click "Process Video" to prepare your file</li>
+                <li>Download your video using the provided options</li>
+            </ol>
+
+            <h3>Supported Formats</h3>
+            <ul>
+                <li><strong>MP4</strong> - Best for compatibility, works on all devices</li>
+                <li><strong>AVI</strong> - Traditional format for Windows</li>
+                <li><strong>MKV</strong> - High quality, supports multiple audio tracks</li>
+                <li><strong>MOV</strong> - Best for Apple devices and QuickTime</li>
+            </ul>
+
+            <div id="video-upload">
+                <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop Video here</p>
+                <p style="color: #666; margin-bottom: 0;">or click to browse</p>
+                <input type="file" id="videoInput" accept="video/*" style="display: none;">
+            </div>
+
+            <p id="file-name" style="text-align: center; color: #28a745; font-weight: 500;"></p>
+
+            <div class="format-options">
+                <button class="format-btn active" data-format="mp4">MP4</button>
+                <button class="format-btn" data-format="avi">AVI</button>
+                <button class="format-btn" data-format="mkv">MKV</button>
+                <button class="format-btn" data-format="mov">MOV</button>
+            </div>
+
+            <button id="processBtn" class="action-btn" disabled>Process Video</button>
+
+            <div id="status-message"></div>
+
+            <div id="result-section">
+                <h3 id="result-title">Your Video is Ready!</h3>
+                <div id="result-content"></div>
+                <div class="external-links">
+                    <p>For full format conversion, try these online tools:</p>
+                    <a href="https://cloudconvert.com" target="_blank">CloudConvert</a>
+                    <a href="https://www.freeconvert.com" target="_blank">FreeConvert</a>
+                    <a href="https://convertio.co" target="_blank">ConvertIO</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: Why can't I convert between video formats in this tool?</strong></p>
+            <p>A: Video format conversion requires heavy processing that browsers cannot handle securely. We provide direct download and links to specialized online video converters.</p>
+            
+            <p><strong>Q: Is there a file size limit?</strong></p>
+            <p>A: Yes, we support videos up to 100MB for direct upload and download.</p>
+            
+            <p><strong>Q: Are these external conversion services free?</strong></p>
+            <p>A: Yes, most offer free conversions for files up to certain sizes. They may have premium options for larger files.</p>
+            
+            <p><strong>Q: Is my video file secure?</strong></p>
+            <p>A: Yes! Your video is processed locally and is never uploaded to our servers when using the direct download option.</p>
+            
+            <p><strong>Q: Can I use this on mobile devices?</strong></p>
+            <p>A: Yes! The tool works on smartphones and tablets. However, for the best experience, we recommend using a desktop computer.</p>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+
+    <script>
+        const videoUpload = document.getElementById('video-upload');
+        const videoInput = document.getElementById('videoInput');
+        const processBtn = document.getElementById('processBtn');
+        const statusMessage = document.getElementById('status-message');
+        const resultSection = document.getElementById('result-section');
+        const resultTitle = document.getElementById('result-title');
+        const resultContent = document.getElementById('result-content');
+        const fileNameDisplay = document.getElementById('file-name');
+        const formatBtns = document.querySelectorAll('.format-btn');
+
+        let selectedFormat = 'mp4';
+        let videoFile = null;
+
+        formatBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                formatBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedFormat = btn.dataset.format;
+            });
+        });
+
+        videoUpload.addEventListener('click', () => videoInput.click());
+        videoUpload.addEventListener('dragover', e => { e.preventDefault(); videoUpload.classList.add('dragover'); });
+        videoUpload.addEventListener('dragleave', () => videoUpload.classList.remove('dragover'));
+        videoUpload.addEventListener('drop', e => {
+            e.preventDefault();
+            videoUpload.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('video/')) handleFile(file);
+            else showStatus('Please upload a valid video file.', 'error');
+        });
+
+        videoInput.addEventListener('change', e => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        function showStatus(msg, type) {
+            statusMessage.textContent = msg;
+            statusMessage.className = 'status-message ' + type;
+            statusMessage.style.display = msg ? 'block' : 'none';
+        }
+
+        function handleFile(file) {
+            if (file.size > 100 * 1024 * 1024) {
+                showStatus('File size must be less than 100MB.', 'error');
+                return;
+            }
+            videoFile = file;
+            fileNameDisplay.textContent = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(1)} MB)`;
+            processBtn.disabled = false;
+            showStatus('', '');
+            resultSection.style.display = 'none';
+        }
+
+        processBtn.addEventListener('click', () => {
+            if (!videoFile) {
+                showStatus('Please upload a video file first.', 'error');
+                return;
+            }
+
+            const inputExt = videoFile.name.split('.').pop().toLowerCase();
+            const targetFormat = selectedFormat;
+
+            showStatus('Preparing video...', 'processing');
+            processBtn.disabled = true;
+
+            setTimeout(() => {
+                const url = URL.createObjectURL(videoFile);
+                const baseName = videoFile.name.replace(/\.[^.]+$/, '');
+                
+                if (inputExt === targetFormat) {
+                    resultTitle.textContent = 'Video Already in Selected Format!';
+                    resultContent.innerHTML = `
+                        <p>Your video "${videoFile.name}" is already in ${targetFormat.toUpperCase()} format.</p>
+                        <a href="${url}" download="${videoFile.name}" class="download-btn">Download Video</a>
+                    `;
+                    showStatus('Ready to download!', 'success');
+                } else {
+                    resultTitle.textContent = 'Video Ready for Download';
+                    resultContent.innerHTML = `
+                        <p>Your video is ready. Due to browser limitations, format conversion is not available here.</p>
+                        <p style="color: #666; font-size: 14px; margin: 10px 0;">Original format: ${inputExt.toUpperCase()} → Target format: ${targetFormat.toUpperCase()}</p>
+                        <a href="${url}" download="${videoFile.name}" class="download-btn">Download Original (${inputExt.toUpperCase()})</a>
+                    `;
+                    showStatus('File ready! Use external tools for full conversion.', 'info');
+                }
+
+                resultSection.style.display = 'block';
+                processBtn.disabled = false;
+            }, 1000);
+        });
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta name="description" content="Compress images online for free. Compress JPEG, PNG, WebP, and more. Fast and secure image compressor with high compression ratio and quality preservation.">
+    <meta name="keywords" content="image compressor, compress image, reduce image size, JPEG compression, PNG compression, online image optimizer, ToolHub">
+    <meta name="author" content="ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/image-compress.html">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>Image Compressor - Compress Images Online Free | ToolHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
+        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
+        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
+        .upload-area { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin: 1.5rem 0; border-radius: 12px; cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { border-color: #00d4ff; background: #f8fdff; }
+        .upload-area.dragover { border-color: #00d4ff; background: #e1f5fe; }
+        .upload-area.has-file { border-color: #28a745; background: #f0fdf4; }
+        .controls { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; margin: 1.5rem 0; }
+        .controls select { padding: 12px 20px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; min-width: 180px; }
+        .compress-btn { padding: 14px 32px; background: #00d4ff; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .compress-btn:hover { background: #00b7d9; transform: translateY(-2px); }
+        .compress-btn:disabled { background: #ccc; cursor: not-allowed; }
+        #file-name { text-align: center; color: #28a745; font-weight: 500; margin: 1rem 0; }
+        #status { text-align: center; margin: 1rem 0; padding: 12px; border-radius: 8px; font-weight: 500; }
+        #status.processing { background: #e3f2fd; color: #1565c0; }
+        #status.complete { background: #e8f5e9; color: #2e7d32; }
+        #status.error { background: #ffebee; color: #c62828; }
+        #result { display: none; text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; }
+        .result-info { margin: 1rem 0; }
+        .result-info p { margin: 0.5rem 0; }
+        .download-link { display: inline-block; padding: 12px 24px; background: #28a745; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; margin: 0.5rem; transition: all 0.3s; }
+        .download-link:hover { background: #218838; transform: translateY(-2px); }
+        canvas { display: none; }
+        @media (max-width: 768px) {
+            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
+            .controls { flex-direction: column; }
+            .controls select, .compress-btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <h2>Image Compressor Tool</h2>
+            <p>Compress your images online for free. Reduce image file size without losing quality. Perfect for website optimization, email attachments, and saving storage space. All compression happens in your browser - your images are never uploaded to any server.</p>
+
+            <h3>How to Use</h3>
+            <ol>
+                <li>Upload your image by drag & drop or click to browse</li>
+                <li>Select compression level (Low, Medium, or High)</li>
+                <li>Click "Compress" to process your image</li>
+                <li>Download the compressed image</li>
+            </ol>
+
+            <h3>Compression Levels</h3>
+            <ul>
+                <li><strong>Low (High Quality)</strong> - Best quality, minimal compression</li>
+                <li><strong>Medium</strong> - Balanced quality and size</li>
+                <li><strong>High (Low Quality)</strong> - Maximum compression, smaller file</li>
+            </ul>
+
+            <div class="upload-area" id="uploadArea">
+                <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop Image Here</p>
+                <p style="color: #666; margin-bottom: 0;">or click to browse (max 10MB)</p>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+            </div>
+
+            <p id="file-name"></p>
+
+            <div class="controls">
+                <select id="compressionLevel">
+                    <option value="0.8">Low (High Quality)</option>
+                    <option value="0.5" selected>Medium</option>
+                    <option value="0.2">High (Low Size)</option>
+                </select>
+                <button id="compressBtn" class="compress-btn" onclick="compressImage()" disabled>Compress Image</button>
+            </div>
+
+            <div id="status"></div>
+            <div id="result"></div>
+
+            <canvas id="canvas"></canvas>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What image formats are supported?</strong></p>
+            <p>A: Our image compressor supports JPEG, PNG, and WebP formats. You can upload any of these formats for compression.</p>
+            
+            <p><strong>Q: How does compression level work?</strong></p>
+            <p>A: We offer three compression levels: Low (80% quality), Medium (50% quality), and High (20% quality). Choose based on your needs.</p>
+            
+            <p><strong>Q: Will my image quality be affected?</strong></p>
+            <p>A: Higher compression means smaller file size but lower quality. The Low option preserves most of the original quality.</p>
+            
+            <p><strong>Q: Can I use this on mobile devices?</strong></p>
+            <p>A: Yes! The tool is fully responsive and works great on smartphones and tablets.</p>
+            
+            <p><strong>Q: Are my images secure?</strong></p>
+            <p>A: Yes! All processing happens in your browser. No images are uploaded to our servers.</p>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+
+    <script>
+        const uploadArea = document.getElementById('uploadArea');
+        const imageInput = document.getElementById('imageInput');
+        const compressBtn = document.getElementById('compressBtn');
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        const compressionLevel = document.getElementById('compressionLevel');
+        const fileNameDisplay = document.getElementById('file-name');
+        const statusDiv = document.getElementById('status');
+        const resultDiv = document.getElementById('result');
+
+        let originalFile = null;
+        let img = new Image();
+
+        uploadArea.addEventListener('click', () => imageInput.click());
+        uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
+        uploadArea.addEventListener('drop', e => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) handleFile(file);
+        });
+
+        imageInput.addEventListener('change', e => {
+            if (e.target.files[0]) handleFile(e.target.files[0]);
+        });
+
+        function showStatus(msg, type) {
+            statusDiv.textContent = msg;
+            statusDiv.className = type;
+            statusDiv.style.display = msg ? 'block' : 'none';
+        }
+
+        function handleFile(file) {
+            if (file.size > 10 * 1024 * 1024) {
+                showStatus('File size must be less than 10MB.', 'error');
+                return;
+            }
+            originalFile = file;
+            fileNameDisplay.textContent = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+            uploadArea.classList.add('has-file');
+            compressBtn.disabled = false;
+            resultDiv.style.display = 'none';
+
+            img = new Image();
+            img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                showStatus(`Image loaded: ${img.width}x${img.height} pixels`, 'complete');
+            };
+            img.src = URL.createObjectURL(file);
+        }
+
+        function compressImage() {
+            if (!originalFile || !canvas.width) {
+                showStatus('Please upload an image first.', 'error');
+                return;
+            }
+
+            showStatus('Compressing image...', 'processing');
+            compressBtn.disabled = true;
+
+            setTimeout(() => {
+                const quality = parseFloat(compressionLevel.value);
+                const dataUrl = canvas.toDataURL('image/jpeg', quality);
+                
+                const originalSize = originalFile.size;
+                const compressedSize = Math.round((dataUrl.length - 22) * 3 / 4);
+                const saving = originalSize ? Math.round((1 - compressedSize / originalSize) * 100) : 0;
+
+                const extension = originalFile.name.split('.').pop();
+                const baseName = originalFile.name.replace(/\.[^.]+$/, '');
+                const downloadName = baseName + '_compressed.jpg';
+
+                resultDiv.innerHTML = `
+                    <div class="result-info">
+                        <p style="color: #28a745; font-weight: 600; font-size: 1.1rem;">Compression Complete!</p>
+                        <p>Original Size: <strong>${(originalSize / 1024).toFixed(1)} KB</strong></p>
+                        <p>Compressed Size: <strong>${(compressedSize / 1024).toFixed(1)} KB</strong></p>
+                        <p>Size Reduced: <strong>${saving}%</strong></p>
+                    </div>
+                    <a href="${dataUrl}" download="${downloadName}" class="download-link">Download Compressed Image</a>
+                `;
+                resultDiv.style.display = 'block';
+                showStatus('Image compressed successfully!', 'complete');
+                compressBtn.disabled = false;
+            }, 500);
+        }
+    </script>
+    <script src="chatbot.js"></script>
+</body>
+</html>
