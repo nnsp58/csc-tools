@@ -3,46 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image to PDF Converter",
+  "description": "Combine multiple images into single PDF. Reorder images and auto-scale to fit pages.",
+  "url": "https://n-dizi.in/image-to-pdf.html",
+  "applicationCategory": "UtilityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "operatingSystem": "All",
+  "browserRequirements": "Modern browser with JavaScript enabled",
+  "featureList": "Multi-image PDF, image reordering, auto-scaling, offline support"
+}
+</script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <link rel="canonical" href="https://n-dizi.in/image-to-pdf.html">
-    <title>Image to PDF - ToolHub</title>
-    <meta name="description" content="Convert images to PDF online for free. Combine multiple images into a single PDF document. Fast and secure image to PDF converter.">
-    <meta name="keywords" content="image to pdf, convert images to pdf, photo to pdf, online pdf converter, ToolHub">
-    <meta name="author" content="ToolHub">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>Image to PDF Converter - Combine & Reorder Images | ToolHub</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
-        .header { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); padding: 1.5rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
-        .nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
-        .nav-links a { color: #fff; text-decoration: none; margin-left: 2.5rem; font-weight: 500; transition: color 0.3s ease; }
-        .nav-links a:hover { color: #ffe66d; }
-        .tool-section { max-width: 1300px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; }
-        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; }
-        #img-upload { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin-bottom: 1rem; }
-        #img-upload.dragover { background: #e1f5fe; }
-        button { padding: 1rem 2rem; background: #00d4ff; color: white; border: none; border-radius: 50px; cursor: pointer; margin: 0.5rem; }
-        button:hover { background: #00b7d9; }
-        .ad-container { margin: 2rem auto; max-width: 100%; text-align: center; }
-        #cookie-consent { position: fixed; bottom: 0; background: #333; color: #fff; padding: 10px; width: 100%; text-align: center; z-index: 1000; }
-        #cookie-consent a { color: #ffe66d; }
-        #cookie-consent button { background: #00d4ff; border-radius: 5px; padding: 0.5rem 1rem; }
-        .footer { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); color: white; padding: 3rem 2rem; margin-top: 4rem; }
-        .footer-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
-        .footer h4 { margin-bottom: 1.5rem; font-size: 1.3rem; }
-        .footer p { opacity: 0.9; transition: opacity 0.3s ease; }
-        .footer p:hover { opacity: 1; }
-        #error-message { color: red; display: none; margin-top: 1rem; }
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .tool-section { margin: 80px 1rem; padding: 1rem; }
-            .footer-content { grid-template-columns: 1fr; }
-        }
+        .tool-section { max-width: 1100px; margin: 100px auto; padding: 2.5rem; background: #fff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        #img-upload { border: 2px dashed #00d4ff; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #faffff; transition: 0.3s; margin-bottom: 2rem; }
+        #img-upload:hover { border-color: #008fb3; background: #f0ffff; }
+        .file-list { margin-top: 2rem; display: grid; gap: 10px; }
+        .file-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: #f9f9f9; border-radius: 12px; border: 1px solid #eee; }
+        .file-info { display: flex; align-items: center; gap: 15px; }
+        .file-preview { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
+        .reorder-btns { display: flex; gap: 5px; }
+        .reorder-btns button { padding: 5px 12px; font-size: 0.8rem; background: #eee; color: #333; border-radius: 5px; }
+        .reorder-btns button:hover { background: #ddd; }
+        #convertBtn { display: block; width: 100%; max-width: 300px; margin: 2rem auto; }
+        #result { text-align: center; margin-top: 2rem; padding: 2rem; border-top: 2px solid #eee; }
+        .download-btn { display: inline-block; padding: 15px 40px; background: #28a745; color: white; border-radius: 50px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(40,167,69,0.3); }
     </style>
 </head>
 <body>
@@ -52,179 +48,148 @@
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
             </div>
         </nav>
     </header>
-    <main>
+
+    <main id="main-content">
         <section class="tool-section">
-            <h2>Image to PDF Converter Tool</h2>
-            <p>ToolHub's Image to PDF Converter is a powerful online tool that allows you to combine multiple images into a single PDF document. Whether you need to create photo albums, presentations, or document archives, this tool provides fast and reliable conversion. Perfect for photographers, students, professionals, and anyone who needs to organize images into PDF format.</p>
-            <p>Our advanced conversion algorithm ensures that your images are properly scaled and arranged on PDF pages while maintaining their original quality. The tool supports all common image formats including JPEG, PNG, GIF, and WebP. It works entirely in your browser, ensuring your images remain private and secure.</p>
-            <h3>How to Use</h3>
-            <ol>
-                <li>Upload one or more images using the file input (you can select multiple images at once).</li>
-                <li>Click "Convert to PDF" to process the images into a single document.</li>
-                <li>Download the resulting PDF file (typically 100-500 KB per page).</li>
-            </ol>
-            <h3>Benefits</h3>
-            <ul>
-                <li>Combine multiple images into a single PDF document</li>
-                <li>Supports all common image formats (JPEG, PNG, GIF, WebP)</li>
-                <li>Maintains image quality during conversion</li>
-                <li>Fast processing with progress indicators</li>
-                <li>No software installation required - browser-based</li>
-                <li>Completely free with no registration</li>
-                <li>Mobile and desktop friendly</li>
-            </ul>
-            <h3>Example Use Cases</h3>
-            <p>This tool is ideal for creating photo albums from vacation pictures, combining screenshots into documentation, organizing product images for e-commerce, creating presentation materials from images, and archiving scanned documents. The flexible layout system ensures your images are properly arranged on PDF pages.</p>
-            <div id="img-upload">
-                <p>Upload your images here or click to browse</p>
-                <input type="file" id="imgFile" accept="image/*" multiple>
+            <h2>Image to PDF Converter</h2>
+            <p>Combine multiple images into a single PDF. You can reorder images after uploading.</p>
+            
+            <div id="img-upload" onclick="document.getElementById('imgFiles').click()">
+                <p>Click to upload or drag & drop images here</p>
+                <input type="file" id="imgFiles" accept="image/*" multiple style="display:none">
             </div>
-            <button onclick="convertToPDF()">Convert to PDF</button>
-            <p id="error-message"></p>
+
+            <div id="file-list-container" class="file-list"></div>
+
+            <button id="convertBtn" onclick="convertToPDF()">Convert to PDF</button>
+            
+            <div id="convStatus" style="text-align:center; font-weight:600; color:#1e3c72; margin-top:1rem;"></div>
+            <div id="result"></div>
         </section>
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9239182778221521"
-                 data-ad-slot="7274852761"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9239182778221521"
-                 data-ad-slot="7274852761"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        
-        <div class="faq-section">
-            <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: What image formats can I convert to PDF?</strong></p>
-            <p>A: Our Image to PDF Converter supports all common image formats including JPEG, PNG, GIF, and WebP. You can upload multiple images at once.</p>
-            
-            <p><strong>Q: Is there a limit to how many images I can convert?</strong></p>
-            <p>A: You can convert as many images as you want, but the total file size should not exceed 50MB for optimal performance.</p>
-            
-            <p><strong>Q: Will my images lose quality during conversion?</strong></p>
-            <p>A: We use high-quality conversion algorithms to maintain image quality. The tool automatically scales images to fit PDF pages while preserving their original resolution.</p>
-            
-            <p><strong>Q: Can I convert images to PDF on mobile devices?</strong></p>
-            <p>A: Yes! The Image to PDF Converter is fully responsive and works perfectly on smartphones, tablets, and desktop computers.</p>
-            
-            <p><strong>Q: Is my data secure during conversion?</strong></p>
-            <p>A: Yes, all processing is done in your browser. Your images are never uploaded to our servers and are deleted after conversion is complete.</p>
-        </div>
     </main>
-    <footer class="footer">
-        <div class="footer-content">
-            <div>
-                <h4>ToolHub</h4>
-                <p>Your ultimate digital toolkit for all your file conversion and compression needs.</p>
-            </div>
-        </div>
-    </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
         const { jsPDF } = window.jspdf;
-        const imgUpload = document.getElementById('img-upload');
-        const errorMessage = document.getElementById('error-message');
+        let selectedFiles = [];
 
-        // Create status and result elements dynamically
-        let statusEl = document.getElementById('convStatus');
-        let resultEl = document.getElementById('convResult');
-        if (!statusEl) {
-            statusEl = document.createElement('p');
-            statusEl.id = 'convStatus';
-            statusEl.style.cssText = 'color:#2a5298;font-weight:500;margin-top:1rem;text-align:center;';
-            errorMessage.insertAdjacentElement('afterend', statusEl);
-            resultEl = document.createElement('div');
-            resultEl.id = 'convResult';
-            resultEl.style.cssText = 'text-align:center;margin-top:1rem;';
-            statusEl.insertAdjacentElement('afterend', resultEl);
+        const imgFilesInput = document.getElementById('imgFiles');
+        const fileListContainer = document.getElementById('file-list-container');
+        const statusEl = document.getElementById('convStatus');
+        const resultEl = document.getElementById('result');
+
+        imgFilesInput.addEventListener('change', e => {
+            const files = Array.from(e.target.files);
+            addFiles(files);
+        });
+
+        function addFiles(files) {
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    selectedFiles.push({
+                        file: file,
+                        id: Math.random().toString(36).substr(2, 9),
+                        preview: e.target.result
+                    });
+                    renderFileList();
+                };
+                reader.readAsDataURL(file);
+            });
         }
 
-        imgUpload.addEventListener('dragover', e => { e.preventDefault(); imgUpload.classList.add('dragover'); });
-        imgUpload.addEventListener('dragleave', () => imgUpload.classList.remove('dragover'));
-        imgUpload.addEventListener('drop', e => {
-            e.preventDefault(); imgUpload.classList.remove('dragover');
-            document.getElementById('imgFile').files = e.dataTransfer.files;
-        });
-        imgUpload.addEventListener('click', () => document.getElementById('imgFile').click());
+        function renderFileList() {
+            fileListContainer.innerHTML = selectedFiles.map((item, index) => `
+                <div class="file-item">
+                    <div class="file-info">
+                        <img src="${item.preview}" class="file-preview">
+                        <span>${item.file.name}</span>
+                    </div>
+                    <div class="reorder-btns">
+                        <button onclick="moveItem(${index}, -1)" ${index === 0 ? 'disabled' : ''}>Up</button>
+                        <button onclick="moveItem(${index}, 1)" ${index === selectedFiles.length - 1 ? 'disabled' : ''}>Down</button>
+                        <button onclick="removeItem(${index})" style="background:#ff6b6b; color:white;">Remove</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function moveItem(index, direction) {
+            const target = index + direction;
+            if (target >= 0 && target < selectedFiles.length) {
+                const temp = selectedFiles[index];
+                selectedFiles[index] = selectedFiles[target];
+                selectedFiles[target] = temp;
+                renderFileList();
+            }
+        }
+
+        function removeItem(index) {
+            selectedFiles.splice(index, 1);
+            renderFileList();
+        }
 
         async function convertToPDF() {
-            const fileInput = document.getElementById('imgFile');
-            const files = fileInput.files;
-            if (!files.length) { errorMessage.textContent = 'Please select at least one image.'; errorMessage.style.display = 'block'; return; }
-            errorMessage.style.display = 'none';
+            if (!selectedFiles.length) {
+                statusEl.textContent = 'Please select at least one image.';
+                statusEl.style.color = 'red';
+                return;
+            }
+            statusEl.style.color = '#1e3c72';
             resultEl.innerHTML = '';
+            statusEl.textContent = 'Starting conversion...';
 
-            let totalSize = 0;
-            for (let file of files) totalSize += file.size;
-            if (totalSize > 50 * 1024 * 1024) { errorMessage.textContent = 'Total file size exceeds 50MB.'; errorMessage.style.display = 'block'; return; }
-
-            statusEl.textContent = 'Processing 0/' + files.length + ' images...';
             try {
                 const pdf = new jsPDF();
-                let firstImage = true;
-                let idx = 0;
+                let firstPage = true;
 
-                for (let file of files) {
-                    idx++;
-                    statusEl.textContent = `Processing image ${idx}/${files.length}...`;
+                for (let i = 0; i < selectedFiles.length; i++) {
+                    const item = selectedFiles[i];
+                    statusEl.textContent = `Processing image ${i+1}/${selectedFiles.length}...`;
                     const img = new Image();
-                    img.src = URL.createObjectURL(file);
+                    img.src = item.preview; // Use the cached preview
                     await new Promise((res, rej) => { img.onload = res; img.onerror = rej; });
 
                     const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
                     canvas.width = img.width;
                     canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0);
 
                     const imgData = canvas.toDataURL('image/jpeg', 0.85);
-                    if (!firstImage) pdf.addPage();
+                    if (!firstPage) pdf.addPage();
+                    
                     const pw = pdf.internal.pageSize.getWidth();
                     const ph = pdf.internal.pageSize.getHeight();
                     const ratio = Math.min(pw / img.width, ph / img.height);
                     pdf.addImage(imgData, 'JPEG', 0, 0, img.width * ratio, img.height * ratio);
-                    firstImage = false;
-                    URL.revokeObjectURL(img.src);
+                    
+                    firstPage = false;
                 }
 
                 const pdfBlob = pdf.output('blob');
                 const url = URL.createObjectURL(pdfBlob);
-                resultEl.innerHTML = `<a href="${url}" download="converted.pdf" style="display:inline-block;padding:12px 28px;background:#28a745;color:white;border-radius:50px;text-decoration:none;font-weight:600;">Download PDF (${(pdfBlob.size/1024).toFixed(1)} KB)</a>`;
-                statusEl.textContent = `Conversion complete! ${files.length} image(s) combined into PDF.`;
-                statusEl.style.color = '#27ae60';
+                resultEl.innerHTML = `<a href="${url}" download="converted.pdf" class="download-btn">Download PDF</a>`;
+                statusEl.textContent = 'Conversion complete!';
             } catch (error) {
                 statusEl.textContent = 'Error: ' + error.message;
-                statusEl.style.color = '#e74c3c';
-                resultEl.innerHTML = '';
+                statusEl.style.color = 'red';
             }
+        }
+
+        // Alias for tests
+        function convertToPdf() { return convertToPDF(); }
+    </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js').catch(err => console.log('SW failed:', err));
         }
     </script>
     <script src="chatbot.js"></script>
     <div id="footer"></div>
-    <script>
-        fetch("./footer.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("footer").innerHTML = data);
-    </script>
+    <script>fetch("./footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);</script>
 </body>
 </html>

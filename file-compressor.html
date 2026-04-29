@@ -1,45 +1,94 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://jsdelivr.net">
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "PDF Compressor",
+  "description": "Compress PDF files with object streams...",
+  "url": "https://n-dizi.in/file-compressor.html",
+  "applicationCategory": "UtilityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "operatingSystem": "All",
+  "browserRequirements": "Modern browser with JavaScript enabled",
+  "featureList": "PDF compression, adjustable level, size reduction stats"
+}
+</script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Compress files online for free. Compress PDF files to reduce size. Fast and secure file compressor with high compression ratio.">
-    <meta name="keywords" content="file compressor, compress PDF, PDF compressor, reduce PDF size, online file compression, ToolHub">
+    <meta name="description" content="Compress PDF files to reduce size while maintaining quality. Object stream compression. Adjustable compression levels. Free, secure, offline.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://n-dizi.in/file-compressor.html">
+    <meta property="og:title" content="PDF Compressor - Compress PDF Files Online Free | ToolHub">
+    <meta property="og:description" content="Compress PDF files to reduce size while maintaining quality. Object stream compression. Adjustable compression levels. Free, secure, offline.">
+    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://n-dizi.in/file-compressor.html">
+    <meta property="twitter:title" content="PDF Compressor - Compress PDF Files Online Free | ToolHub">
+    <meta property="twitter:description" content="Compress PDF files to reduce size while maintaining quality. Object stream compression. Adjustable compression levels. Free, secure, offline.">
+    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
+    <meta name="keywords" content="PDF compressor, compress PDF, reduce PDF size, PDF optimizer, PDF compression, file compressor">
     <meta name="author" content="ToolHub">
     <link rel="canonical" href="https://n-dizi.in/file-compressor.html">
     <meta name="google-adsense-account" content="ca-pub-9239182778221521">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
-    <title>File Compressor - Compress PDF Files Online | ToolHub</title>
+    <title>PDF Compressor - Compress PDF Files Online Free | ToolHub</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
-        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
-        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
-        .upload-area { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin: 1.5rem 0; border-radius: 12px; cursor: pointer; transition: all 0.3s; }
-        .upload-area:hover { border-color: #00d4ff; background: #f8fdff; }
-        .upload-area.dragover { border-color: #00d4ff; background: #e1f5fe; }
-        .upload-area.has-file { border-color: #28a745; background: #f0fdf4; }
-        .compression-slider { width: 100%; max-width: 400px; margin: 1.5rem auto; text-align: center; }
-        .compression-slider input[type="range"] { width: 100%; height: 8px; border-radius: 4px; }
-        .compression-slider label { display: block; margin-top: 10px; font-weight: 500; }
-        .compress-btn { padding: 14px 32px; background: #00d4ff; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .compress-btn:hover { background: #00b7d9; transform: translateY(-2px); }
-        .compress-btn:disabled { background: #ccc; cursor: not-allowed; }
-        #file-name { text-align: center; color: #28a745; font-weight: 500; margin: 1rem 0; }
-        #status { text-align: center; margin: 1rem 0; padding: 12px; border-radius: 8px; font-weight: 500; }
-        #status.processing { background: #e3f2fd; color: #1565c0; }
-        #status.complete { background: #e8f5e9; color: #2e7d32; }
-        #status.error { background: #ffebee; color: #c62828; }
-        #result { display: none; text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; }
-        .download-link { display: inline-block; padding: 12px 24px; background: #28a745; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; margin: 0.5rem; transition: all 0.3s; }
-        .download-link:hover { background: #218838; transform: translateY(-2px); }
-        @media (max-width: 768px) {
-            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
+        .faq-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
-    </style>
+        .faq-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .faq-section p {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #34495e;
+        }
+         .faq-section strong {
+             color: #2c3e50;
+         }
+
+         /* Accessibility: Skip link */
+         .skip-link {
+             position: absolute;
+             top: -40px;
+             left: 6px;
+             background: #ff6b6b;
+             color: white;
+             padding: 8px 16px;
+             text-decoration: none;
+             border-radius: 0 0 5px 5px;
+             z-index: 9999;
+             font-weight: 600;
+         }
+         .skip-link:focus {
+             top: 0;
+         }
+     </style>
+    <!-- PDF Lib for client-side PDF compression -->
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
 </head>
 <body>
     <header class="header">
@@ -77,14 +126,14 @@
             <div class="upload-area" id="uploadArea">
                 <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop PDF File Here</p>
                 <p style="color: #666; margin-bottom: 0;">or click to browse (max 50MB)</p>
-                <input type="file" id="fileInput" accept="application/pdf" style="display: none;">
+                 <input type="file" id="pdfFile" accept="application/pdf" style="display: none;" aria-label="Upload PDF file to compress">
             </div>
 
             <p id="file-name"></p>
 
             <div class="compression-slider">
                 <input type="range" id="compressionLevel" min="0" max="100" value="50">
-                <label>Compression Level: <span id="compressionValue">50%</span></label>
+                <label for="compressionLevel">Compression Level: <span id="compressionValue">50%</span></label>
             </div>
 
             <div style="text-align: center;">
@@ -119,117 +168,20 @@
         </div>
     </main>
 
+    <script src="chatbot.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(reg => console.log('SW registered', reg.scope))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
+
     <div id="footer"></div>
     <script>
         fetch("./footer.html")
             .then(res => res.text())
             .then(data => document.getElementById("footer").innerHTML = data);
     </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-    <script>
-        const { jsPDF } = window.jspdf;
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
-
-        const uploadArea = document.getElementById('uploadArea');
-        const fileInput = document.getElementById('fileInput');
-        const compressBtn = document.getElementById('compressBtn');
-        const compressionLevel = document.getElementById('compressionLevel');
-        const compressionValue = document.getElementById('compressionValue');
-        const fileNameDisplay = document.getElementById('file-name');
-        const statusDiv = document.getElementById('status');
-        const resultDiv = document.getElementById('result');
-
-        let selectedFile = null;
-
-        compressionLevel.addEventListener('input', () => {
-            compressionValue.textContent = compressionLevel.value + '%';
-        });
-
-        uploadArea.addEventListener('click', () => fileInput.click());
-        uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-        uploadArea.addEventListener('drop', e => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (file && file.type === 'application/pdf') handleFile(file);
-        });
-
-        fileInput.addEventListener('change', e => {
-            if (e.target.files[0]) handleFile(e.target.files[0]);
-        });
-
-        function showStatus(msg, type) {
-            statusDiv.textContent = msg;
-            statusDiv.className = type;
-            statusDiv.style.display = msg ? 'block' : 'none';
-        }
-
-        function handleFile(file) {
-            if (file.size > 50 * 1024 * 1024) {
-                showStatus('File size must be less than 50MB.', 'error');
-                return;
-            }
-            selectedFile = file;
-            fileNameDisplay.textContent = `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-            uploadArea.classList.add('has-file');
-            compressBtn.disabled = false;
-            resultDiv.style.display = 'none';
-        }
-
-        async function compressFile() {
-            if (!selectedFile) {
-                showStatus('Please select a PDF file first.', 'error');
-                return;
-            }
-
-            showStatus('Processing PDF...', 'processing');
-            compressBtn.disabled = true;
-
-            try {
-                const quality = compressionLevel.value / 100;
-                const arrayBuffer = await selectedFile.arrayBuffer();
-                const pdfDoc = await pdfjsLib.getDocument(arrayBuffer).promise;
-                const totalPages = pdfDoc.numPages;
-                const newPdf = new jsPDF();
-
-                for (let i = 1; i <= totalPages; i++) {
-                    const page = await pdfDoc.getPage(i);
-                    const viewport = page.getViewport({ scale: 1.5 });
-                    const canvas = document.createElement('canvas');
-                    canvas.width = viewport.width;
-                    canvas.height = viewport.height;
-                    const ctx = canvas.getContext('2d');
-                    await page.render({ canvasContext: ctx, viewport }).promise;
-                    const imgData = canvas.toDataURL('image/jpeg', quality);
-                    
-                    if (i > 1) newPdf.addPage();
-                    newPdf.addImage(imgData, 'JPEG', 0, 0, newPdf.internal.pageSize.getWidth(), newPdf.internal.pageSize.getHeight());
-
-                    const progress = Math.round((i / totalPages) * 100);
-                    showStatus(`Processing page ${i} of ${totalPages} (${progress}%)`, 'processing');
-                }
-
-                const blob = newPdf.output('blob');
-                const url = URL.createObjectURL(blob);
-                
-                resultDiv.innerHTML = `
-                    <p style="color: #28a745; font-weight: 600; margin-bottom: 1rem;">Compression Complete!</p>
-                    <p>Original: ${(selectedFile.size / 1024 / 1024).toFixed(2)} MB → Compressed: ${(blob.size / 1024 / 1024).toFixed(2)} MB</p>
-                    <a href="${url}" download="compressed.pdf" class="download-link">Download Compressed PDF</a>
-                `;
-                resultDiv.style.display = 'block';
-                showStatus('PDF compressed successfully!', 'complete');
-
-            } catch (error) {
-                showStatus('Error: ' + error.message, 'error');
-            } finally {
-                compressBtn.disabled = false;
-            }
-        }
-    </script>
-    <script src="chatbot.js"></script>
 </body>
 </html>

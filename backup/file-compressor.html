@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta name="description" content="Compress files online for free. Compress images, documents, and other files to reduce size. Fast and secure file compressor with high compression ratio.">
+    <link rel="canonical" href="https://n-dizi.in/file-compressor.html">
+    <title>File Compressor - ToolHub</title>
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .faq-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .faq-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        .faq-section p {
+            margin: 15px 0;
+            line-height: 1.6;
+            color: #34495e;
+        }
+         .faq-section strong {
+             color: #2c3e50;
+         }
+
+         /* Accessibility: Skip link */
+         .skip-link {
+             position: absolute;
+             top: -40px;
+             left: 6px;
+             background: #ff6b6b;
+             color: white;
+             padding: 8px 16px;
+             text-decoration: none;
+             border-radius: 0 0 5px 5px;
+             z-index: 9999;
+             font-weight: 600;
+         }
+         .skip-link:focus {
+             top: 0;
+         }
+     </style>
+    <!-- PDF Lib for client-side PDF compression -->
+    <script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="tool-section">
+            <h2>File Compressor Tool</h2>
+            <p>Compress your PDF files to reduce their size. Our free online tool makes it easy to optimize PDF documents for email, storage, or web sharing. All processing happens in your browser - your files are never uploaded to any server.</p>
+
+            <h3>How to Use</h3>
+            <ol>
+                <li>Upload your PDF file by drag & drop or click to browse</li>
+                <li>Adjust the compression level using the slider</li>
+                <li>Click "Compress" to process your file</li>
+                <li>Download the compressed PDF</li>
+            </ol>
+
+            <h3>Compression Levels</h3>
+            <ul>
+                <li><strong>Low (0-30%)</strong> - Best quality, minimal compression</li>
+                <li><strong>Medium (40-60%)</strong> - Balanced quality and size</li>
+                <li><strong>High (70-100%)</strong> - Maximum compression, smaller file</li>
+            </ul>
+
+            <div class="upload-area" id="uploadArea">
+                <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop PDF File Here</p>
+                <p style="color: #666; margin-bottom: 0;">or click to browse (max 50MB)</p>
+                <input type="file" id="fileInput" accept="application/pdf" style="display: none;">
+            </div>
+
+            <p id="file-name"></p>
+
+            <div class="compression-slider">
+                <input type="range" id="compressionLevel" min="0" max="100" value="50">
+                <label>Compression Level: <span id="compressionValue">50%</span></label>
+            </div>
+
+            <div style="text-align: center;">
+                <button id="compressBtn" class="compress-btn" onclick="compressFile()" disabled>Compress File</button>
+            </div>
+
+            <div id="status"></div>
+            <div id="result"></div>
+        </section>
+
+        <div class="ad-container">
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What file types can I compress?</strong></p>
+            <p>A: Our File Compressor currently supports PDF files. We're working on adding support for more file types.</p>
+            
+            <p><strong>Q: What is the maximum file size?</strong></p>
+            <p>A: You can upload PDF files up to 50MB in size.</p>
+            
+            <p><strong>Q: How does compression work?</strong></p>
+            <p>A: The slider controls quality - 0% = smallest size (lower quality), 100% = best quality (larger size).</p>
+            
+            <p><strong>Q: Will my PDF lose quality?</strong></p>
+            <p>A: Higher compression reduces file size but may affect quality. Test different settings to find the right balance.</p>
+            
+            <p><strong>Q: Are my files secure?</strong></p>
+            <p>A: Yes! All processing happens in your browser. No files are uploaded to our servers.</p>
+        </div>
+    </main>
+
+    <script src="chatbot.js"></script>
+
+    <script>
+        // PDF Compressor using pdf-lib
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const fileNameDisplay = document.getElementById('file-name');
+        const compressBtn = document.getElementById('compressBtn');
+        const compressionSlider = document.getElementById('compressionLevel');
+        const compressionValue = document.getElementById('compressionValue');
+        const statusDiv = document.getElementById('status');
+        const resultDiv = document.getElementById('result');
+
+        let selectedFile = null;
+
+        // Drag & drop
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#00d4ff';
+            uploadArea.style.background = '#f8fdff';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#ccc';
+            uploadArea.style.background = 'transparent';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ccc';
+            uploadArea.style.background = 'transparent';
+            const file = e.dataTransfer.files[0];
+            if (file && file.type === 'application/pdf') {
+                handleFile(file);
+            } else {
+                showStatus('कृपया केवल PDF फाइल अपलोड करें।', 'error');
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) handleFile(file);
+        });
+
+        compressionSlider.addEventListener('input', () => {
+            const val = parseInt(compressionSlider.value);
+            let label;
+            if (val < 40) label = 'Best Quality (least compression)';
+            else if (val < 70) label = 'Balanced';
+            else label = 'Maximum Compression';
+            compressionValue.textContent = `${label} (${val}%)`;
+        });
+
+        function handleFile(file) {
+            selectedFile = file;
+            fileNameDisplay.textContent = `Selected: ${file.name} (${(file.size/1024/1024).toFixed(1)} MB)`;
+            compressBtn.disabled = false;
+            showStatus('', '');
+            resultDiv.style.display = 'none';
+        }
+
+        async function compressFile() {
+            if (!selectedFile) {
+                showStatus('कृपया पहले PDF फाइल अपलोड करें।', 'error');
+                return;
+            }
+
+            const compressionLevel = parseInt(compressionSlider.value); // 0-100
+            showStatus('PDF कंप्रेशन हो रहा है...', 'processing');
+            compressBtn.disabled = true;
+
+            try {
+                const arrayBuffer = await selectedFile.arrayBuffer();
+                const pdfDoc = await PDFLib.PDFDocument.load(arrayBuffer);
+
+                // Basic optimization: pdf-lib automatically uses object streams (compression)
+                // We can also try to recompress images if needed, but for now use default save
+                const pdfBytes = await pdfDoc.save({
+                    useObjectStreams: true,
+                });
+
+                const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const baseName = selectedFile.name.replace(/\.[^.]+$/, '');
+                const downloadName = baseName + '_compressed.pdf';
+                const compressedSize = blob.size;
+                const ratio = ((selectedFile.size - compressedSize) / selectedFile.size * 100).toFixed(1);
+
+                resultDiv.innerHTML = `
+                    <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">कंप्रेशन पूरा हुआ!</p>
+                    <p>मूल आकार: ${(selectedFile.size/1024/1024).toFixed(2)} MB</p>
+                    <p>कंप्रेस्ड आकार: ${(compressedSize/1024/1024).toFixed(2)} MB (${ratio}% कमी)</p>
+                    <a href="${url}" download="${downloadName}" class="download-link">डाउनलोड कंप्रेस्ड PDF</a>
+                `;
+                resultDiv.style.display = 'block';
+                showStatus('PDF सफलतापूर्वक कंप्रेस हो गया!', 'complete');
+            } catch (error) {
+                console.error(error);
+                showStatus('कंप्रेशन failed: ' + error.message, 'error');
+                resultDiv.innerHTML = `<p style="color:#c62828;">Error: ${error.message}</p>`;
+                resultDiv.style.display = 'block';
+            } finally {
+                compressBtn.disabled = false;
+            }
+        }
+
+        function showStatus(msg, type) {
+            statusDiv.textContent = msg;
+            statusDiv.className = '';
+            if (type) statusDiv.classList.add(type);
+            statusDiv.style.display = msg ? 'block' : 'none';
+        }
+    </script>
+
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+</body>
+</html>

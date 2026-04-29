@@ -9,6 +9,18 @@
     <link rel="shortcut icon" href="favicon.png">
     <title>Terms of Service - ToolHub</title>
     <meta name="description" content="ToolHub Terms of Service - Learn the terms and conditions for using our free online tools.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://n-dizi.in/terms.html">
+    <meta property="og:title" content="Terms of Service - ToolHub">
+    <meta property="og:description" content="ToolHub Terms of Service - Learn the terms and conditions for using our free online tools.">
+    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://n-dizi.in/terms.html">
+    <meta property="twitter:title" content="Terms of Service - ToolHub">
+    <meta property="twitter:description" content="ToolHub Terms of Service - Learn the terms and conditions for using our free online tools.">
+    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,6 +50,8 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
@@ -50,7 +64,7 @@
         </nav>
     </header>
     
-    <main>
+    <main id="main-content">
         <section class="content">
             <h1>Terms of Service</h1>
             
@@ -132,5 +146,12 @@
             </div>
         </div>
     </footer>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(reg => console.log('SW registered', reg.scope))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
 </body>
 </html>

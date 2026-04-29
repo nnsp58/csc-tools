@@ -3,47 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Format Converter",
+  "description": "Convert images between PNG, JPEG, and WebP...",
+  "url": "https://n-dizi.in/image-format-converter.html",
+  "applicationCategory": "UtilityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "operatingSystem": "All",
+  "browserRequirements": "Modern browser with JavaScript enabled",
+  "featureList": "PNG/JPEG/WebP conversion, quality settings, drag-and-drop"
+}
+</script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Convert images to different formats online for free. Convert PNG, JPEG, WebP, and more. Fast and secure image format converter with high quality output.">
-    <meta name="keywords" content="image format converter, convert image, PNG to JPEG, JPEG to PNG, WebP converter, image converter, ToolHub">
+    <meta name="description" content="Convert images between PNG, JPEG, and WebP formats. Adjustable quality settings. Fast, free, and secure image conversion tool.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://n-dizi.in/image-format-converter.html">
+    <meta property="og:title" content="Image Format Converter - Convert PNG, JPEG, WebP Online | ToolHub">
+    <meta property="og:description" content="Convert images between PNG, JPEG, and WebP formats. Adjustable quality settings. Fast, free, and secure image conversion tool.">
+    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://n-dizi.in/image-format-converter.html">
+    <meta property="twitter:title" content="Image Format Converter - Convert PNG, JPEG, WebP Online | ToolHub">
+    <meta property="twitter:description" content="Convert images between PNG, JPEG, and WebP formats. Adjustable quality settings. Fast, free, and secure image conversion tool.">
+    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
+    <meta name="keywords" content="image format converter, convert image, PNG to JPEG, JPEG to PNG, WebP converter, image converter, photo format converter">
     <meta name="author" content="ToolHub">
     <link rel="canonical" href="https://n-dizi.in/image-format-converter.html">
     <meta name="google-adsense-account" content="ca-pub-9239182778221521">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
-    <title>Image Format Converter - Convert Images Online | ToolHub</title>
+    <title>Image Format Converter - Convert PNG, JPEG, WebP Online | ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .tool-section { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        .tool-section h2 { color: #1e3c72; font-size: 2rem; margin-bottom: 1.5rem; text-align: center; }
-        .tool-section h3 { color: #1e3c72; margin-top: 1.5rem; margin-bottom: 0.8rem; }
-        .tool-section p, .tool-section ul, .tool-section ol { margin-bottom: 1rem; line-height: 1.7; }
-        .upload-area { border: 2px dashed #ccc; padding: 2rem; text-align: center; margin: 1.5rem 0; border-radius: 12px; cursor: pointer; transition: all 0.3s; }
-        .upload-area:hover { border-color: #00d4ff; background: #f8fdff; }
-        .upload-area.dragover { border-color: #00d4ff; background: #e1f5fe; }
-        .upload-area.has-file { border-color: #28a745; background: #f0fdf4; }
-        .controls { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; align-items: center; margin: 1.5rem 0; }
-        .controls select { padding: 12px 20px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; min-width: 150px; }
-        .convert-btn { padding: 14px 32px; background: #00d4ff; color: white; border: none; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s; }
-        .convert-btn:hover { background: #00b7d9; transform: translateY(-2px); }
-        .convert-btn:disabled { background: #ccc; cursor: not-allowed; }
-        #file-name { text-align: center; color: #28a745; font-weight: 500; margin: 1rem 0; }
-        #status { text-align: center; margin: 1rem 0; padding: 12px; border-radius: 8px; font-weight: 500; }
-        #status.processing { background: #e3f2fd; color: #1565c0; }
-        #status.complete { background: #e8f5e9; color: #2e7d32; }
-        #status.error { background: #ffebee; color: #c62828; }
-        #result { display: none; text-align: center; margin-top: 1.5rem; padding: 1.5rem; background: #f8f9fa; border-radius: 12px; }
-        .download-link { display: inline-block; padding: 12px 24px; background: #28a745; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; margin: 0.5rem; transition: all 0.3s; }
-        .download-link:hover { background: #218838; transform: translateY(-2px); }
-        canvas { max-width: 100%; border-radius: 8px; margin-top: 1rem; }
-        @media (max-width: 768px) {
-            .tool-section { margin: 80px 1rem; padding: 1.5rem; }
-            .controls { flex-direction: column; }
-            .controls select, .convert-btn { width: 100%; }
-        }
+        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1rem; text-align: center; }
+        .faq-section p { margin-bottom: 1rem; line-height: 1.6; }
+        .faq-section strong { color: #1e3c72; }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
@@ -56,8 +65,8 @@
         </nav>
     </header>
 
-    <main>
-        <section class="tool-section">
+     <main>
+         <section class="tool-section" id="tool-section">
             <h2>Image Format Converter Tool</h2>
             <p>Convert your images between different formats instantly. Our free online tool supports conversion between PNG, JPEG, WebP, and HTML formats. All processing happens in your browser - your images are never uploaded to any server.</p>
 
@@ -79,13 +88,13 @@
             <div class="upload-area" id="uploadArea">
                 <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop Image Here</p>
                 <p style="color: #666; margin-bottom: 0;">or click to browse</p>
-                <input type="file" id="imgInput" accept="image/*" style="display: none;">
+                 <input type="file" id="imgInput" accept="image/*" style="display: none;" aria-label="Select image to convert">
             </div>
 
             <p id="file-name"></p>
 
             <div class="controls">
-                <select id="outputFormat">
+                <select id="outputFormat" aria-label="Output format">
                     <option value="image/png">PNG</option>
                     <option value="image/jpeg">JPEG</option>
                     <option value="image/webp">WebP</option>
@@ -205,7 +214,13 @@
                 convertBtn.disabled = false;
             }, 500);
         }
-    </script>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(reg => console.log('SW registered', reg.scope))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
     <script src="chatbot.js"></script>
 </body>
 </html>

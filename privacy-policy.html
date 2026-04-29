@@ -7,6 +7,18 @@
     <link rel="shortcut icon" href="favicon.png">
     <title>Privacy Policy - ToolHub</title>
     <meta name="description" content="ToolHub Privacy Policy - Learn how we collect, use, and protect your data when using our free online tools.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://n-dizi.in/privacy-policy.html">
+    <meta property="og:title" content="Privacy Policy - ToolHub">
+    <meta property="og:description" content="ToolHub Privacy Policy - Learn how we collect, use, and protect your data when using our free online tools.">
+    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://n-dizi.in/privacy-policy.html">
+    <meta property="twitter:title" content="Privacy Policy - ToolHub">
+    <meta property="twitter:description" content="ToolHub Privacy Policy - Learn how we collect, use, and protect your data when using our free online tools.">
+    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
     <meta name="google-adsense-account" content="ca-pub-9239182778221521">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
@@ -38,6 +50,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
@@ -127,5 +140,12 @@
             </div>
         </div>
     </footer>
+    <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(reg => console.log('SW registered', reg.scope))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
 </body>
 </html>

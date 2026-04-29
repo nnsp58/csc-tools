@@ -1,0 +1,9 @@
+﻿{
+  "mcp_servers": {
+    "puppeteer": {
+      "command": "node",
+      "args": ["D:/tools-hub/Tool-fixed/.mcp-servers/server.js"],
+      "env": {}
+    }
+  }
+}

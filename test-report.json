@@ -1,0 +1,244 @@
+[
+  {
+    "name": "Home",
+    "path": "index.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Home.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Home page OK"
+    }
+  },
+  {
+    "name": "QR Generator",
+    "path": "qr-generator.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\QR_Generator.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ QR generated and download available"
+    }
+  },
+  {
+    "name": "Calculator",
+    "path": "multifunction-calculator.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Calculator.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Calculator all tabs work"
+    }
+  },
+  {
+    "name": "Text to Speech",
+    "path": "text-to-speech.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Text_to_Speech.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Text to Speech UI ready"
+    }
+  },
+  {
+    "name": "Image Compressor",
+    "path": "image-compress.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Image_Compressor.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Image Compressor UI complete"
+    }
+  },
+  {
+    "name": "Image to PDF",
+    "path": "image-to-pdf.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Image_to_PDF.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Image to PDF ready (jsPDF loaded)"
+    }
+  },
+  {
+    "name": "PDF to Word",
+    "path": "pdf-to-word.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\PDF_to_Word.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ PDF to Word ready (libs loaded)"
+    }
+  },
+  {
+    "name": "Audio Converter",
+    "path": "audio-converter.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Audio_Converter.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Audio Converter UI ready"
+    }
+  },
+  {
+    "name": "Video Converter",
+    "path": "video-converter.html",
+    "passed": false,
+    "errors": [
+      "Placeholder message - no actual conversion"
+    ],
+    "screenshots": [
+      "test-screenshots\\Video_Converter.png"
+    ],
+    "details": {
+      "overallPass": false,
+      "errors": [
+        "Placeholder message - no actual conversion"
+      ],
+      "message": "⚠️  Placeholder only (no FFmpeg)"
+    }
+  },
+  {
+    "name": "Voice Translator",
+    "path": "voice-translator.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Voice_Translator.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Voice Translator ready"
+    }
+  },
+  {
+    "name": "Universal Translator",
+    "path": "universal-translator.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Universal_Translator.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Universal Translator ready"
+    }
+  },
+  {
+    "name": "Group Photo Maker",
+    "path": "group-photo-maker.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Group_Photo_Maker.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Group Photo Maker ready"
+    }
+  },
+  {
+    "name": "Passport Photo Maker",
+    "path": "passport-size-photo-maker.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Passport_Photo_Maker.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Passport Photo Maker ready (MediaPipe loaded)"
+    }
+  },
+  {
+    "name": "Image Format Converter",
+    "path": "image-format-converter.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Image_Format_Converter.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Image Format Converter ready"
+    }
+  },
+  {
+    "name": "File Compressor",
+    "path": "file-compressor.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\File_Compressor.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ File Compressor ready (pdf-lib loaded)"
+    }
+  },
+  {
+    "name": "Document Converter",
+    "path": "document-format-converter.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Document_Converter.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Shows under development"
+    }
+  },
+  {
+    "name": "Password Generator",
+    "path": "password-generator.html",
+    "passed": true,
+    "errors": [],
+    "screenshots": [
+      "test-screenshots\\Password_Generator.png"
+    ],
+    "details": {
+      "overallPass": true,
+      "errors": [],
+      "message": "✅ Password Generator ready"
+    }
+  }
+]

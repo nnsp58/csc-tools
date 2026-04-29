@@ -3,14 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Multifunction Calculator",
+  "description": "All-in-one calculator...",
+  "url": "https://n-dizi.in/multifunction-calculator.html",
+  "applicationCategory": "UtilityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "operatingSystem": "All",
+  "browserRequirements": "Modern browser with JavaScript enabled",
+  "featureList": "Basic arithmetic, currency, area, weight, distance, percentage conversion"
+}
+</script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Perform multiple calculations online for free. Basic arithmetic, currency conversion, area conversion, weight conversion, distance conversion, and percentage calculations.">
-    <meta name="keywords" content="calculator, unit converter, currency converter, area conversion, weight conversion, distance converter, percentage calculator, ToolHub">
+    <meta name="description" content="All-in-one calculator: basic math, currency, area, weight, distance, percentage. Free online calculator with instant results.">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://n-dizi.in/multifunction-calculator.html">
+    <meta property="og:title" content="Multifunction Calculator - 6-in-1 Online Calculator Tool | ToolHub">
+    <meta property="og:description" content="All-in-one calculator: basic math, currency, area, weight, distance, percentage. Free online calculator with instant results.">
+    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://n-dizi.in/multifunction-calculator.html">
+    <meta property="twitter:title" content="Multifunction Calculator - 6-in-1 Online Calculator Tool | ToolHub">
+    <meta property="twitter:description" content="All-in-one calculator: basic math, currency, area, weight, distance, percentage. Free online calculator with instant results.">
+    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
+    <meta name="keywords" content="online calculator, unit converter, currency converter, area conversion, weight conversion, distance converter, percentage calculator, math calculator">
     <meta name="author" content="ToolHub">
     <link rel="canonical" href="https://n-dizi.in/multifunction-calculator.html">
     <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <title>Multifunction Calculator - All-in-One Online Calculator | ToolHub</title>
+    <title>Multifunction Calculator - 6-in-1 Online Calculator Tool | ToolHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
@@ -22,6 +52,8 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
@@ -32,8 +64,8 @@
                 <a href="index.html#contact">Contact</a>
             </div>
         </nav>
-    </header>
-    <div class="container" style="margin-top:90px;">
+     </header>
+      <div class="container" id="main-content" style="margin-top:90px;">
         <h1><i class="fas fa-calculator"></i> Multifunction Calculator</h1>
         <div class="tab-buttons">
             <button class="tab-btn active" onclick="openTab('basic')">Basic</button>
@@ -44,24 +76,24 @@
             <button class="tab-btn" onclick="openTab('percentage')">Percentage</button>
         </div>
         <div id="basic" class="tab-content active">
-            <input type="number" id="basicNum1" placeholder="First Number">
-            <select id="basicOp">
+            <input type="number" id="basicNum1" placeholder="First Number" aria-label="First number">
+            <select id="basicOp" aria-label="Operation">
                 <option value="+">+</option>
                 <option value="-">-</option>
                 <option value="*">×</option>
                 <option value="/">÷</option>
             </select>
-            <input type="number" id="basicNum2" placeholder="Second Number">
-            <button onclick="calculateBasic()">Calculate</button>
+            <input type="number" id="basicNum2" placeholder="Second Number" aria-label="Second number">
+            <button id="addBtn" onclick="calculateBasic()">Calculate</button>
         </div>
         <div id="currency" class="tab-content">
-            <input type="number" id="currencyAmount" placeholder="Amount">
-            <select id="currencyFrom">
+            <input type="number" id="currencyAmount" placeholder="Amount" aria-label="Amount to convert">
+            <select id="currencyFrom" aria-label="Source currency">
                 <option value="USD">USD</option>
                 <option value="INR">INR</option>
                 <option value="EUR">EUR</option>
             </select>
-            <select id="currencyTo">
+            <select id="currencyTo" aria-label="Target currency">
                 <option value="USD">USD</option>
                 <option value="INR">INR</option>
                 <option value="EUR">EUR</option>
@@ -69,8 +101,8 @@
             <button onclick="convertCurrency()">Convert</button>
         </div>
         <div id="area" class="tab-content">
-            <input type="number" id="areaValue" placeholder="Value">
-            <select id="areaFrom">
+            <input type="number" id="areaValue" placeholder="Value" aria-label="Value to convert">
+            <select id="areaFrom" aria-label="Source unit">
                 <option value="sqm">Square Meter (m²)</option>
                 <option value="sqft">Square Feet (ft²)</option>
                 <option value="acre">Acre</option>
@@ -81,7 +113,7 @@
                 <option value="sqin">Square Inch (in²)</option>
                 <option value="bigha">Bigha</option>
             </select>
-            <select id="areaTo">
+            <select id="areaTo" aria-label="Target unit">
                 <option value="sqm">Square Meter (m²)</option>
                 <option value="sqft">Square Feet (ft²)</option>
                 <option value="acre">Acre</option>
@@ -95,8 +127,8 @@
             <button onclick="convertArea()">Convert</button>
         </div>
         <div id="weight" class="tab-content">
-            <input type="number" id="weightValue" placeholder="Value">
-            <select id="weightFrom">
+            <input type="number" id="weightValue" placeholder="Value" aria-label="Value to convert">
+            <select id="weightFrom" aria-label="Source unit">
                 <option value="kg">Kilogram (kg)</option>
                 <option value="lb">Pound (lb)</option>
                 <option value="g">Gram (g)</option>
@@ -106,7 +138,7 @@
                 <option value="stone">Stone (st)</option>
                 <option value="mt">Metric Ton (mt)</option>
             </select>
-            <select id="weightTo">
+            <select id="weightTo" aria-label="Target unit">
                 <option value="kg">Kilogram (kg)</option>
                 <option value="lb">Pound (lb)</option>
                 <option value="g">Gram (g)</option>
@@ -119,8 +151,8 @@
             <button onclick="convertWeight()">Convert</button>
         </div>
         <div id="distance" class="tab-content">
-            <input type="number" id="distanceValue" placeholder="Value">
-            <select id="distanceFrom">
+            <input type="number" id="distanceValue" placeholder="Value" aria-label="Value to convert">
+            <select id="distanceFrom" aria-label="Source unit">
                 <option value="km">Kilometer (km)</option>
                 <option value="mi">Mile (mi)</option>
                 <option value="m">Meter (m)</option>
@@ -131,7 +163,7 @@
                 <option value="in">Inch (in)</option>
                 <option value="nm">Nautical Mile (nm)</option>
             </select>
-            <select id="distanceTo">
+            <select id="distanceTo" aria-label="Target unit">
                 <option value="km">Kilometer (km)</option>
                 <option value="mi">Mile (mi)</option>
                 <option value="m">Meter (m)</option>
@@ -145,8 +177,8 @@
             <button onclick="convertDistance()">Convert</button>
         </div>
         <div id="percentage" class="tab-content">
-            <input type="number" id="percentValue" placeholder="Value">
-            <input type="number" id="percentOf" placeholder="Percentage Of">
+            <input type="number" id="percentValue" placeholder="Value" aria-label="Value">
+            <input type="number" id="percentOf" placeholder="Percentage Of" aria-label="Percentage of">
             <button onclick="calculatePercentage()">Calculate</button>
         </div>
         <div id="result"></div>
@@ -159,7 +191,7 @@
                  data-ad-format="auto"
                  data-full-width-responsive="true"></ins>
             <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
+                (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
         </div>
         
@@ -302,6 +334,16 @@
             resultDiv.textContent = `${value}% of ${of} = ${result.toFixed(2)}`;
         }
     </script>
+
+    <script src="chatbot.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(reg => console.log('SW registered', reg.scope))
+    .catch(err => console.log('SW registration failed:', err));
+}
+</script>
+
     <div id="footer"></div>
     <script>
         fetch("./footer.html")

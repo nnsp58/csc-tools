@@ -1,0 +1,13 @@
+node_modules
+testsprite_tests/
+test-screenshots/
+tmp/
+*.log
+tool-status-report.json
+tool-test-report.json
+test-report.json
+test-plan.md
+FINAL_STATUS_REPORT.md
+test.pdf
+test_audio.wav
+test_image.png

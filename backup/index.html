@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <meta name="description" content="ToolHub - Free online tools for PDF, Image, Audio, Video conversion and more. 16+ tools completely free, no registration required.">
+    <meta name="keywords" content="online tools, free tools, PDF converter, image compressor, QR generator, ToolHub">
+    <meta name="author" content="ToolHub">
+    <link rel="canonical" href="https://n-dizi.in/">
+    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
+    <title>ToolHub - Free Online Tools Suite | 16+ Tools</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+            margin-top: -100px;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .cta-btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* Tools Grid */
+        .tools-section {
+            max-width: 1300px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .tool-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .tool-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+        .tool-card h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        .tool-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Ad Container */
+        .ad-container {
+            max-width: 728px;
+            margin: 3rem auto;
+            text-align: center;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .faq-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+        .faq-section p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+        .faq-section strong {
+            color: #1e3c72;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(120deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2.5rem;
+        }
+        .footer h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        .footer a:hover {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+            .footer-content { grid-template-columns: 1fr; }
+        }
+        
+        /* Accessibility: Skip link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #ff6b6b;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 0 0 5px 5px;
+            z-index: 9999;
+            font-weight: 600;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#tools" class="skip-link">Skip to main content</a>
+    
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">ToolHub</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#tools">Tools</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Free Online Tools Suite</h1>
+        <p>16+ completely free online tools for PDF, images, audio, video, text, and more. No registration required. All tools work in your browser.</p>
+        <a href="#tools" class="cta-btn">Explore All Tools</a>
+    </section>
+
+    <section id="tools" class="tools-section">
+        <h2 class="section-title">All Tools (16)</h2>
+        <div class="tools-grid">
+            <a href="audio-converter.html" class="tool-card">
+                <span class="tool-icon">🎵</span>
+                <h3>Audio Converter</h3>
+                <p>Convert audio files to MP3, WAV, OGG formats</p>
+            </a>
+            <a href="document-format-converter.html" class="tool-card">
+                <span class="tool-icon">📄</span>
+                <h3>Document Converter</h3>
+                <p>Convert between PDF, DOCX, TXT, HTML, JSON</p>
+            </a>
+            <a href="file-compressor.html" class="tool-card">
+                <span class="tool-icon">🗜️</span>
+                <h3>File Compressor</h3>
+                <p>Compress PDF files to reduce size</p>
+            </a>
+            <a href="group-photo-maker.html" class="tool-card">
+                <span class="tool-icon">🖼️</span>
+                <h3>Group Photo Maker</h3>
+                <p>Create collages and photo grids</p>
+            </a>
+            <a href="image-compress.html" class="tool-card">
+                <span class="tool-icon">🖼️</span>
+                <h3>Image Compressor</h3>
+                <p>Compress PNG/JPG images without losing quality</p>
+            </a>
+            <a href="image-format-converter.html" class="tool-card">
+                <span class="tool-icon">🔀</span>
+                <h3>Image Format Converter</h3>
+                <p>Convert PNG, JPEG, WebP formats</p>
+            </a>
+            <a href="image-to-pdf.html" class="tool-card">
+                <span class="tool-icon">📑</span>
+                <h3>Image to PDF</h3>
+                <p>Combine multiple images into single PDF</p>
+            </a>
+            <a href="multifunction-calculator.html" class="tool-card">
+                <span class="tool-icon">🧮</span>
+                <h3>Multifunction Calculator</h3>
+                <p>Basic arithmetic, currency, unit converters</p>
+            </a>
+            <a href="passport-size-photo-maker.html" class="tool-card">
+                <span class="tool-icon">📷</span>
+                <h3>Passport Photo Maker</h3>
+                <p>Create passport size photos with background removal</p>
+            </a>
+            <a href="pdf-to-word.html" class="tool-card">
+                <span class="tool-icon">📄</span>
+                <h3>PDF to Word</h3>
+                <p>Convert PDF files to editable Word documents</p>
+            </a>
+            <a href="qr-generator.html" class="tool-card">
+                <span class="tool-icon">🔘</span>
+                <h3>QR Code Generator</h3>
+                <p>Generate QR codes for URLs, text, contact info</p>
+            </a>
+            <a href="text-to-speech.html" class="tool-card">
+                <span class="tool-icon">🔊🎤</span>
+                <h3>Text to Speech &amp; Speech to Text</h3>
+                <p>Convert text to speech and speech to text</p>
+            </a>
+            <a href="universal-translator.html" class="tool-card">
+                <span class="tool-icon">🌐</span>
+                <h3>Universal Translator</h3>
+                <p>Translate text between 50+ languages</p>
+            </a>
+            <a href="video-converter.html" class="tool-card">
+                <span class="tool-icon">🎬</span>
+                <h3>Video Converter</h3>
+                <p>Convert videos between MP4, AVI, MKV, MOV</p>
+            </a>
+            <a href="voice-translator.html" class="tool-card">
+                <span class="tool-icon">🎤</span>
+                <h3>Voice Translator</h3>
+                <p>Translate speech and voice in real-time</p>
+            </a>
+        </div>
+    </section>
+
+    <div class="ad-container">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9239182778221521"
+             data-ad-slot="7274852761"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
+    <section class="faq-section">
+        <h3>Frequently Asked Questions</h3>
+        <p><strong>Q: What is ToolHub?</strong></p>
+        <p>A: ToolHub is a collection of free online tools for file conversion, image processing, translation, and more. We offer 16+ useful tools that are easy to use and require no registration.</p>
+
+        <p><strong>Q: Are the tools really free to use?</strong></p>
+        <p>A: Yes, all tools on ToolHub are completely free to use. There are no hidden charges or premium features.</p>
+
+        <p><strong>Q: Do I need to create an account to use the tools?</strong></p>
+        <p>A: No, you can use all our tools without creating an account or providing any personal information.</p>
+
+        <p><strong>Q: Are my files and data secure?</strong></p>
+        <p>A: Yes, we take privacy seriously. Your files are processed securely and are not stored on our servers after processing is complete.</p>
+
+        <p><strong>Q: Can I use these tools on mobile devices?</strong></p>
+        <p>A: Absolutely! All our tools are mobile-friendly and responsive, working perfectly on smartphones and tablets.</p>
+    </section>
+
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("footer").innerHTML = data);
+    </script>
+</body>
+</html>

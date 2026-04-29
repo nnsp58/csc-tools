@@ -1,0 +1,323 @@
+{
+  "name": "ToolHub Fix & Launch Agent",
+  "version": "1.0.0",
+  "description": "End-to-end agent to resolve merge conflicts, fix all bugs, implement missing features, optimize SEO/accessibility, and launch ToolHub as a world-class platform",
+  "capabilities": {
+    "code_generation": true,
+    "code_modification": true,
+    "file_operations": true,
+    "git_operations": {
+      "allowed": ["read", "log", "diff", "status"],
+      "denied": ["commit", "push", "merge", "rebase", "branch"]
+    },
+    "shell_commands": {
+      "allowed": [
+        "cat", "head", "tail", "ls", "tree", "pwd", "echo", "wc",
+        "diff", "file", "find", "grep", "rg", "ag", "jq",
+        "npm", "npx", "node", "tsc", "curl", "wget"
+      ],
+      "denied": ["rm -rf", "mkfs", "format", "shutdown", "reboot"]
+    },
+    "web_fetching": true,
+    "browser_automation": false,
+    "deployment": {
+      "supported_platforms": ["vercel", "netlify", "github_pages", "cpanel"],
+      "can_configure_dns": false,
+      "can_manage_ssl": false
+    }
+  },
+  "working_directory": "D:\\tools-hub\\Tool-fixed",
+  "environment": {
+    "os": "Windows",
+    "shell": "PowerShell",
+    "node_version": "18+",
+    "browsers": ["Chrome", "Firefox", "Edge"]
+  },
+  "project_context": {
+    "type": "static_website",
+    "framework": "vanilla_js",
+    "build_tool": "none",
+    "package_manager": "none",
+    "css_framework": "custom",
+    "total_pages": 16,
+    "broken_pages": 15,
+    "critical_issues": [
+      "git_merge_conflicts",
+      "xss_vulnerability",
+      "non_functional_tools",
+      "broken_seo",
+      "missing_accessibility"
+    ]
+  },
+  "phase_1_priority": {
+    "name": "Critical Stabilization",
+    "duration_days": 2,
+    "success_criteria": [
+      "Zero merge conflict markers in all files",
+      "All pages load without console errors",
+      "Contact form functional (Formspree integrated)",
+      "Chatbot XSS patched",
+      "Valid HTML5 (W3C validator passes)"
+    ],
+    "tasks": [
+      {
+        "id": "conflict_resolution",
+        "description": "Resolve Git merge conflicts in 16 files using authoritative version from commit history",
+        "commands": [
+          "git log --oneline -- <file> to identify canonical version",
+          "Keep newer/complete implementation, delete conflict markers",
+          "Validate HTML via w3c validator API"
+        ],
+        "output": "Clean HTML files with single <head> and <body>"
+      },
+      {
+        "id": "xss_patch",
+        "description": "Fix chatbot.js innerHTML vulnerability by using textContent or DOMPurify",
+        "files": ["chatbot.js"],
+        "lines_affected": [254, 257],
+        "patch": "Replace innerHTML with DOM methods"
+      },
+      {
+        "id": "contact_form_fix",
+        "description": "Integrate Formspree for actual email delivery",
+        "files": ["contact.html"],
+        "action": "Add Formspree form action, honeypot, success handler"
+      },
+      {
+        "id": "sitemap_fix",
+        "description": "Remove conflict markers from sitemap.xml, ensure valid XML",
+        "files": ["sitemap.xml"]
+      }
+    ]
+  },
+  "phase_2_priority": {
+    "name": "Core Tool Functionality",
+    "duration_days": 7,
+    "tools_to_fix": [
+      {
+        "name": "QR Generator",
+        "priority": 1,
+        "complexity": "low",
+        "dependencies": ["qrcode.js CDN"],
+        "estimated_hours": 0.5
+      },
+      {
+        "name": "Multifunction Calculator",
+        "priority": 1,
+        "complexity": "low",
+        "dependencies": [],
+        "estimated_hours": 0.5
+      },
+      {
+        "name": "Text to Speech",
+        "priority": 1,
+        "complexity": "low",
+        "dependencies": ["Web Speech API (native)"],
+        "estimated_hours": 1
+      },
+      {
+        "name": "Image Format Converter",
+        "priority": 1,
+        "complexity": "low",
+        "dependencies": ["canvas API (native)"],
+        "estimated_hours": 1
+      },
+      {
+        "name": "Image Compressor",
+        "priority": 1,
+        "complexity": "medium",
+        "dependencies": ["canvas API"],
+        "needs": ["Quality slider working", "Size comparison display"],
+        "estimated_hours": 2
+      },
+      {
+        "name": "Image to PDF",
+        "priority": 1,
+        "complexity": "medium",
+        "dependencies": ["jsPDF CDN"],
+        "implementation": "Use canvas + jsPDF.addImage()",
+        "estimated_hours": 2
+      },
+      {
+        "name": "PDF to Word",
+        "priority": 1,
+        "complexity": "high",
+        "dependencies": ["pdf.js CDN", "docx CDN"],
+        "implementation": "pdf.js extract text → docx generate DOCX",
+        "limitations": "Text only, formatting may be lost",
+        "estimated_hours": 4
+      },
+      {
+        "name": "Audio Converter",
+        "priority": 1,
+        "complexity": "medium",
+        "dependencies": ["Web Audio API"],
+        "needs": ["WAV encoding working", "MP3/M4A fallback for Safari"],
+        "browser_support": "Chrome/Firefox: WAV, Safari: M4A via MediaRecorder",
+        "estimated_hours": 3
+      }
+    ],
+    "tools_postpone": [
+      "Video Converter (FFmpeg.wasm too heavy, mark 'Coming Soon')",
+      "Voice Translator (translation API needed, postpone to phase 3)",
+      "File Compressor (clarify scope - PDF only?)",
+      "Document Format Converter (complex, defer)",
+      "Group Photo Maker (canvas grid, defer)",
+      "Passport Size Photo Maker (defer)"
+    ]
+  },
+  "phase_3_priority": {
+    "name": "Quality & Compliance",
+    "duration_days": 5,
+    "tasks": [
+      {
+        "id": "accessibility",
+        "description": "WCAG 2.1 AA compliance",
+        "checks": [
+          "Skip navigation link",
+          "ARIA labels on all interactive elements",
+          "Form labels properly associated",
+          "Focus visible indicators",
+          "Color contrast ratio ≥ 4.5:1",
+          "Keyboard navigation test"
+        ]
+      },
+      {
+        "id": "seo_optimization",
+        "description": "On-page and technical SEO",
+        "actions": [
+          "Unique meta title/description per tool (120-160 chars)",
+          "JSON-LD WebApplication schema",
+          "Open Graph + Twitter Card tags",
+          "Canonical URLs normalized",
+          "sitemap.xml validated and submitted",
+          "robots.txt verified"
+        ]
+      },
+      {
+        "id": "performance",
+        "description": "Page speed optimization",
+        "targets": {
+          "lighthouse_performance": "≥80",
+          "lighthouse_accessibility": "≥90",
+          "lighthouse_seo": "≥90",
+          "lighthouse_best_practices": "≥90",
+          "first_contentful_paint": "<1.5s",
+          "largest_contentful_paint": "<2.5s"
+        },
+        "optimizations": [
+          "Minify CSS/JS (CSSNano, Terser)",
+          "Lazy load heavy libraries (pdf.js, FFmpeg conditionally)",
+          "Add service worker for caching",
+          "Preconnect to CDNs",
+          "Critical CSS inlined"
+        ]
+      }
+    ]
+  },
+  "phase_4_priority": {
+    "name": "Polish & Launch",
+    "duration_days": 3,
+    "tasks": [
+      "Fix all typos (copyright year = 2026)",
+      "Replace placeholder contact info (real email verified)",
+      "Remove fake phone number or add real support line",
+      "Minify assets for production",
+      "Cross-browser testing (Chrome, Firefox, Safari, Edge)",
+      "Mobile responsive verification (real devices)",
+      "Lighthouse audit on all tool pages",
+      "Create backup of working version",
+      "Prepare deployment package"
+    ]
+  },
+  "phase_5_priority": {
+    "name": "Deployment",
+    "duration_days": 1,
+    "steps": [
+      "Deploy to staging environment (Vercel/Netlify)",
+      "Run final QA checklist",
+      "Submit sitemap to Google Search Console",
+      "Submit to Bing Webmaster Tools",
+      "Configure custom domain (n-dizi.in) with SSL",
+      "Verify AdSense ads display correctly",
+      "Set up Google Analytics 4 goals/conversions",
+      "Enable error monitoring (Sentry free tier)",
+      "Production deployment",
+      "Post-launch smoke test (all tools clickable)"
+    ]
+  },
+  "tools_agent_can_use": [
+    "file_read",
+    "file_write",
+    "file_edit",
+    "bash",
+    "grep",
+    "git_log",
+    "git_diff",
+    "curl",
+    "webfetch",
+    "codesearch"
+  ],
+  "templates_to_use": {
+    "html_boilerplate": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>{title}</title>\n    <meta name=\"description\" content=\"{description}\">\n    <link rel=\"canonical\" href=\"https://n-dizi.in/{page}\">\n    <link rel=\"stylesheet\" href=\"styles.css\">\n    {structured_data}\n</head>\n<body>\n    <header class=\"header\">...</header>\n    <main id=\"main\">...</main>\n    <footer>...</footer>\n    {scripts}\n</body>\n</html>",
+    "structured_data": "{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"WebApplication\",\n  \"name\": \"{tool_name}\",\n  \"description\": \"{tool_description}\",\n  \"applicationCategory\": \"UtilityApplication\",\n  \"offers\": {\"@type\": \"Offer\", \"price\": \"0\", \"priceCurrency\": \"USD\"}\n}",
+    "csp_header": "default-src 'self'; script-src 'self' https://pagead2.googlesyndication.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' blob:;"
+  },
+  "special_instructions": [
+    "NEVER use git commit/push without explicit user permission",
+    "ALWAYS backup original files before modifying (copy to backup/ folder)",
+    "TEST locally after each phase (open in browser)",
+    "Use feature detection before implementing browser APIs",
+    "If a feature is too complex (video conversion), mark as 'Coming Soon' with email signup instead of half-broken implementation",
+    "Preserve existing AdSense and Analytics code - they are revenue-critical",
+    "Mobile-first approach: test on mobile viewport (375px) before desktop",
+    "Document all changes in a CHANGELOG.md file"
+  ],
+  "deliverables": {
+    "required": [
+      "All 16 HTML files conflict-free and valid",
+      "Functional core 8 tools (QR, Calculator, TTS, Image tools, PDF tools, Audio)",
+      "XSS vulnerability completely eliminated",
+      "Contact form sends real emails via Formspree",
+      "W3C HTML validator: 0 errors",
+      "Lighthouse scores ≥80 across all tool pages",
+      "WCAG 2.1 AA accessible (keyboard nav, ARIA, contrast)",
+      "SEO optimized (meta tags, structured data, sitemap)",
+      "Production-ready deployment on n-dizi.in",
+      "CHANGELOG.md documenting all fixes"
+    ],
+    "nice_to_have": [
+      "Service Worker installed (offline capability)",
+      "Dark mode toggle",
+      "Blog section with 3 SEO articles",
+      "Social media integration",
+      "Batch processing for multiple files",
+      "User history (localStorage)",
+      "Keyboard shortcuts"
+    ]
+  },
+  "success_metrics": {
+    "technical": [
+      "Zero console errors on any page",
+      "All internal links working (200 status)",
+      "Mobile score Lighthouse ≥80",
+      "Page weight ≤1.5MB per tool",
+      "First Contentful Paint <1.5s on 3G"
+    ],
+    "functional": [
+      "QR code generates and downloads",
+      "Calculator all 6 tabs work correctly",
+      "Text-to-speech plays audio",
+      "Image compression reduces size visibly",
+      "Image to PDF creates valid PDF",
+      "PDF to Word extracts text (even if formatting lost)",
+      "Audio converter produces downloadable WAV/M4A"
+    ],
+    "business": [
+      "AdSense ads display without policy warnings",
+      "Contact form submissions reach inbox",
+      "Google Search Console: no crawl errors",
+      "Ready for public launch"
+    ]
+  }
+}
