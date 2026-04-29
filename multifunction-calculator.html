@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Multifunction Calculator",
-  "description": "All-in-one calculator...",
+  "description": "All-in-one calculator for basic math, currency, area, weight, distance, and percentage.",
   "url": "https://n-dizi.in/multifunction-calculator.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -30,12 +30,6 @@
     <meta property="og:title" content="Multifunction Calculator - 6-in-1 Online Calculator Tool | ToolHub">
     <meta property="og:description" content="All-in-one calculator: basic math, currency, area, weight, distance, percentage. Free online calculator with instant results.">
     <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/multifunction-calculator.html">
-    <meta property="twitter:title" content="Multifunction Calculator - 6-in-1 Online Calculator Tool | ToolHub">
-    <meta property="twitter:description" content="All-in-one calculator: basic math, currency, area, weight, distance, percentage. Free online calculator with instant results.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
     <meta name="keywords" content="online calculator, unit converter, currency converter, area conversion, weight conversion, distance converter, percentage calculator, math calculator">
     <meta name="author" content="ToolHub">
     <link rel="canonical" href="https://n-dizi.in/multifunction-calculator.html">
@@ -45,314 +39,250 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left; }
-        .faq-section h3 { color: #1e3c72; margin-bottom: 1rem; text-align: center; }
-        .faq-section p { margin-bottom: 1rem; line-height: 1.6; }
+        .tab-buttons { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 2.5rem; background: rgba(0,0,0,0.05); padding: 10px; border-radius: 50px; }
+        .tab-btn { padding: 12px 25px; border: none; background: transparent; color: #1e3c72; cursor: pointer; border-radius: 30px; font-weight: 600; transition: var(--transition); font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+        .tab-btn i { font-size: 1rem; }
+        .tab-btn:hover { background: rgba(0,0,0,0.1); }
+        .tab-btn.active { background: var(--brand-gradient); color: white; box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3); }
+        
+        .tab-content { display: none; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .calc-group { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: center; margin: 1.5rem 0; }
+        .calc-group input, .calc-group select { padding: 15px; border-radius: 12px; border: 2px solid #eee; font-size: 1.1rem; width: 100%; max-width: 250px; transition: var(--transition); }
+        .calc-group input:focus, .calc-group select:focus { border-color: var(--brand-end); outline: none; box-shadow: 0 0 0 4px rgba(78, 205, 196, 0.1); }
+        
+        #result { margin-top: 2rem; padding: 2rem; border-radius: 15px; background: #f8f9fa; border-left: 6px solid var(--brand-start); text-align: center; font-size: 1.5rem; font-weight: 700; color: #1e3c72; min-height: 80px; display: none; }
+        .calc-icon { font-size: 3rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center; }
+        
+        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; }
         .faq-section strong { color: #1e3c72; }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                                <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
-     </header>
-      <div class="container" id="main-content" style="margin-top:90px;">
-        <h1><i class="fas fa-calculator"></i> Multifunction Calculator</h1>
-        <div class="tab-buttons">
-            <button class="tab-btn active" onclick="openTab('basic')">Basic</button>
-            <button class="tab-btn" onclick="openTab('currency')">Currency</button>
-            <button class="tab-btn" onclick="openTab('area')">Area</button>
-            <button class="tab-btn" onclick="openTab('weight')">Weight</button>
-            <button class="tab-btn" onclick="openTab('distance')">Distance</button>
-            <button class="tab-btn" onclick="openTab('percentage')">Percentage</button>
-        </div>
-        <div id="basic" class="tab-content active">
-            <input type="number" id="basicNum1" placeholder="First Number" aria-label="First number">
-            <select id="basicOp" aria-label="Operation">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">×</option>
-                <option value="/">÷</option>
-            </select>
-            <input type="number" id="basicNum2" placeholder="Second Number" aria-label="Second number">
-            <button id="addBtn" onclick="calculateBasic()">Calculate</button>
-        </div>
-        <div id="currency" class="tab-content">
-            <input type="number" id="currencyAmount" placeholder="Amount" aria-label="Amount to convert">
-            <select id="currencyFrom" aria-label="Source currency">
-                <option value="USD">USD</option>
-                <option value="INR">INR</option>
-                <option value="EUR">EUR</option>
-            </select>
-            <select id="currencyTo" aria-label="Target currency">
-                <option value="USD">USD</option>
-                <option value="INR">INR</option>
-                <option value="EUR">EUR</option>
-            </select>
-            <button onclick="convertCurrency()">Convert</button>
-        </div>
-        <div id="area" class="tab-content">
-            <input type="number" id="areaValue" placeholder="Value" aria-label="Value to convert">
-            <select id="areaFrom" aria-label="Source unit">
-                <option value="sqm">Square Meter (m²)</option>
-                <option value="sqft">Square Feet (ft²)</option>
-                <option value="acre">Acre</option>
-                <option value="hectare">Hectare</option>
-                <option value="sqkm">Square Kilometer (km²)</option>
-                <option value="sqmi">Square Mile (mi²)</option>
-                <option value="sqyd">Square Yard (yd²)</option>
-                <option value="sqin">Square Inch (in²)</option>
-                <option value="bigha">Bigha</option>
-            </select>
-            <select id="areaTo" aria-label="Target unit">
-                <option value="sqm">Square Meter (m²)</option>
-                <option value="sqft">Square Feet (ft²)</option>
-                <option value="acre">Acre</option>
-                <option value="hectare">Hectare</option>
-                <option value="sqkm">Square Kilometer (km²)</option>
-                <option value="sqmi">Square Mile (mi²)</option>
-                <option value="sqyd">Square Yard (yd²)</option>
-                <option value="sqin">Square Inch (in²)</option>
-                <option value="bigha">Bigha</option>
-            </select>
-            <button onclick="convertArea()">Convert</button>
-        </div>
-        <div id="weight" class="tab-content">
-            <input type="number" id="weightValue" placeholder="Value" aria-label="Value to convert">
-            <select id="weightFrom" aria-label="Source unit">
-                <option value="kg">Kilogram (kg)</option>
-                <option value="lb">Pound (lb)</option>
-                <option value="g">Gram (g)</option>
-                <option value="oz">Ounce (oz)</option>
-                <option value="ton">Ton (t)</option>
-                <option value="mg">Milligram (mg)</option>
-                <option value="stone">Stone (st)</option>
-                <option value="mt">Metric Ton (mt)</option>
-            </select>
-            <select id="weightTo" aria-label="Target unit">
-                <option value="kg">Kilogram (kg)</option>
-                <option value="lb">Pound (lb)</option>
-                <option value="g">Gram (g)</option>
-                <option value="oz">Ounce (oz)</option>
-                <option value="ton">Ton (t)</option>
-                <option value="mg">Milligram (mg)</option>
-                <option value="stone">Stone (st)</option>
-                <option value="mt">Metric Ton (mt)</option>
-            </select>
-            <button onclick="convertWeight()">Convert</button>
-        </div>
-        <div id="distance" class="tab-content">
-            <input type="number" id="distanceValue" placeholder="Value" aria-label="Value to convert">
-            <select id="distanceFrom" aria-label="Source unit">
-                <option value="km">Kilometer (km)</option>
-                <option value="mi">Mile (mi)</option>
-                <option value="m">Meter (m)</option>
-                <option value="cm">Centimeter (cm)</option>
-                <option value="mm">Millimeter (mm)</option>
-                <option value="yd">Yard (yd)</option>
-                <option value="ft">Foot (ft)</option>
-                <option value="in">Inch (in)</option>
-                <option value="nm">Nautical Mile (nm)</option>
-            </select>
-            <select id="distanceTo" aria-label="Target unit">
-                <option value="km">Kilometer (km)</option>
-                <option value="mi">Mile (mi)</option>
-                <option value="m">Meter (m)</option>
-                <option value="cm">Centimeter (cm)</option>
-                <option value="mm">Millimeter (mm)</option>
-                <option value="yd">Yard (yd)</option>
-                <option value="ft">Foot (ft)</option>
-                <option value="in">Inch (in)</option>
-                <option value="nm">Nautical Mile (nm)</option>
-            </select>
-            <button onclick="convertDistance()">Convert</button>
-        </div>
-        <div id="percentage" class="tab-content">
-            <input type="number" id="percentValue" placeholder="Value" aria-label="Value">
-            <input type="number" id="percentOf" placeholder="Percentage Of" aria-label="Percentage of">
-            <button onclick="calculatePercentage()">Calculate</button>
-        </div>
-        <div id="result"></div>
-        
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9239182778221521"
-                 data-ad-slot="7274852761"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        
+    </header>
+
+    <main class="container">
+        <section class="tool-section">
+            <div class="calc-icon"><i class="fas fa-calculator"></i></div>
+            <h1>Multifunction Calculator</h1>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Integrated math and unit conversion tool using your specific logic and factors.</p>
+
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="openTab(event, 'basic')"><i class="fas fa-plus-minus"></i> Basic</button>
+                <button class="tab-btn" onclick="openTab(event, 'currency')"><i class="fas fa-dollar-sign"></i> Currency</button>
+                <button class="tab-btn" onclick="openTab(event, 'area')"><i class="fas fa-chart-area"></i> Area</button>
+                <button class="tab-btn" onclick="openTab(event, 'weight')"><i class="fas fa-weight-hanging"></i> Weight</button>
+                <button class="tab-btn" onclick="openTab(event, 'distance')"><i class="fas fa-ruler-horizontal"></i> Distance</button>
+                <button class="tab-btn" onclick="openTab(event, 'percentage')"><i class="fas fa-percent"></i> %</button>
+            </div>
+
+            <!-- BASIC -->
+            <div id="basic" class="tab-content active">
+                <div class="calc-group">
+                    <input type="number" id="num1" placeholder="First number">
+                    <select id="op" style="max-width: 80px;">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">×</option>
+                        <option value="/">÷</option>
+                    </select>
+                    <input type="number" id="num2" placeholder="Second number">
+                </div>
+                <div style="text-align: center;"><button class="convert-btn" onclick="calcBasic()">Calculate</button></div>
+            </div>
+
+            <!-- CURRENCY -->
+            <div id="currency" class="tab-content">
+                <div class="calc-group">
+                    <input type="number" id="amount" placeholder="Amount">
+                    <select id="fromCur">
+                        <option value="INR">INR (₹)</option>
+                        <option value="USD">USD ($)</option>
+                        <option value="EUR">EUR (€)</option>
+                    </select>
+                    <select id="toCur">
+                        <option value="USD">USD ($)</option>
+                        <option value="INR" selected>INR (₹)</option>
+                        <option value="EUR">EUR (€)</option>
+                    </select>
+                </div>
+                <div style="text-align: center;"><button class="convert-btn" onclick="convertCurrency()">Convert</button></div>
+            </div>
+
+            <!-- AREA -->
+            <div id="area" class="tab-content">
+                <div class="calc-group">
+                    <input type="number" id="areaVal" placeholder="Value">
+                    <select id="areaFrom">
+                        <option value="sqm">sqm</option>
+                        <option value="sqft">sqft</option>
+                        <option value="acre">acre</option>
+                        <option value="bigha">bigha</option>
+                    </select>
+                    <select id="areaTo">
+                        <option value="sqm">sqm</option>
+                        <option value="sqft" selected>sqft</option>
+                        <option value="acre">acre</option>
+                        <option value="bigha">bigha</option>
+                    </select>
+                </div>
+                <div style="text-align: center;"><button class="convert-btn" onclick="convertArea()">Convert Area</button></div>
+            </div>
+
+            <!-- WEIGHT -->
+            <div id="weight" class="tab-content">
+                <div class="calc-group">
+                    <input type="number" id="weightVal" placeholder="Value">
+                    <select id="weightFrom">
+                        <option value="kg">kg</option>
+                        <option value="g">g</option>
+                        <option value="lb">lb</option>
+                    </select>
+                    <select id="weightTo">
+                        <option value="kg">kg</option>
+                        <option value="g">g</option>
+                        <option value="lb" selected>lb</option>
+                    </select>
+                </div>
+                <div style="text-align: center;"><button class="convert-btn" onclick="convertWeight()">Convert Weight</button></div>
+            </div>
+
+            <!-- DISTANCE -->
+            <div id="distance" class="tab-content">
+                <div class="calc-group">
+                    <input type="number" id="distVal" placeholder="Value">
+                    <select id="distFrom">
+                        <option value="km">km</option>
+                        <option value="m">m</option>
+                        <option value="mi">mile</option>
+                    </select>
+                    <select id="distTo">
+                        <option value="km">km</option>
+                        <option value="m">m</option>
+                        <option value="mi" selected>mile</option>
+                    </select>
+                </div>
+                <div style="text-align: center;"><button class="convert-btn" onclick="convertDistance()">Convert Distance</button></div>
+            </div>
+
+            <!-- PERCENT -->
+            <div id="percentage" class="tab-content">
+                <div class="calc-group">
+                    <input type="number" id="percent" placeholder="Percentage (%)" style="max-width: 150px;">
+                    <span style="color:#666;">of</span>
+                    <input type="number" id="total" placeholder="Total Value">
+                </div>
+                <div style="text-align: center;"><button class="convert-btn" onclick="calcPercent()">Calculate %</button></div>
+            </div>
+
+            <div id="result">Result: 0</div>
+        </section>
+
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: What calculations can I perform?</strong></p>
-            <p>A: Our Multifunction Calculator supports Basic arithmetic (addition, subtraction, multiplication, division), Currency conversion, Area conversion, Weight conversion, Distance conversion, and Percentage calculations.</p>
-            
-            <p><strong>Q: Are the currency conversion rates accurate?</strong></p>
-            <p>A: We use fixed conversion rates for major currencies (USD, INR, EUR). For real-time rates, we recommend checking current market values as they fluctuate daily.</p>
-            
-            <p><strong>Q: Can I convert between any units?</strong></p>
-            <p>A: Yes, our calculator supports conversion between various units for area, weight, distance, and more. We include both metric and imperial units, plus some traditional Indian units like Bigha.</p>
-            
-            <p><strong>Q: Is there a limit to the numbers I can calculate?</strong></p>
-            <p>A: There's no strict limit, but extremely large numbers may cause precision issues due to JavaScript's floating-point arithmetic. For most everyday calculations, the tool works perfectly.</p>
-            
-            <p><strong>Q: Can I use this calculator offline?</strong></p>
-            <p>A: Yes! Once loaded, the calculator works completely offline as all calculations are done locally in your browser.</p>
+            <p><strong>Q: Are these conversion rates accurate?</strong></p>
+            <p>A: Yes, we use standardized conversion factors for area, weight, and distance. Currency rates are estimates and should be used for reference.</p>
+            <p><strong>Q: Does this tool store my data?</strong></p>
+            <p>A: No, all calculations are performed locally in your browser for maximum privacy and speed.</p>
         </div>
-    </div>
-    <script>
-        const resultDiv = document.getElementById('result');
+    </main>
 
-        function openTab(tabName) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            document.querySelector(`button[onclick="openTab('${tabName}')"]`).classList.add('active');
-            resultDiv.textContent = '';
+    <script>
+        const resultDisplay = document.getElementById("result");
+
+        function openTab(evt, tab) {
+            document.querySelectorAll(".tab-content").forEach(t => t.classList.remove("active"));
+            document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+            document.getElementById(tab).classList.add("active");
+            evt.currentTarget.classList.add("active");
+            resultDisplay.style.display = 'none';
         }
 
-        function calculateBasic() {
-            const num1 = parseFloat(document.getElementById('basicNum1').value);
-            const num2 = parseFloat(document.getElementById('basicNum2').value);
-            const op = document.getElementById('basicOp').value;
-            if (isNaN(num1) || isNaN(num2)) {
-                resultDiv.textContent = 'Please enter valid numbers';
-                return;
-            }
-            let result;
-            switch (op) {
-                case '+': result = num1 + num2; break;
-                case '-': result = num1 - num2; break;
-                case '*': result = num1 * num2; break;
-                case '/': result = num2 !== 0 ? num1 / num2 : 'Cannot divide by zero'; break;
-            }
-            resultDiv.textContent = `Result: ${result}`;
+        function showResult(text) {
+            resultDisplay.innerText = text;
+            resultDisplay.style.display = 'block';
+            resultDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function calcBasic() {
+            let n1 = parseFloat(document.getElementById('num1').value);
+            let n2 = parseFloat(document.getElementById('num2').value);
+            let opv = document.getElementById('op').value;
+            if (isNaN(n1) || isNaN(n2)) return showResult("Enter valid numbers");
+            let r;
+            if (opv==="+") r=n1+n2;
+            else if (opv==="-") r=n1-n2;
+            else if (opv==="*") r=n1*n2;
+            else if (opv==="/") r=n2!==0 ? n1/n2 : "Error: Div by zero";
+            showResult("Result: " + r);
         }
 
         function convertCurrency() {
-            const amount = parseFloat(document.getElementById('currencyAmount').value);
-            const from = document.getElementById('currencyFrom').value;
-            const to = document.getElementById('currencyTo').value;
-            if (isNaN(amount)) {
-                resultDiv.textContent = 'Please enter a valid amount';
-                return;
-            }
-            const rates = { USD: 1, INR: 83, EUR: 0.92 };
-            const result = (amount / rates[from]) * rates[to];
-            resultDiv.textContent = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+            let amt = parseFloat(document.getElementById('amount').value);
+            if (isNaN(amt)) return showResult("Enter amount");
+            const rate={INR:1, USD:83, EUR:90};
+            let inr = amt * rate[document.getElementById('fromCur').value];
+            let res = inr / rate[document.getElementById('toCur').value];
+            showResult(`${amt} ${document.getElementById('fromCur').value} = ${res.toFixed(2)} ${document.getElementById('toCur').value}`);
         }
 
         function convertArea() {
-            const value = parseFloat(document.getElementById('areaValue').value);
-            const from = document.getElementById('areaFrom').value;
-            const to = document.getElementById('areaTo').value;
-            if (isNaN(value)) {
-                resultDiv.textContent = 'Please enter a valid value';
-                return;
-            }
-            const rates = {
-                sqm: 1,
-                sqft: 10.7639,
-                acre: 4046.86,
-                hectare: 10000,
-                sqkm: 1000000,
-                sqmi: 2589988.11,
-                sqyd: 0.836127,
-                sqin: 0.00064516,
-                bigha: 2529.285264 // 1 bigha = 2529.285264 sqm (standard Indian measure)
-            };
-            const result = (value * rates[from]) / rates[to];
-            resultDiv.textContent = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+            let v = parseFloat(document.getElementById('areaVal').value);
+            if (isNaN(v)) return showResult("Enter value");
+            const r={sqm:1, sqft:0.092903, acre:4046.86, bigha:2529.28};
+            let sqm = v * r[document.getElementById('areaFrom').value];
+            let res = sqm / r[document.getElementById('areaTo').value];
+            showResult(`${v} ${document.getElementById('areaFrom').value} = ${res.toFixed(3)} ${document.getElementById('areaTo').value}`);
         }
 
         function convertWeight() {
-            const value = parseFloat(document.getElementById('weightValue').value);
-            const from = document.getElementById('weightFrom').value;
-            const to = document.getElementById('weightTo').value;
-            if (isNaN(value)) {
-                resultDiv.textContent = 'Please enter a valid value';
-                return;
-            }
-            const rates = {
-                kg: 1,
-                lb: 0.453592,
-                g: 1000,
-                oz: 0.0283495,
-                ton: 0.001,
-                mg: 1000000,
-                stone: 0.157473,
-                mt: 0.001
-            };
-            const result = (value * rates[from]) / rates[to];
-            resultDiv.textContent = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+            let v = parseFloat(document.getElementById('weightVal').value);
+            if (isNaN(v)) return showResult("Enter value");
+            const r={kg:1, g:0.001, lb:0.453592};
+            let kg = v * r[document.getElementById('weightFrom').value];
+            let res = kg / r[document.getElementById('weightTo').value];
+            showResult(`${v} ${document.getElementById('weightFrom').value} = ${res.toFixed(3)} ${document.getElementById('weightTo').value}`);
         }
 
         function convertDistance() {
-            const value = parseFloat(document.getElementById('distanceValue').value);
-            const from = document.getElementById('distanceFrom').value;
-            const to = document.getElementById('distanceTo').value;
-            if (isNaN(value)) {
-                resultDiv.textContent = 'Please enter a valid value';
-                return;
-            }
-            const rates = {
-                km: 1,
-                mi: 0.621371,
-                m: 1000,
-                cm: 100000,
-                mm: 1000000,
-                yd: 1093.61,
-                ft: 3280.84,
-                in: 39370.1,
-                nm: 0.539957
-            };
-            const result = (value * rates[from]) / rates[to];
-            resultDiv.textContent = `${value} ${from} = ${result.toFixed(4)} ${to}`;
+            let v = parseFloat(document.getElementById('distVal').value);
+            if (isNaN(v)) return showResult("Enter value");
+            const r={km:1000, m:1, mi:1609.34};
+            let m = v * r[document.getElementById('distFrom').value];
+            let res = m / r[document.getElementById('distTo').value];
+            showResult(`${v} ${document.getElementById('distFrom').value} = ${res.toFixed(3)} ${document.getElementById('distTo').value}`);
         }
 
-        function calculatePercentage() {
-            const value = parseFloat(document.getElementById('percentValue').value);
-            const of = parseFloat(document.getElementById('percentOf').value);
-            if (isNaN(value) || isNaN(of)) {
-                resultDiv.textContent = 'Please enter valid values';
-                return;
-            }
-            const result = (value / 100) * of;
-            resultDiv.textContent = `${value}% of ${of} = ${result.toFixed(2)}`;
+        function calcPercent() {
+            let p = parseFloat(document.getElementById('percent').value);
+            let t = parseFloat(document.getElementById('total').value);
+            if (isNaN(p) || isNaN(t)) return showResult("Enter values");
+            let r = (p/100) * t;
+            showResult(`${p}% of ${t} = ${r.toFixed(2)}`);
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
         }
     </script>
-
-    <script src="chatbot.js"></script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(reg => console.log('SW registered', reg.scope))
-    .catch(err => console.log('SW registration failed:', err));
-}
-</script>
-
     <div id="footer"></div>
     <script>
-        fetch("./footer.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("footer").innerHTML = data);
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
     </script>
 </body>
 </html>
-
-
