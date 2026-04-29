@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,22 +27,10 @@
     <title>Image Compressor - Batch Compress JPEG, PNG, WebP Online | ToolHub</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .tool-section { max-width: 1000px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 15px; box-shadow: 0 5px 25px rgba(0,0,0,0.1); }
-        #image-upload { border: 2px dashed #ccc; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; transition: all 0.3s; margin-bottom: 1.5rem; }
-        #image-upload:hover { border-color: #00d4ff; background: #f0fbff; }
-        .file-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: #f8f9fa; border-radius: 8px; margin-bottom: 8px; }
-        .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .control-group { text-align: left; }
-        .control-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #1e3c72; }
-        input[type="number"], select { width: 100%; padding: 0.8rem; border-radius: 8px; border: 1px solid #ddd; }
-        .btn-container { text-align: center; margin-top: 1rem; }
-        button { padding: 1rem 2.5rem; background: #00d4ff; color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: 600; transition: 0.3s; margin: 0.5rem; }
-        button:hover { background: #00b7d9; transform: translateY(-2px); }
-        button:disabled { background: #ccc; cursor: not-allowed; }
-        .download-all-btn { background: #28a745; }
-        .download-all-btn:hover { background: #218838; }
-        #status { text-align: center; margin: 1rem 0; font-weight: 500; }
-        .faq-section { max-width: 1000px; margin: 2rem auto; padding: 1.5rem; }
+        .file-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--brand-start); box-shadow: var(--shadow-sm); }
+        .control-group { text-align: left; background: #fff; padding: 1rem; border-radius: 12px; border: 1px solid #eee; }
+        .btn-container { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
+        #status { padding: 10px; border-radius: 8px; margin: 1rem 0; }
     </style>
     <meta name="google-adsense-account" content="ca-pub-9239182778221521">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
@@ -52,7 +40,7 @@
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                                <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
@@ -62,13 +50,17 @@
         </nav>
     </header>
 
-    <main>
+    <main class="container">
         <section class="tool-section">
             <h1>Image Compressor Tool</h1>
-            <p>Compress multiple images at once. Set quality or target a specific file size.</p>
+            <p style="text-align: center; margin-bottom: 2rem;">Reduce image file size while maintaining excellent quality. Batch processing and target size support.</p>
             
-            <div id="image-upload" onclick="document.getElementById('imageInput').click()">
-                <p>Drag & drop images here or click to browse</p>
+            <div class="upload-area" id="image-upload" onclick="document.getElementById('imageInput').click()">
+                <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
+                    <i class="fas fa-images"></i>
+                </div>
+                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin-bottom: 0.5rem;">Drag & drop images here</p>
+                <p style="color: #666; margin-bottom: 0;">or click to browse multiple files</p>
                 <input type="file" id="imageInput" accept="image/*" multiple style="display:none">
             </div>
 
@@ -88,19 +80,27 @@
             </div>
 
             <div class="btn-container">
-                <button id="compressBtn" onclick="compressAll()">Compress All Images</button>
-                <button id="downloadAllBtn" class="download-all-btn" style="display:none" onclick="downloadAll()">Download All</button>
+                <button id="compressBtn" class="convert-btn" onclick="compressAll()">
+                    <i class="fas fa-compress-arrows-alt"></i> Compress All Images
+                </button>
+                <button id="downloadAllBtn" class="download-link" style="display:none; background: #27ae60; border: none; cursor: pointer;" onclick="downloadAll()">
+                    <i class="fas fa-download"></i> Download All
+                </button>
             </div>
 
             <div id="status"></div>
-            <div id="fileList"></div>
+            <div id="fileList" style="margin-top: 2rem;"></div>
             <canvas id="canvas" style="display:none"></canvas>
         </section>
 
         <section class="faq-section">
-            <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: How does target size work?</strong><br>A: If you set a target size, the tool will try to adjust the compression level to match your desired file size in KB.</p>
-            <p><strong>Q: Is my data safe?</strong><br>A: Yes, all compression happens locally in your browser. No images are uploaded to any server.</p>
+            <h3 style="text-align: center; color: #1e3c72;">Frequently Asked Questions</h3>
+            <div style="margin-top: 1.5rem;">
+                <p><strong>Q: How does target size work?</strong></p>
+                <p>A: If you set a target size, the tool will try to adjust the compression level to match your desired file size in KB.</p>
+                <p><strong>Q: Is my data safe?</strong></p>
+                <p>A: Yes, all compression happens locally in your browser. No images are uploaded to any server.</p>
+            </div>
         </section>
     </main>
 

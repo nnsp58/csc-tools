@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -89,20 +89,28 @@
             </ul>
 
             <div class="upload-area" id="uploadArea">
-                <p style="font-size: 1.2rem; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop Image Here</p>
-                <p style="color: #666; margin-bottom: 0;">or click to browse</p>
-                 <input type="file" id="imgInput" accept="image/*" style="display: none;" aria-label="Select image to convert">
+                <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                </div>
+                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop Image Here</p>
+                <p style="color: #666; margin-bottom: 0;">or click to browse from your device</p>
+                <input type="file" id="imgInput" accept="image/*" style="display: none;" aria-label="Select image to convert">
             </div>
 
-            <p id="file-name"></p>
+            <p id="file-name" style="text-align: center; display: none;"></p>
 
             <div class="controls">
-                <select id="outputFormat" aria-label="Output format">
-                    <option value="image/png">PNG</option>
-                    <option value="image/jpeg">JPEG</option>
-                    <option value="image/webp">WebP</option>
-                </select>
-                <button id="convertBtn" class="convert-btn" onclick="convertImage()" disabled>Convert Image</button>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                    <label for="outputFormat" style="font-weight: 600; color: #1e3c72;">Target Format:</label>
+                    <select id="outputFormat" style="width: 200px; padding: 12px; border-radius: 10px;">
+                        <option value="image/png">PNG (Portable Network Graphics)</option>
+                        <option value="image/jpeg">JPEG (Joint Photographic Experts Group)</option>
+                        <option value="image/webp">WebP (Modern Web Format)</option>
+                    </select>
+                </div>
+                <button id="convertBtn" class="convert-btn" onclick="convertImage()" disabled>
+                    <i class="fas fa-sync-alt"></i> Convert Image
+                </button>
             </div>
 
             <div id="status"></div>
@@ -173,6 +181,7 @@
         function handleFile(file) {
             originalFile = file;
             fileNameDisplay.textContent = `Selected: ${file.name}`;
+            fileNameDisplay.style.display = 'block';
             uploadArea.classList.add('has-file');
             convertBtn.disabled = false;
             resultDiv.style.display = 'none';
@@ -218,13 +227,13 @@
                 convertBtn.disabled = false;
             }, 500);
         }
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('SW registered', reg.scope))
+                .catch(err => console.log('SW registration failed:', err));
+        }
     </script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(reg => console.log('SW registered', reg.scope))
-    .catch(err => console.log('SW registration failed:', err));
-}
-</script>
     <script src="chatbot.js"></script>
 </body>
 </html>

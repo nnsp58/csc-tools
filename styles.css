@@ -536,3 +536,98 @@ button:active {
 .faq-section strong {
     color: #1e3c72;
 }
+
+/* ── Tool UI Components ── */
+.upload-area {
+    border: 3px dashed #ddd;
+    border-radius: var(--radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    background: #fcfdfe;
+    cursor: pointer;
+    transition: var(--transition);
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.upload-area:hover {
+    border-color: var(--brand-end);
+    background: #f0f9ff;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.upload-area.dragover {
+    border-color: var(--brand-start);
+    background: #fff5f5;
+    transform: scale(1.02);
+}
+
+.upload-area.has-file {
+    border-style: solid;
+    border-color: #27ae60;
+    background: #fafffa;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.convert-btn {
+    background: var(--brand-gradient) !important;
+    color: white !important;
+    padding: 1rem 2.5rem !important;
+    font-size: 1.1rem !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    border-radius: 50px;
+    transition: var(--transition);
+}
+
+.convert-btn:hover:not(:disabled) {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+}
+
+.convert-btn:disabled {
+    background: #ccc !important;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.download-link {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+
+.download-link:hover {
+    background: #219150;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(39, 174, 96, 0.4);
+    color: white;
+}
+
+#file-name {
+    font-weight: 600;
+    color: var(--dark-blue);
+    margin: 1rem 0;
+}
+
+/* Status Colors */
+.processing { color: #f39c12; font-weight: 500; }
+.complete { color: #27ae60; font-weight: 600; }
+.error { color: #e74c3c; font-weight: 600; }

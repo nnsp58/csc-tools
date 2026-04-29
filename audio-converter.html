@@ -90,15 +90,18 @@
      <div class="container" style="margin-top:90px;">
         <h1>Audio Converter</h1>
         
-        <div class="upload-area" id="audioUpload" style="margin-bottom:2rem;">
+        <div class="upload-area" id="audioUpload">
+            <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
+                <i class="fas fa-file-audio"></i>
+            </div>
             <p style="font-size:1.2rem;color:#1e3c72;margin-bottom:0.5rem;">Drag & Drop Audio File Here</p>
             <p style="color:#666;margin-bottom:0;">or click to browse (max 50MB, MP3, WAV, OGG, AAC)</p>
             <input type="file" id="audioFile" accept="audio/*" style="display:none;" aria-label="Upload audio file to convert">
         </div>
 
-        <p id="file-name" style="text-align:center;color:#28a745;font-weight:500;margin:1rem 0;"></p>
+        <p id="file-name" style="text-align: center; display: none;"></p>
 
-        <div class="controls" style="display:flex;flex-wrap:wrap;gap:15px;justify-content:center;align-items:flex-start;margin:1.5rem 0;">
+        <div class="controls">
             <div>
                 <label for="outputFormat" style="display:block;margin-bottom:0.5rem;color:#1e3c72;font-weight:600;">Output Format:</label>
                 <select id="outputFormat" style="padding:12px 20px;border:2px solid #ddd;border-radius:8px;font-size:16px;min-width:150px;background:white;">
@@ -107,7 +110,7 @@
                     <option value="ogg">OGG (Compressed)</option>
                 </select>
                 <p id="format-warning" style="color:#e74c3c;font-size:13px;margin-top:0.5rem;display:none;">
-                    ⚠️ WAV output will be large (~10x input size). Consider MP3/OGG for smaller files.
+                    âš ï¸ WAV output will be large (~10x input size). Consider MP3/OGG for smaller files.
                 </p>
             </div>
             <button id="convertBtn" class="convert-btn" onclick="convertAudio()" disabled style="align-self:flex-end;">Convert Audio</button>
@@ -187,7 +190,7 @@
         outputFormat.addEventListener('change', () => {
             if (outputFormat.value === 'wav' && selectedFile && selectedFile.size > 2 * 1024 * 1024) {
                 warningMsg.style.display = 'block';
-                warningMsg.textContent = '⚠️ WAV is uncompressed. Expected size: ~' + 
+                warningMsg.textContent = 'âš ï¸ WAV is uncompressed. Expected size: ~' + 
                     Math.round(selectedFile.size * 1.2) + ' bytes (10-12x larger).';
             } else {
                 warningMsg.style.display = 'none';
@@ -205,7 +208,7 @@
             if (outputFormat.value === 'wav' && file.size > 2 * 1024 * 1024) {
                 warningMsg.style.display = 'block';
                 const estimatedSize = Math.round(file.size * 1.2); // Rough estimate
-                warningMsg.textContent = `⚠️ WAV output will be large (~${(estimatedSize/1024/1024).toFixed(1)} MB). Consider MP3.`;
+                warningMsg.textContent = `âš ï¸ WAV output will be large (~${(estimatedSize/1024/1024).toFixed(1)} MB). Consider MP3.`;
             } else {
                 warningMsg.style.display = 'none';
             }
@@ -244,7 +247,7 @@
                     const url = URL.createObjectURL(blob);
                     const fileName = selectedFile.name.replace(/\.[^.]+$/, '') + '.wav';
                     resultDiv.innerHTML = `
-                        <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">✅ Conversion Complete!</p>
+                        <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">âœ… Conversion Complete!</p>
                         <p>Original: ${(selectedFile.size/1024/1024).toFixed(2)} MB</p>
                         <p>Converted: ${(blob.size/1024/1024).toFixed(2)} MB (uncompressed WAV)</p>
                         <a href="${url}" download="${fileName}" class="download-link">Download WAV</a>
@@ -279,7 +282,7 @@
                         const url2 = URL.createObjectURL(blob2);
                         const fn2 = selectedFile.name.replace(/\.[^.]+$/, '') + '.wav';
                         resultDiv.innerHTML = `
-                            <p style="color:#e67e22;font-weight:600;margin-bottom:1rem;">⚠️ Format not supported, converted to WAV</p>
+                            <p style="color:#e67e22;font-weight:600;margin-bottom:1rem;">âš ï¸ Format not supported, converted to WAV</p>
                             <a href="${url2}" download="${fn2}" class="download-link">Download WAV (${(blob2.size/1024).toFixed(1)} KB)</a>
                         `;
                         statusDiv.innerHTML = 'Converted to WAV (browser limitation).';
@@ -297,7 +300,7 @@
                         const url = URL.createObjectURL(blob);
                         const fileName = selectedFile.name.replace(/\.[^.]+$/, '') + '.' + useExt;
                         resultDiv.innerHTML = `
-                            <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">✅ Conversion Complete!</p>
+                            <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">âœ… Conversion Complete!</p>
                             <p>Original: ${(selectedFile.size/1024/1024).toFixed(2)} MB</p>
                             <p>Converted: ${(blob.size/1024/1024).toFixed(2)} MB</p>
                             <a href="${url}" download="${fileName}" class="download-link">Download ${useExt.toUpperCase()}</a>

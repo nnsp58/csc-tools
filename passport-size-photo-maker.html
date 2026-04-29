@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,13 +6,11 @@
     <title>Passport Photo Maker - ToolHub</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        .container { max-width: 900px; margin: 100px auto; padding: 2rem; background: #fff; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
-        .controls { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
-        .upload-box { border: 2px dashed #1e3c72; padding: 2rem; text-align: center; border-radius: 15px; cursor: pointer; }
-        #canvas { max-width: 100%; height: auto; border: 1px solid #ddd; margin-top: 1rem; display: none; }
-        .btn-generate { width: 100%; padding: 1rem; background: #1e3c72; color: white; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; }
-        .download-box { margin-top: 1rem; text-align: center; display: none; }
-        .dl-btn { padding: 0.8rem 2rem; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+        .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .control-group { text-align: left; background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee; }
+        .control-group label { display: block; margin-bottom: 0.8rem; font-weight: 600; color: #1e3c72; }
+        #canvas { max-width: 100%; height: auto; border: 1px solid #ddd; margin: 2rem auto; display: none; border-radius: 10px; box-shadow: var(--shadow-md); }
+        .btn-container { text-align: center; margin-top: 2rem; }
     </style>
     <meta name="google-adsense-account" content="ca-pub-9239182778221521">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
@@ -32,38 +30,49 @@
         </nav>
     </header>
 
-    <main>
-        <section class="container">
+    <main class="container">
+        <section class="tool-section">
             <h1>Passport Size Photo Maker</h1>
-            <p>Generate a professional passport photo sheet with multiple copies.</p>
+            <p style="text-align: center; margin-bottom: 2rem;">Create professional passport photo sheets with multiple copies in seconds. All processing happens locally in your browser.</p>
             
-            <div class="upload-box" onclick="document.getElementById('fileInput').click()">
-                <p>Click to upload your portrait photo</p>
+            <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
+                <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin-bottom: 0.5rem;">Click to upload your photo</p>
+                <p style="color: #666; margin-bottom: 0;">Use a clear portrait with a plain background for best results</p>
                 <input type="file" id="fileInput" accept="image/*" style="display:none">
             </div>
 
             <div class="controls">
-                <div>
+                <div class="control-group">
                     <label>Background Color</label>
-                    <input type="color" id="bgColor" value="#ffffff">
+                    <input type="color" id="bgColor" value="#ffffff" style="width: 100%; height: 50px; padding: 5px; border-radius: 8px; cursor: pointer;">
                 </div>
-                <div>
+                <div class="control-group">
                     <label>Number of Copies</label>
                     <select id="copies">
                         <option value="4">4 Copies</option>
                         <option value="8" selected>8 Copies</option>
                         <option value="12">12 Copies</option>
+                        <option value="16">16 Copies</option>
                     </select>
                 </div>
             </div>
 
-            <button class="btn-generate" onclick="generateSheet()">Generate Photo Sheet</button>
+            <div class="btn-container">
+                <button class="convert-btn" onclick="generateSheet()">
+                    <i class="fas fa-th"></i> Generate Photo Sheet
+                </button>
+            </div>
             
-            <div id="status" style="margin-top:1rem; text-align:center;"></div>
+            <div id="status" style="margin-top: 1.5rem; text-align: center; font-weight: 500;"></div>
             <canvas id="canvas"></canvas>
             
-            <div class="download-box" id="dlBox">
-                <a href="#" id="dlLink" download="passport_sheet.jpg" class="dl-btn">Download HD JPG</a>
+            <div id="dlBox" style="text-align: center; margin-top: 2rem; display: none;">
+                <a href="#" id="dlLink" download="passport_sheet.jpg" class="download-link">
+                    <i class="fas fa-download"></i> Download HD Photo Sheet
+                </a>
             </div>
         </section>
     </main>
