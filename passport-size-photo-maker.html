@@ -97,6 +97,10 @@
                         <option value="16">16 Copies</option>
                     </select>
                 </div>
+                <div class="config-item">
+                    <label>Removal Strength: <span id="strengthVal" style="color:var(--brand-start)">40</span></label>
+                    <input type="range" id="bgStrength" min="10" max="150" value="40" oninput="document.getElementById('strengthVal').textContent=this.value">
+                </div>
             </div>
 
             <button id="generateBtn" class="convert-btn" onclick="generateSheet()" disabled>
@@ -173,7 +177,7 @@
             const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
             const data = imageData.data;
             const targetColor = hexToRgb(bgColor);
-            const threshold = 40; 
+            const threshold = parseInt(document.getElementById('bgStrength').value); 
             for (let i = 0; i < data.length; i += 4) {
                 const r = data[i], g = data[i+1], b = data[i+2];
                 if (r > 255 - threshold && g > 255 - threshold && b > 255 - threshold) {
