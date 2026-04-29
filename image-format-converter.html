@@ -65,9 +65,10 @@
         </nav>
     </header>
 
-     <main>
+     <main class="container">
+         <h1>Image Format Converter</h1>
          <section class="tool-section" id="tool-section">
-            <h2>Image Format Converter Tool</h2>
+            <h2>Convert Images to PNG, JPEG, or WebP</h2>
             <p>Convert your images between different formats instantly. Our free online tool supports conversion between PNG, JPEG, WebP, and HTML formats. All processing happens in your browser - your images are never uploaded to any server.</p>
 
             <h3>How to Use</h3>
@@ -124,6 +125,7 @@
             
             <p><strong>Q: Can I use this on mobile?</strong></p>
             <p>A: Yes! The tool is fully responsive and works on smartphones and tablets.</p>
+        </div>
         </div>
     </main>
 
@@ -214,7 +216,7 @@
                 convertBtn.disabled = false;
             }, 500);
         }
-    <script>
+    </script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js')
     .then(reg => console.log('SW registered', reg.scope))
