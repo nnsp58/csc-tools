@@ -76,19 +76,19 @@
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
-            <div class="nav-links">
+                        <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
     <main>
         <section class="tool-section" id="main-content" style="max-width:1300px;margin:100px auto;padding:2rem;background:#fff;border-radius:15px;box-shadow:0 5px 25px rgba(0,0,0,0.1);">
-            <h2 style="color:#1e3c72;font-size:2rem;margin-bottom:1.5rem;text-align:center;">Universal Translator Tool</h2>
+            <h1 style="color:#1e3c72;font-size:2rem;margin-bottom:1.5rem;text-align:center;">Universal Translator Tool</h1>
             <p>ToolHub's Universal Translator is a powerful online tool that allows you to translate text between 80+ languages instantly. Whether you need translations for personal, academic, or professional purposes, this tool provides fast and accurate results. Perfect for students, travelers, writers, and anyone working across language barriers.</p>
             <p>Our advanced translation engine supports all major Indian regional languages including Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, and more, as well as world languages. The translation happens in real-time, ensuring quick and accurate results for all your language needs.</p>
             <h3 style="color:#1e3c72;margin-top:1.5rem;">How to Use</h3>
@@ -299,21 +299,6 @@
         </div>
     </main>
 
-    <footer class="footer" style="background:linear-gradient(120deg,#ff6b6b,#4ecdc4);color:white;padding:3rem 2rem;margin-top:4rem;">
-        <div class="footer-content" style="max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem;">
-            <div><h4>ToolHub</h4><p>Your ultimate digital toolkit.</p></div>
-            <div><h4>Legal</h4>
-                <p><a href="privacy-policy.html" style="color:white;text-decoration:none;">Privacy Policy</a></p>
-                <p><a href="terms.html" style="color:white;text-decoration:none;">Terms of Service</a></p>
-                <p><a href="disclaimer.html" style="color:white;text-decoration:none;">Disclaimer</a></p>
-            </div>
-            <div><h4>Support</h4>
-                <p><a href="contact.html" style="color:white;text-decoration:none;">Contact Us</a></p>
-                <p><a href="about.html" style="color:white;text-decoration:none;">About</a></p>
-            </div>
-        </div>
-    </footer>
-
     <script>
         const sourceText = document.getElementById('source-text');
         const translatedText = document.getElementById('translated-text');
@@ -394,16 +379,19 @@
         }
 
         sourceText.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') translateText(); });
+    </script>
     <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(reg => console.log('SW registered', reg.scope))
-    .catch(err => console.log('SW registration failed:', err));
-}
-</script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(reg => console.log('SW registered', reg.scope))
+        .catch(err => console.log('SW registration failed:', err));
+    }
+    </script>
     <script src="chatbot.js"></script>
     <div id="footer"></div>
     <script>fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);</script>
 </body>
 </html>
+
+
 

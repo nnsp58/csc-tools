@@ -48,18 +48,20 @@
             .footer-content { grid-template-columns: 1fr; }
         }
     </style>
-</head>
+    <link rel="stylesheet" href="styles.css"></head>
 <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
-            <div class="nav-links">
+                        <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
-                <a href="index.html#about">About</a>
-                <a href="index.html#contact">Contact</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
@@ -114,25 +116,7 @@
         </div>
     </main>
     
-    <footer class="footer">
-        <div class="footer-content">
-            <div>
-                <h4>ToolHub</h4>
-                <p>Your ultimate digital toolkit</p>
-            </div>
-            <div>
-                <h4>Legal</h4>
-                <p><a href="privacy-policy.html" style="color: white; text-decoration: none;">Privacy Policy</a></p>
-                <p><a href="terms.html" style="color: white; text-decoration: none;">Terms of Service</a></p>
-                <p><a href="disclaimer.html" style="color: white; text-decoration: none;">Disclaimer</a></p>
-            </div>
-            <div>
-                <h4>Support</h4>
-                <p><a href="contact.html" style="color: white; text-decoration: none;">Contact Us</a></p>
-                <p><a href="about.html" style="color: white; text-decoration: none;">About</a></p>
-            </div>
-        </div>
-    </footer>
+    
     <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js')
@@ -140,5 +124,12 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('SW registration failed:', err));
 }
 </script>
-</body>
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
+    </script></body>
 </html>
+
+
+
+
