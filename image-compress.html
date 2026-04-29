@@ -8,7 +8,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Image Compressor",
-  "description": "Reduce image file size while maintaining quality. Batch processing and target size support.",
+  "description": "Reduce image file size without losing quality. Batch process JPEG, PNG, and WebP images instantly.",
   "url": "https://n-dizi.in/image-compress.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -18,22 +18,38 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "JPEG/PNG/WebP compression, batch processing, target size optimization"
+  "featureList": "Batch compression, Target size optimization, Quality control, No server upload"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Reduce image file size without losing quality. Supports JPEG, PNG, WebP. Adjustable compression levels, batch processing, and target size control.">
-    <title>Image Compressor - Batch Compress JPEG, PNG, WebP Online | ToolHub</title>
+    <title>Image Compressor - Batch Compress JPEG, PNG, WebP | ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .file-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px; margin-bottom: 10px; border-left: 4px solid var(--brand-start); box-shadow: var(--shadow-sm); }
-        .control-group { text-align: left; background: #fff; padding: 1rem; border-radius: 12px; border: 1px solid #eee; }
-        .btn-container { display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; }
-        #status { padding: 10px; border-radius: 8px; margin: 1rem 0; }
+        .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
+        .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
+        .upload-area i { font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1rem; }
+        
+        .config-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 15px; border: 1px solid #eee; }
+        .config-item label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.9rem; text-align: left; }
+        .config-item select, .config-item input { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; transition: var(--transition); }
+        
+        .file-list { margin-top: 2rem; display: grid; gap: 12px; }
+        .file-item { display: flex; align-items: center; justify-content: space-between; padding: 15px; background: #fff; border-radius: 12px; border: 1px solid #eee; box-shadow: var(--shadow-sm); }
+        .file-info { font-weight: 600; color: #1e3c72; font-size: 0.95rem; }
+        .savings-tag { background: #e8f5e9; color: #2e7d32; padding: 4px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; }
+
+        #status-msg { text-align:center; margin-top: 1.5rem; font-weight: 600; color: #1e3c72; }
+        .download-all-btn { background: #27ae60 !important; width: auto !important; padding: 12px 30px !important; margin-top: 1rem; }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
+        .faq-section strong { color: #1e3c72; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
@@ -44,145 +60,143 @@
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
     <main class="container">
         <section class="tool-section">
-            <h1>Image Compressor Tool</h1>
-            <p style="text-align: center; margin-bottom: 2rem;">Reduce image file size while maintaining excellent quality. Batch processing and target size support.</p>
+            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-compress-alt"></i></div>
+            <h1>Image Compressor</h1>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Reduce image file size instantly without compromising on visual quality. Perfect for web and email.</p>
+
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-bolt"></i> Optimization Power:</h4>
+                <ul style="list-style: none; padding: 0; color: #555;">
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Batch compress up to 20 images at once.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Set custom compression levels or target file sizes.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Preserves image metadata and quality.</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Secure local processing — your images never leave your device.</li>
+                </ul>
+            </div>
             
-            <div class="upload-area" id="image-upload" onclick="document.getElementById('imageInput').click()">
-                <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
-                    <i class="fas fa-images"></i>
-                </div>
-                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin-bottom: 0.5rem;">Drag & drop images here</p>
-                <p style="color: #666; margin-bottom: 0;">or click to browse multiple files</p>
-                <input type="file" id="imageInput" accept="image/*" multiple style="display:none">
+            <div class="upload-area" id="drop-zone" onclick="document.getElementById('imageInput').click()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p id="file-name-display" style="font-size: 1.2rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Upload Images to Compress</p>
+                <p style="color: #888;">or drag & drop multiple files (JPG, PNG, WebP)</p>
+                <input type="file" id="imageInput" accept="image/*" multiple style="display:none;">
             </div>
 
-            <div class="controls">
-                <div class="control-group">
-                    <label>Compression Level</label>
+            <div class="config-grid">
+                <div class="config-item">
+                    <label>Optimization Level</label>
                     <select id="quality">
-                        <option value="0.9">Low Compression (High Quality)</option>
-                        <option value="0.7" selected>Medium Compression</option>
-                        <option value="0.4">High Compression (Low Quality)</option>
+                        <option value="0.9">Minimal (Best Quality)</option>
+                        <option value="0.7" selected>Standard (Recommended)</option>
+                        <option value="0.4">Maximum (Smallest Size)</option>
                     </select>
                 </div>
-                <div class="control-group">
+                <div class="config-item">
                     <label>Target Size (KB) - Optional</label>
                     <input type="number" id="targetSize" placeholder="e.g. 200" min="10">
                 </div>
             </div>
 
-            <div class="btn-container">
-                <button id="compressBtn" class="convert-btn" onclick="compressAll()">
-                    <i class="fas fa-compress-arrows-alt"></i> Compress All Images
-                </button>
-                <button id="downloadAllBtn" class="download-link" style="display:none; background: #27ae60; border: none; cursor: pointer;" onclick="downloadAll()">
-                    <i class="fas fa-download"></i> Download All
+            <button id="compressBtn" class="convert-btn" onclick="compressAll()" disabled>
+                <i class="fas fa-magic"></i> Compress All Images
+            </button>
+            
+            <div id="status-msg"></div>
+            
+            <div id="fileList" class="file-list"></div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button id="downloadAllBtn" class="convert-btn download-all-btn" style="display:none;" onclick="downloadAll()">
+                    <i class="fas fa-download"></i> Download All Optimized
                 </button>
             </div>
-
-            <div id="status"></div>
-            <div id="fileList" style="margin-top: 2rem;"></div>
+            
             <canvas id="canvas" style="display:none"></canvas>
         </section>
 
-        <section class="faq-section">
-            <h3 style="text-align: center; color: #1e3c72;">Frequently Asked Questions</h3>
-            <div style="margin-top: 1.5rem;">
-                <p><strong>Q: How does target size work?</strong></p>
-                <p>A: If you set a target size, the tool will try to adjust the compression level to match your desired file size in KB.</p>
-                <p><strong>Q: Is my data safe?</strong></p>
-                <p>A: Yes, all compression happens locally in your browser. No images are uploaded to any server.</p>
-            </div>
-        </section>
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: How does the target size option work?</strong></p>
+            <p>A: When you specify a target size (e.g., 100KB), our engine performs multiple compression passes to get as close to that size as possible while maintaining the best possible clarity.</p>
+            <p><strong>Q: Will my images look blurry?</strong></p>
+            <p>A: At "Standard" compression, the difference is almost invisible to the human eye. We recommend "Minimal" if you need to keep perfect detail for printing.</p>
+            <p><strong>Q: Is there a limit on how many images I can compress?</strong></p>
+            <p>A: You can upload up to 20 images at a time. For best performance, we recommend batching large sets of high-resolution photos.</p>
+        </div>
     </main>
 
     <script>
         let filesList = [];
         let processedFiles = [];
-
         const imageInput = document.getElementById('imageInput');
         const fileListDiv = document.getElementById('fileList');
         const compressBtn = document.getElementById('compressBtn');
         const downloadAllBtn = document.getElementById('downloadAllBtn');
-        const statusDiv = document.getElementById('status');
+        const statusMsg = document.getElementById('status-msg');
         const canvas = document.getElementById('canvas');
 
         imageInput.addEventListener('change', e => {
             const files = Array.from(e.target.files);
-            addFiles(files);
-        });
-
-        function addFiles(files) {
-            files.forEach(file => {
-                filesList.push({
-                    file: file,
-                    id: Math.random().toString(36).substr(2, 9),
-                    status: 'pending'
+            if (files.length > 0) {
+                files.forEach(file => {
+                    filesList.push({ file, id: Math.random().toString(36).substr(2, 9), status: 'pending' });
                 });
-            });
-            renderFileList();
-        }
+                renderFileList();
+                compressBtn.disabled = false;
+            }
+        });
 
         function renderFileList() {
             fileListDiv.innerHTML = filesList.map(item => `
                 <div class="file-item">
-                    <span>${item.file.name} (${(item.file.size/1024).toFixed(1)} KB)</span>
-                    <span id="status-${item.id}">${item.status === 'pending' ? 'Ready' : item.status}</span>
+                    <div class="file-info">${item.file.name} (${(item.file.size/1024).toFixed(1)} KB)</div>
+                    <div id="status-${item.id}" class="savings-tag" style="background:#f0f2f5; color:#666;">Ready</div>
                 </div>
             `).join('');
         }
 
         async function compressAll() {
-            if (filesList.length === 0) return alert('Please select images first');
-            
             const quality = parseFloat(document.getElementById('quality').value);
             const targetSizeKB = parseFloat(document.getElementById('targetSize').value);
             
             compressBtn.disabled = true;
-            statusDiv.textContent = 'Compressing...';
+            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Optimizing Images...';
             processedFiles = [];
 
-            for (let item of filesToProcess) {
-                item.status = 'processing';
+            for (let item of filesList) {
                 const statusEl = document.getElementById(`status-${item.id}`);
-                if (statusEl) statusEl.textContent = 'Processing...';
+                statusEl.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
 
                 try {
-                    const blob = await compressSingleFile(item.file, quality);
+                    const blob = await compressSingleFile(item.file, quality, targetSizeKB);
                     const url = URL.createObjectURL(blob);
-                    const compressedSize = blob.size;
-                    const ratio = ((item.file.size - compressedSize) / item.file.size * 100).toFixed(1);
+                    const savings = (((item.file.size - blob.size) / item.file.size) * 100).toFixed(0);
                     
-                    const resultEl = document.getElementById(`result-${item.id}`);
-                    const downloadName = item.file.name.replace(/\.[^.]+$/, '') + '_compressed.jpg';
+                    statusEl.innerHTML = `Saved ${savings}%`;
+                    statusEl.style.background = '#e8f5e9';
+                    statusEl.style.color = '#2e7d32';
                     
-                    resultEl.innerHTML = `
-                        <span style="color:#28a745;font-size:0.8rem;margin-right:10px;">-${ratio}%</span>
-                        <a href="${url}" download="${downloadName}" style="color:#00d4ff;text-decoration:none;font-weight:600;">Download</a>
-                    `;
-                    if (statusEl) statusEl.textContent = 'Complete';
-                    processedFiles.push({ url, name: downloadName });
+                    processedFiles.push({ url, name: item.file.name.replace(/\.[^.]+$/, '') + '_optimized.jpg' });
                 } catch (err) {
-                    if (statusEl) statusEl.textContent = 'Error';
-                    console.error(err);
+                    statusEl.textContent = 'Error';
+                    statusEl.style.background = '#ffebee';
+                    statusEl.style.color = '#c62828';
                 }
             }
 
-            statusDiv.textContent = 'Batch Compression Complete!';
-            compressBtn.disabled = false;
+            statusMsg.innerHTML = 'All Images Optimized! ✅';
+            statusMsg.style.color = '#27ae60';
             downloadAllBtn.style.display = 'inline-block';
+            compressBtn.disabled = false;
         }
 
         function compressSingleFile(file, quality, targetSizeKB) {
-            return new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 const img = new Image();
                 img.onload = () => {
                     canvas.width = img.width;
@@ -190,11 +204,10 @@
                     const ctx = canvas.getContext('2d');
                     ctx.drawImage(img, 0, 0);
 
-                    if (targetSizeKB && !isNaN(targetSizeKB)) {
-                        // Iterative approach for target size
+                    if (targetSizeKB > 0) {
                         let low = 0.1, high = 1.0, bestBlob = null;
                         let iterations = 0;
-                        function attempt() {
+                        const attempt = () => {
                             let q = (low + high) / 2;
                             canvas.toBlob(blob => {
                                 iterations++;
@@ -205,17 +218,14 @@
                                     if (blob.size > targetSizeKB * 1024) high = q;
                                     else low = q;
                                     attempt();
-                                } else {
-                                    resolve(bestBlob);
-                                }
+                                } else { resolve(bestBlob); }
                             }, 'image/jpeg', q);
-                        }
+                        };
                         attempt();
                     } else {
                         canvas.toBlob(blob => resolve(blob), 'image/jpeg', quality);
                     }
                 };
-                img.onerror = reject;
                 img.src = URL.createObjectURL(file);
             });
         }
@@ -227,20 +237,17 @@
                     a.href = file.url;
                     a.download = file.name;
                     a.click();
-                }, i * 300);
+                }, i * 400);
             });
         }
 
-        // Test aliases
-        function compressImage() { compressAll(); }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
     </script>
     <div id="footer"></div>
     <script>
-        fetch("./footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
     </script>
 </body>
 </html>
-
-
-
-

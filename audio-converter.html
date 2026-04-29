@@ -1,18 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://jsdelivr.net">
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Audio Converter",
-  "description": "Convert audio between MP3, WAV, OGG...",
+  "description": "Convert audio files between MP3, WAV, OGG formats instantly. Fast, free, and secure browser-based tool.",
   "url": "https://n-dizi.in/audio-converter.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -22,163 +18,126 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "WAV/MP3/OGG/M4A conversion, Web Audio API, fallback handling"
+  "featureList": "MP3 to WAV, WAV to MP3, OGG conversion, multi-format support, no server upload"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Convert audio files between MP3, WAV, OGG, M4A formats. Uses Web Audio API. Fast, free, and works entirely in your browser.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://n-dizi.in/audio-converter.html">
-    <meta property="og:title" content="Audio Converter - Convert MP3, WAV, OGG Online Free | ToolHub">
-    <meta property="og:description" content="Convert audio files between MP3, WAV, OGG, M4A formats. Uses Web Audio API. Fast, free, and works entirely in your browser.">
-    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/audio-converter.html">
-    <meta property="twitter:title" content="Audio Converter - Convert MP3, WAV, OGG Online Free | ToolHub">
-    <meta property="twitter:description" content="Convert audio files between MP3, WAV, OGG, M4A formats. Uses Web Audio API. Fast, free, and works entirely in your browser.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
-    <meta name="keywords" content="audio converter, convert audio, MP3 converter, WAV converter, OGG converter, audio format converter, M4A converter">
-    <meta name="author" content="ToolHub">
-    <link rel="canonical" href="https://n-dizi.in/audio-converter.html">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
     <title>Audio Converter - Convert MP3, WAV, OGG Online Free | ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .faq-section {
-            max-width: 800px;
-            margin: 2rem auto;
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            text-align: left;
-        }
-        .faq-section h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .faq-section p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-        .faq-section strong {
-            color: #1e3c72;
-        }
+        .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
+        .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
+        .upload-area i { font-size: 3rem; color: #ff6b6b; margin-bottom: 1rem; }
+        
+        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; text-align: left; }
+        .control-item label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.95rem; }
+        .control-item select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; transition: var(--transition); cursor: pointer; }
+        .control-item select:focus { border-color: var(--brand-end); outline: none; }
+
+        #result { display: none; margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 15px; text-align: center; border-left: 6px solid #27ae60; animation: fadeIn 0.5s ease; }
+        .download-btn { background: #27ae60 !important; width: auto !important; padding: 12px 30px !important; margin-top: 1rem; }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
+        .faq-section strong { color: #1e3c72; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <a href="#tool-section" class="skip-link">Skip to main content</a>
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                                <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
-     <div class="container" style="margin-top:90px;">
-        <h1>Audio Converter</h1>
-        
-        <div class="upload-area" id="audioUpload">
-            <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
-                <i class="fas fa-file-audio"></i>
+    <main class="container">
+        <section class="tool-section">
+            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-music"></i></div>
+            <h1>Audio Converter</h1>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Professional-grade audio format converter that works entirely in your browser.</p>
+
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-sliders-h"></i> How to Use:</h4>
+                <ul style="list-style: none; padding: 0; color: #555;">
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 1. Select an audio file (MP3, WAV, OGG, etc.) from your device.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 2. Choose your desired <strong>Output Format</strong>.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 3. Click "Convert Audio" and wait for processing.</li>
+                    <li><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 4. Download your new audio file instantly.</li>
+                </ul>
             </div>
-            <p style="font-size:1.2rem;color:#1e3c72;margin-bottom:0.5rem;">Drag & Drop Audio File Here</p>
-            <p style="color:#666;margin-bottom:0;">or click to browse (max 50MB, MP3, WAV, OGG, AAC)</p>
-            <input type="file" id="audioFile" accept="audio/*" style="display:none;" aria-label="Upload audio file to convert">
-        </div>
-
-        <p id="file-name" style="text-align: center; display: none;"></p>
-
-        <div class="controls">
-            <div>
-                <label for="outputFormat" style="display:block;margin-bottom:0.5rem;color:#1e3c72;font-weight:600;">Output Format:</label>
-                <select id="outputFormat" style="padding:12px 20px;border:2px solid #ddd;border-radius:8px;font-size:16px;min-width:150px;background:white;">
-                    <option value="mp3">MP3 (Compressed)</option>
-                    <option value="wav">WAV (Uncompressed)</option>
-                    <option value="ogg">OGG (Compressed)</option>
-                </select>
-                <p id="format-warning" style="color:#e74c3c;font-size:13px;margin-top:0.5rem;display:none;">
-                    âš ï¸ WAV output will be large (~10x input size). Consider MP3/OGG for smaller files.
-                </p>
+            
+            <div class="upload-area" id="audioUpload" onclick="document.getElementById('audioFile').click()">
+                <i class="fas fa-cloud-upload-alt"></i>
+                <p id="file-name-display" style="font-size: 1.2rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Drag & Drop Audio File Here</p>
+                <p style="color: #888;">or click to browse (max 50MB)</p>
+                <input type="file" id="audioFile" accept="audio/*" style="display:none;">
             </div>
-            <button id="convertBtn" class="convert-btn" onclick="convertAudio()" disabled style="align-self:flex-end;">Convert Audio</button>
+
+            <div class="controls-grid">
+                <div class="control-item">
+                    <label for="outputFormat">Target Format</label>
+                    <select id="outputFormat">
+                        <option value="mp3">MP3 (Compressed)</option>
+                        <option value="wav">WAV (Lossless)</option>
+                        <option value="ogg">OGG (Compressed)</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="convertBtn" class="convert-btn" onclick="convertAudio()" disabled>
+                <i class="fas fa-sync-alt"></i> Convert Audio
+            </button>
+            
+            <div id="status" style="text-align:center; margin-top: 1.5rem; font-weight: 600;"></div>
+            
+            <div id="result">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;">Conversion Successful!</h4>
+                <div id="result-details" style="font-size: 0.95rem; color: #666; margin-bottom: 1.5rem;"></div>
+                <div id="download-area"></div>
+            </div>
+        </section>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: Does this tool upload my audio to a server?</strong></p>
+            <p>A: No. All audio processing happens locally in your browser using the Web Audio API. Your data stays on your machine.</p>
+            <p><strong>Q: What is the difference between MP3 and WAV?</strong></p>
+            <p>A: MP3 is a compressed format that saves space but loses some quality. WAV is an uncompressed, lossless format that maintains full audio quality but results in much larger file sizes.</p>
+            <p><strong>Q: Why is my WAV file so much bigger than my MP3?</strong></p>
+            <p>A: WAV files store every single audio sample without compression. A typical 3-minute song can be 30MB in WAV format, compared to just 3MB in MP3.</p>
         </div>
-
-        <div id="status" style="text-align:center;margin:1rem 0;padding:12px;border-radius:8px;font-weight:500;display:none;"></div>
-        <div id="result" style="display:none;text-align:center;margin-top:1.5rem;padding:1.5rem;background:#f8f9fa;border-radius:12px;"></div>
-    </div>
-
-    <div class="faq-section">
-        <h3>Frequently Asked Questions</h3>
-        <p><strong>Q: What audio formats are supported for conversion?</strong></p>
-        <p>A: Our Audio Converter supports MP3, WAV, and OGG formats. You can convert between these formats freely.</p>
-        
-        <p><strong>Q: What is the maximum file size I can upload?</strong></p>
-        <p>A: The maximum file size is 50MB. This ensures fast processing and good performance.</p>
-        
-        <p><strong>Q: Is the audio conversion done locally in my browser?</strong></p>
-        <p>A: Yes! The conversion happens entirely in your browser. Your files are not uploaded to any server, ensuring complete privacy and security.</p>
-        
-        <p><strong>Q: Which output formats can I choose from?</strong></p>
-        <p>A: You can convert to MP3, WAV, or OGG formats. Select your desired format from the dropdown menu before converting.</p>
-        
-        <p><strong>Q: Is this tool really free to use?</strong></p>
-        <p>A: Absolutely! Our Audio Converter is 100% free with no hidden charges, registration required, or usage limits.</p>
-    </div>
-
-    <div style="margin: 20px auto; text-align: center;">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-9239182778221521"
-             data-ad-slot="7274852761"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-    </div>
+    </main>
 
     <script>
-        const statusDiv = document.getElementById('status');
-        const resultDiv = document.getElementById('result');
         const audioFileInput = document.getElementById('audioFile');
         const convertBtn = document.getElementById('convertBtn');
         const outputFormat = document.getElementById('outputFormat');
-        const warningMsg = document.getElementById('format-warning');
-        const fileNameDisplay = document.getElementById('file-name');
+        const fileNameDisplay = document.getElementById('file-name-display');
         const uploadArea = document.getElementById('audioUpload');
+        const statusDiv = document.getElementById('status');
+        const resultDiv = document.getElementById('result');
+        const resultDetails = document.getElementById('result-details');
+        const downloadArea = document.getElementById('download-area');
 
         let selectedFile = null;
 
-        // Drag & drop
-        uploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            uploadArea.style.borderColor = '#00d4ff';
-            uploadArea.style.background = '#f8fdff';
-        });
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.style.borderColor = '#ccc';
-            uploadArea.style.background = 'transparent';
-        });
+        uploadArea.addEventListener('dragover', (e) => { e.preventDefault(); uploadArea.style.borderColor = '#4ecdc4'; });
+        uploadArea.addEventListener('dragleave', () => { uploadArea.style.borderColor = '#eee'; });
         uploadArea.addEventListener('drop', (e) => {
             e.preventDefault();
-            uploadArea.style.borderColor = '#ccc';
-            uploadArea.style.background = 'transparent';
+            uploadArea.style.borderColor = '#eee';
             const file = e.dataTransfer.files[0];
             if (file && file.type.startsWith('audio/')) handleFile(file);
-            else showStatus('Please upload a valid audio file.', 'error');
         });
 
         audioFileInput.addEventListener('change', (e) => {
@@ -186,153 +145,103 @@
             if (file) handleFile(file);
         });
 
-        // Show warning when WAV selected
-        outputFormat.addEventListener('change', () => {
-            if (outputFormat.value === 'wav' && selectedFile && selectedFile.size > 2 * 1024 * 1024) {
-                warningMsg.style.display = 'block';
-                warningMsg.textContent = 'âš ï¸ WAV is uncompressed. Expected size: ~' + 
-                    Math.round(selectedFile.size * 1.2) + ' bytes (10-12x larger).';
-            } else {
-                warningMsg.style.display = 'none';
-            }
-        });
-
         function handleFile(file) {
-            selectedFile = file;
-            fileNameDisplay.textContent = `Selected: ${file.name} (${(file.size/1024/1024).toFixed(1)} MB)`;
-            convertBtn.disabled = false;
-            showStatus('', '');
-            resultDiv.style.display = 'none';
-            
-            // Update warning if WAV selected and file > 2MB
-            if (outputFormat.value === 'wav' && file.size > 2 * 1024 * 1024) {
-                warningMsg.style.display = 'block';
-                const estimatedSize = Math.round(file.size * 1.2); // Rough estimate
-                warningMsg.textContent = `âš ï¸ WAV output will be large (~${(estimatedSize/1024/1024).toFixed(1)} MB). Consider MP3.`;
-            } else {
-                warningMsg.style.display = 'none';
+            if (file.size > 50 * 1024 * 1024) {
+                alert('File size exceeds 50MB limit.');
+                return;
             }
+            selectedFile = file;
+            fileNameDisplay.textContent = `${file.name} (${(file.size/1024/1024).toFixed(1)} MB)`;
+            convertBtn.disabled = false;
+            resultDiv.style.display = 'none';
+            statusDiv.textContent = '';
         }
 
         async function convertAudio() {
-            if (!selectedFile) {
-                showStatus('Please select an audio file first.', 'error');
-                return;
-            }
+            if (!selectedFile) return;
 
             const format = outputFormat.value;
-            statusDiv.innerHTML = 'Processing audio...';
-            resultDiv.innerHTML = '';
+            statusDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Audio...';
+            statusDiv.style.color = '#1e3c72';
             convertBtn.disabled = true;
 
             try {
                 if (format === 'wav') {
-                    // WAV conversion (uncompressed)
-                    const arrayBuffer = await selectedFile.arrayBuffer();
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    statusDiv.innerHTML = 'Decoding audio...';
-                    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-                    await audioCtx.close();
-
-                    const numChannels = audioBuffer.numberOfChannels;
-                    const sampleRate = audioBuffer.sampleRate;
-                    let samples;
-                    if (numChannels === 2) {
-                        samples = interleave(audioBuffer.getChannelData(0), audioBuffer.getChannelData(1));
-                    } else {
-                        samples = audioBuffer.getChannelData(0);
-                    }
-                    const wavBuffer = encodeWAV(samples, sampleRate, numChannels);
-                    const blob = new Blob([wavBuffer], { type: 'audio/wav' });
-                    const url = URL.createObjectURL(blob);
-                    const fileName = selectedFile.name.replace(/\.[^.]+$/, '') + '.wav';
-                    resultDiv.innerHTML = `
-                        <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">âœ… Conversion Complete!</p>
-                        <p>Original: ${(selectedFile.size/1024/1024).toFixed(2)} MB</p>
-                        <p>Converted: ${(blob.size/1024/1024).toFixed(2)} MB (uncompressed WAV)</p>
-                        <a href="${url}" download="${fileName}" class="download-link">Download WAV</a>
-                    `;
-                    statusDiv.innerHTML = 'Conversion complete!';
-                    showStatus('WAV conversion done. Note: Large file size.', 'complete');
-
-                } else if (format === 'mp3' || format === 'ogg') {
-                    // MP3/OGG via MediaRecorder (browser-dependent)
-                    const arrayBuffer = await selectedFile.arrayBuffer();
-                    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    statusDiv.innerHTML = 'Decoding audio...';
-                    const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
-
-                    const dest = audioCtx.createMediaStreamDestination();
-                    const source = audioCtx.createBufferSource();
-                    source.buffer = audioBuffer;
-                    source.connect(dest);
-
-                    const mimeType = format === 'ogg' ? 'audio/ogg; codecs=opus' : 'audio/webm;codecs=opus';
-                    const ext = format === 'ogg' ? 'ogg' : 'webm';
-
-                    if (!MediaRecorder.isTypeSupported(mimeType) && !MediaRecorder.isTypeSupported('audio/webm')) {
-                        // Fallback: output as WAV
-                        await audioCtx.close();
-                        statusDiv.innerHTML = "Browser doesn't support " + format.toUpperCase() + ". Converting to WAV instead...";
-                        const numChannels = audioBuffer.numberOfChannels;
-                        const sr = audioBuffer.sampleRate;
-                        const smp = numChannels===2 ? interleave(audioBuffer.getChannelData(0),audioBuffer.getChannelData(1)) : audioBuffer.getChannelData(0);
-                        const wavBuf = encodeWAV(smp, sr, numChannels);
-                        const blob2 = new Blob([wavBuf], { type: 'audio/wav' });
-                        const url2 = URL.createObjectURL(blob2);
-                        const fn2 = selectedFile.name.replace(/\.[^.]+$/, '') + '.wav';
-                        resultDiv.innerHTML = `
-                            <p style="color:#e67e22;font-weight:600;margin-bottom:1rem;">âš ï¸ Format not supported, converted to WAV</p>
-                            <a href="${url2}" download="${fn2}" class="download-link">Download WAV (${(blob2.size/1024).toFixed(1)} KB)</a>
-                        `;
-                        statusDiv.innerHTML = 'Converted to WAV (browser limitation).';
-                        convertBtn.disabled = false;
-                        return;
-                    }
-
-                    const useMime = MediaRecorder.isTypeSupported(mimeType) ? mimeType : 'audio/webm';
-                    const useExt = MediaRecorder.isTypeSupported(mimeType) ? ext : 'webm';
-                    const recorder = new MediaRecorder(dest.stream, { mimeType: useMime });
-                    const chunks = [];
-                    recorder.ondataavailable = e => chunks.push(e.data);
-                    recorder.onstop = () => {
-                        const blob = new Blob(chunks, { type: useMime });
-                        const url = URL.createObjectURL(blob);
-                        const fileName = selectedFile.name.replace(/\.[^.]+$/, '') + '.' + useExt;
-                        resultDiv.innerHTML = `
-                            <p style="color:#28a745;font-weight:600;margin-bottom:1rem;">âœ… Conversion Complete!</p>
-                            <p>Original: ${(selectedFile.size/1024/1024).toFixed(2)} MB</p>
-                            <p>Converted: ${(blob.size/1024/1024).toFixed(2)} MB</p>
-                            <a href="${url}" download="${fileName}" class="download-link">Download ${useExt.toUpperCase()}</a>
-                        `;
-                        statusDiv.innerHTML = 'Conversion complete!';
-                        audioCtx.close();
-                        convertBtn.disabled = false;
-                    };
-                    statusDiv.innerHTML = 'Converting... Please wait.';
-                    recorder.start();
-                    source.start(0);
-                    setTimeout(() => recorder.stop(), (audioBuffer.duration + 0.5) * 1000);
+                    await convertToWav();
+                } else {
+                    await convertToCompressed(format);
                 }
             } catch (error) {
-                statusDiv.innerHTML = 'Error: ' + error.message;
-                resultDiv.innerHTML = '';
-                console.error(error);
-                convertBtn.disabled = false;
+                statusDiv.innerHTML = 'Error during conversion. Please try another file.';
+                statusDiv.style.color = '#ff6b6b';
             }
+            convertBtn.disabled = false;
         }
 
-        function showStatus(msg, type) {
-            statusDiv.textContent = msg;
-            statusDiv.className = '';
-            if (type) statusDiv.classList.add(type);
-            statusDiv.style.display = msg ? 'block' : 'none';
-            if (type === 'error') statusDiv.style.color = '#c62828';
-            else if (type === 'processing') statusDiv.style.color = '#1565c0';
-            else if (type === 'complete') statusDiv.style.color = '#2e7d32';
+        async function convertToWav() {
+            const arrayBuffer = await selectedFile.arrayBuffer();
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+            await audioCtx.close();
+
+            const numChannels = audioBuffer.numberOfChannels;
+            const sampleRate = audioBuffer.sampleRate;
+            let samples;
+            if (numChannels === 2) {
+                samples = interleave(audioBuffer.getChannelData(0), audioBuffer.getChannelData(1));
+            } else {
+                samples = audioBuffer.getChannelData(0);
+            }
+
+            const wavBuffer = encodeWAV(samples, sampleRate, numChannels);
+            const blob = new Blob([wavBuffer], { type: 'audio/wav' });
+            displayResult(blob, 'wav');
         }
 
-        // WAV encoder (unchanged)
+        async function convertToCompressed(format) {
+            const arrayBuffer = await selectedFile.arrayBuffer();
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+
+            const dest = audioCtx.createMediaStreamDestination();
+            const source = audioCtx.createBufferSource();
+            source.buffer = audioBuffer;
+            source.connect(dest);
+
+            const mimeType = format === 'ogg' ? 'audio/ogg; codecs=opus' : 'audio/webm;codecs=opus';
+            const ext = format === 'ogg' ? 'ogg' : 'mp3';
+
+            if (!MediaRecorder.isTypeSupported(mimeType)) {
+                await audioCtx.close();
+                throw new Error("Format not supported");
+            }
+
+            const recorder = new MediaRecorder(dest.stream, { mimeType: mimeType });
+            const chunks = [];
+            recorder.ondataavailable = e => chunks.push(e.data);
+            recorder.onstop = () => {
+                const blob = new Blob(chunks, { type: mimeType });
+                displayResult(blob, ext);
+                audioCtx.close();
+            };
+            recorder.start();
+            source.start(0);
+            setTimeout(() => recorder.stop(), (audioBuffer.duration + 0.5) * 1000);
+        }
+
+        function displayResult(blob, ext) {
+            const url = URL.createObjectURL(blob);
+            const fileName = selectedFile.name.replace(/\.[^.]+$/, '') + '.' + ext;
+            
+            resultDetails.innerHTML = `Original: ${(selectedFile.size/1024/1024).toFixed(2)} MB | Converted: ${(blob.size/1024/1024).toFixed(2)} MB`;
+            downloadArea.innerHTML = `<a href="${url}" download="${fileName}" class="convert-btn download-btn"><i class="fas fa-download"></i> Download ${ext.toUpperCase()}</a>`;
+            
+            statusDiv.innerHTML = 'Conversion Complete! ✅';
+            statusDiv.style.color = '#27ae60';
+            resultDiv.style.display = 'block';
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
         function encodeWAV(samples, sampleRate, numChannels) {
             const buf = new ArrayBuffer(44 + samples.length * 2);
             const view = new DataView(buf);
@@ -368,24 +277,14 @@
             }
             return result;
         }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
     </script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(reg => console.log('SW registered', reg.scope))
-    .catch(err => console.log('SW registration failed:', err));
-}
-</script>
-
-    <script src="chatbot.js"></script>
-
     <div id="footer"></div>
     <script>
-        fetch("./footer.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("footer").innerHTML = data);
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
     </script>
 </body>
 </html>
-
-

@@ -1,18 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://jsdelivr.net">
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Group Photo Maker",
-  "description": "Create photo collages and grids...",
+  "description": "Create professional photo collages and grids instantly. Customizable frame sizes, gaps, and layouts.",
   "url": "https://n-dizi.in/group-photo-maker.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -22,155 +18,163 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "Adjustable frame size/gaps, center image option, grid layout"
+  "featureList": "Multi-image collage, custom frame sizes, adjustable gaps, center image option"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Combine multiple photos into beautiful collages. Adjustable frame size, spacing, and center image. Free online collage maker with download.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://n-dizi.in/group-photo-maker.html">
-    <meta property="og:title" content="Group Photo Maker - Create Photo Collages & Grids Online | ToolHub">
-    <meta property="og:description" content="Combine multiple photos into beautiful collages. Adjustable frame size, spacing, and center image. Free online collage maker with download.">
-    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/group-photo-maker.html">
-    <meta property="twitter:title" content="Group Photo Maker - Create Photo Collages & Grids Online | ToolHub">
-    <meta property="twitter:description" content="Combine multiple photos into beautiful collages. Adjustable frame size, spacing, and center image. Free online collage maker with download.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
-    <meta name="keywords" content="group photo maker, photo collage, image grid, photo grid, combine photos, collage maker, photo grid creator">
-    <meta name="author" content="ToolHub">
-    <link rel="canonical" href="https://n-dizi.in/group-photo-maker.html">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
-    <title>Group Photo Maker - Create Photo Collages & Grids Online | ToolHub</title>
+    <title>Group Photo Maker - Create Photo Collages Online | ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left; }
-        .faq-section h3 { color: #1e3c72; margin-bottom: 1rem; text-align: center; }
-        .faq-section p { margin-bottom: 1rem; line-height: 1.6; }
+        .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
+        .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
+        .upload-area i { font-size: 3rem; color: #ff6b6b; margin-bottom: 1rem; }
+        
+        .config-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 15px; border: 1px solid #eee; }
+        .config-item label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.9rem; text-align: left; }
+        .config-item input[type="number"] { width: 100%; padding: 10px; border-radius: 8px; border: 2px solid #f0f2f5; font-size: 1rem; }
+        .config-item input:focus { border-color: var(--brand-end); outline: none; }
+        
+        .toggle-group { display: flex; align-items: center; gap: 10px; font-weight: 600; color: #1e3c72; margin: 1rem 0; cursor: pointer; }
+
+        #result-container { display: none; margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 20px; text-align: center; border: 2px dashed #eee; animation: fadeIn 0.5s ease; }
+        #output-canvas { max-width: 100%; height: auto; border-radius: 10px; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; background: #fff; display: none; }
+        #result-img { max-width: 100%; height: auto; border-radius: 10px; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
         .faq-section strong { color: #1e3c72; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                                <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
-     <main id="main-content">
-         <section class="tool-section" id="tool-section">
-            <h1>Group Photo Maker Tool</h1>
-            <p>ToolHub's Group Photo Maker is a versatile online tool that allows you to create beautiful photo collages and grid layouts from multiple images. Whether you're organizing team photos, event memories, or social media content, this tool provides flexible customization options to create stunning group compositions. Perfect for businesses, schools, families, and content creators.</p>
-            <p>Our advanced grid algorithm automatically arranges your photos into an aesthetically pleasing layout with optional center image placement. You can customize frame dimensions, spacing between photos, and choose whether to include a scenic center image. The tool works entirely in your browser, ensuring your photos remain private and secure.</p>
-            <h3>How to Use</h3>
-            <ol>
-                <li>Upload multiple images using the file input (you can select several at once).</li>
-                <li>Set your desired frame width and height in pixels (default 200x200).</li>
-                <li>Adjust the gap between frames (default 10px).</li>
-                <li>Choose whether to add a center scenic image or leave it blank.</li>
-                <li>Click "Create Group Photo" to generate your collage.</li>
-                <li>Download the resulting image from the canvas output.</li>
-            </ol>
-            <h3>Benefits</h3>
-            <ul>
-                <li>Create professional photo grids and collages in seconds</li>
-                <li>Fully customizable frame sizes and spacing</li>
-                <li>Optional center image for visual interest</li>
-                <li>Works with any image format (JPEG, PNG, GIF, etc.)</li>
-                <li>No software installation required - browser-based</li>
-                <li>Completely free with no registration</li>
-                <li>Mobile and desktop friendly</li>
-            </ul>
-            <h3>Example Use Cases</h3>
-            <p>This tool is ideal for creating team photo grids for company websites, class photo arrangements for schools, event photo collages for social media, before/after comparison images, and product display grids for e-commerce. The flexible layout system ensures your photos are arranged in the most visually appealing way possible.</p>
-            <div id="image-upload">
-                <p>Upload your images here or click to browse</p>
-                 <input type="file" id="imgs" accept="image/*" multiple aria-label="Upload images for collage">
+    <main class="container">
+        <section class="tool-section">
+            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-th"></i></div>
+            <h1>Group Photo Maker</h1>
+            <p style="text-align: center; margin-bottom: 2.5rem; color: #666;">Combine multiple images into perfectly aligned professional grids and collages.</p>
+
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-magic"></i> Photo Design Guide:</h4>
+                <ul style="list-style: none; padding: 0; color: #555;">
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> 1. Upload 3 to 20 images for the best grid layout.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> 2. Customize frame sizes (e.g., 200x200 or 300x400).</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> 3. Adjust the gap between photos for a modern look.</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> 4. Add a decorative center image for special occasions.</li>
+                </ul>
             </div>
-            <div class="frame-size">
-                <input type="number" id="frameWidth" placeholder="Frame Width (px)" min="50" value="200" aria-label="Frame width in pixels">
-                <input type="number" id="frameHeight" placeholder="Frame Height (px)" min="50" value="200" aria-label="Frame height in pixels">
-                <input type="number" id="gap" placeholder="Gap (px)" min="0" value="10" aria-label="Gap between frames in pixels">
+            
+            <div class="upload-area" id="drop-zone" onclick="document.getElementById('imgs').click()">
+                <i class="fas fa-images"></i>
+                <p id="file-name-display" style="font-size: 1.2rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Drag & Drop Photos Here</p>
+                <p style="color: #888;">or click to select multiple files</p>
+                <input type="file" id="imgs" accept="image/*" multiple style="display:none;">
             </div>
-            <div class="options">
-                <label><input type="checkbox" id="addCenterImage" checked> Add Center Scenic Image</label>
+
+            <div class="config-grid">
+                <div class="config-item">
+                    <label>Frame Width (px)</label>
+                    <input type="number" id="frameWidth" value="200" min="50" max="1000">
+                </div>
+                <div class="config-item">
+                    <label>Frame Height (px)</label>
+                    <input type="number" id="frameHeight" value="200" min="50" max="1000">
+                </div>
+                <div class="config-item">
+                    <label>Gap (px)</label>
+                    <input type="number" id="gap" value="10" min="0" max="100">
+                </div>
+                <div class="config-item" style="display: flex; align-items: flex-end;">
+                    <label class="toggle-group">
+                        <input type="checkbox" id="addCenterImage" checked style="width: 20px; height: 20px; cursor: pointer;">
+                        Center Image
+                    </label>
+                </div>
             </div>
-            <button id="createBtn" onclick="createGroupPhoto()">Create Group Photo</button>
-            <canvas id="canvas"></canvas>
-            <div id="result"></div>
-            <p id="error-message"></p>
+
+            <button id="createBtn" class="convert-btn" onclick="createGroupPhoto()" disabled>
+                <i class="fas fa-layer-group"></i> Create Group Photo
+            </button>
+            
+            <div id="status-msg" style="text-align:center; margin-top: 1.5rem; font-weight: 600; color: #1e3c72;"></div>
+            
+            <div id="result-container">
+                <canvas id="output-canvas"></canvas>
+                <img id="result-img" src="" alt="Generated Collage">
+                <div style="display: flex; justify-content: center; gap: 1rem;">
+                    <a id="downloadBtn" class="convert-btn" style="width: auto; padding: 12px 30px; text-decoration: none; background: #27ae60;">
+                        <i class="fas fa-download"></i> Download JPG
+                    </a>
+                </div>
+            </div>
         </section>
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9239182778221521"
-                 data-ad-slot="7274852761"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        
+
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: What image formats are supported?</strong></p>
-            <p>A: Our Group Photo Maker supports all common image formats including JPEG, PNG, GIF, and WebP. You can upload multiple images at once.</p>
-            
-            <p><strong>Q: Is there a limit to how many photos I can upload?</strong></p>
-            <p>A: You can upload as many photos as you want. The tool will automatically arrange them into an optimal grid layout. For best results, we recommend 3-20 photos.</p>
-            
-            <p><strong>Q: Can I customize the frame size and spacing?</strong></p>
-            <p>A: Yes! You can adjust the frame width and height in pixels, as well as the gap between frames. The default settings are 200x200px frames with 10px gaps.</p>
-            
-            <p><strong>Q: What is the center scenic image feature?</strong></p>
-            <p>A: The center scenic image option adds a decorative image in the center of your collage for visual interest. You can choose to include it or leave the center blank.</p>
-            
-            <p><strong>Q: Can I use this tool on mobile devices?</strong></p>
-            <p>A: Absolutely! The Group Photo Maker is fully responsive and works perfectly on smartphones, tablets, and desktop computers.</p>
+            <p><strong>Q: How many photos can I add?</strong></p>
+            <p>A: You can add as many as you like! The tool will automatically calculate the best grid (rows/cols) based on the number of photos you upload.</p>
+            <p><strong>Q: Is my photo quality preserved?</strong></p>
+            <p>A: Yes. We use high-quality canvas rendering and export at 95% JPEG quality to ensure your collage looks sharp and professional.</p>
+            <p><strong>Q: Can I use this for social media?</strong></p>
+            <p>A: Absolutely. It's perfect for Instagram grids, Facebook group photos, or team highlights on LinkedIn.</p>
         </div>
     </main>
-    
+
     <script>
-        async function createGroupPhoto() {
-            const files = document.getElementById('imgs').files;
-            const frameWidth = parseInt(document.getElementById('frameWidth').value);
-            const frameHeight = parseInt(document.getElementById('frameHeight').value);
-            const gap = parseInt(document.getElementById('gap').value);
-            const addCenterImage = document.getElementById('addCenterImage').checked;
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
-            const errorMessage = document.getElementById('error-message');
+        const imgInput = document.getElementById('imgs');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const createBtn = document.getElementById('createBtn');
+        const statusMsg = document.getElementById('status-msg');
+        const resultContainer = document.getElementById('result-container');
+        const downloadBtn = document.getElementById('downloadBtn');
 
-            if (files.length === 0) {
-                errorMessage.textContent = 'Please upload at least one image.';
-                errorMessage.style.display = 'block'; errorMessage.style.color = 'red';
-                return;
+        imgInput.addEventListener('change', (e) => {
+            const count = e.target.files.length;
+            if (count > 0) {
+                fileNameDisplay.textContent = `${count} photos selected`;
+                createBtn.disabled = false;
             }
+        });
 
-            errorMessage.style.display = 'none';
+        async function createGroupPhoto() {
+            const files = imgInput.files;
+            if (files.length === 0) return;
 
-            const totalSlots = Math.max(files.length + 1, 9);
+            const frameWidth = parseInt(document.getElementById('frameWidth').value) || 200;
+            const frameHeight = parseInt(document.getElementById('frameHeight').value) || 200;
+            const gap = parseInt(document.getElementById('gap').value) || 10;
+            const addCenterImage = document.getElementById('addCenterImage').checked;
+            
+            const canvas = document.getElementById('output-canvas');
+            const ctx = canvas.getContext('2d');
+            const resultImg = document.getElementById('result-img');
+
+            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Rendering Collage...';
+            createBtn.disabled = true;
+
+            const totalSlots = Math.max(files.length + (addCenterImage ? 1 : 0), 4);
             const cols = Math.ceil(Math.sqrt(totalSlots));
             const rows = Math.ceil(totalSlots / cols);
+
             canvas.width = cols * (frameWidth + gap) - gap;
             canvas.height = rows * (frameHeight + gap) - gap;
 
-            ctx.fillStyle = '#fff';
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             const centerRow = Math.floor(rows / 2);
@@ -182,56 +186,40 @@
                 const x = (i % cols) * (frameWidth + gap);
                 const y = Math.floor(i / cols) * (frameHeight + gap);
 
-                if (i === centerIndex) {
-                    if (addCenterImage) {
-                        const centerImg = new Image();
-                        centerImg.src = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80';
-                        await new Promise(resolve => centerImg.onload = resolve);
-                        ctx.drawImage(centerImg, x, y, frameWidth, frameHeight);
-                    }
+                if (i === centerIndex && addCenterImage) {
+                    const centerImg = new Image();
+                    centerImg.crossOrigin = "anonymous";
+                    centerImg.src = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&h=400&q=80';
+                    await new Promise(r => centerImg.onload = r);
+                    ctx.drawImage(centerImg, x, y, frameWidth, frameHeight);
                 } else if (imgIndex < files.length) {
                     const img = new Image();
                     img.src = URL.createObjectURL(files[imgIndex]);
-                    await new Promise(resolve => img.onload = resolve);
+                    await new Promise(r => img.onload = r);
                     ctx.drawImage(img, x, y, frameWidth, frameHeight);
                     imgIndex++;
                 }
             }
 
-            const resultImg = document.createElement('img');
-            resultImg.src = canvas.toDataURL('image/jpeg');
-            document.getElementById('result').innerHTML = '';
-            document.getElementById('result').appendChild(resultImg);
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+            resultImg.src = dataUrl;
+            downloadBtn.href = dataUrl;
+            downloadBtn.download = `ToolHub_Collage_${Date.now()}.jpg`;
             
-            // Add download button
-            const dlBtn = document.createElement('a');
-            dlBtn.href = canvas.toDataURL('image/jpeg', 0.95);
-            dlBtn.download = 'group-photo.jpg';
-            dlBtn.style.cssText = 'display:inline-block;margin-top:10px;padding:10px 24px;background:#28a745;color:white;border-radius:30px;text-decoration:none;font-weight:600;';
-            dlBtn.textContent = 'Download Group Photo';
-            document.getElementById('result').appendChild(document.createElement('br'));
-            document.getElementById('result').appendChild(dlBtn);
+            statusMsg.innerHTML = 'Collage Created Successfully! ✅';
+            statusMsg.style.color = '#27ae60';
+            resultContainer.style.display = 'block';
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            createBtn.disabled = false;
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
         }
     </script>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(reg => console.log('SW registered', reg.scope))
-    .catch(err => console.log('SW registration failed:', err));
-}
-</script>
-
-    <script src="chatbot.js"></script>
-
     <div id="footer"></div>
     <script>
-        fetch("./footer.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("footer").innerHTML = data);
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
     </script>
 </body>
 </html>
-
-
-
-

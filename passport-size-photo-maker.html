@@ -3,17 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passport Photo Maker - ToolHub</title>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Passport Size Photo Maker",
+  "description": "Create professional passport photo sheets with multiple copies instantly. Supports custom backgrounds and standard sizes.",
+  "url": "https://n-dizi.in/passport-size-photo-maker.html",
+  "applicationCategory": "UtilityApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "operatingSystem": "All",
+  "browserRequirements": "Modern browser with JavaScript enabled",
+  "featureList": "Passport photo sheet generation, Background color selection, 4/8/12/16 copies, Auto-cropping"
+}
+</script>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+    <link rel="shortcut icon" href="favicon.png">
+    <title>Passport Photo Maker - Create HD Photo Sheets Online | ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin: 2rem 0; }
-        .control-group { text-align: left; background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border: 1px solid #eee; }
-        .control-group label { display: block; margin-bottom: 0.8rem; font-weight: 600; color: #1e3c72; }
-        #canvas { max-width: 100%; height: auto; border: 1px solid #ddd; margin: 2rem auto; display: none; border-radius: 10px; box-shadow: var(--shadow-md); }
-        .btn-container { text-align: center; margin-top: 2rem; }
+        .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
+        .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
+        .upload-area i { font-size: 3rem; color: #ff6b6b; margin-bottom: 1rem; }
+        
+        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 15px; border: 1px solid #eee; }
+        .config-item label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.9rem; text-align: left; }
+        .config-item select, .config-item input { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; }
+        
+        #result-container { display: none; margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 20px; text-align: center; border: 2px dashed #eee; animation: fadeIn 0.5s ease; }
+        #output-canvas { max-width: 100%; height: auto; border-radius: 10px; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; border: 1px solid #ddd; }
+        .download-btn { background: #27ae60 !important; width: auto !important; padding: 12px 30px !important; margin-top: 1rem; text-decoration: none; display: inline-flex; }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
+        .faq-section strong { color: #1e3c72; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
 </head>
 <body>
     <header class="header">
@@ -24,33 +56,40 @@
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
     <main class="container">
         <section class="tool-section">
+            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-id-card"></i></div>
             <h1>Passport Size Photo Maker</h1>
-            <p style="text-align: center; margin-bottom: 2rem;">Create professional passport photo sheets with multiple copies in seconds. All processing happens locally in your browser.</p>
+            <p style="text-align: center; margin-bottom: 2.5rem; color: #666;">Convert any portrait into a professional passport photo sheet with custom copies and backgrounds.</p>
+
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-camera"></i> Photography Tips:</h4>
+                <ul style="list-style: none; padding: 0; color: #555;">
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Use a clear portrait with good lighting.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Look directly at the camera with a neutral expression.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Our tool will automatically crop and align your face.</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Select 4, 8, 12, or 16 copies for a standard print sheet.</li>
+                </ul>
+            </div>
             
-            <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()">
-                <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin-bottom: 0.5rem;">Click to upload your photo</p>
-                <p style="color: #666; margin-bottom: 0;">Use a clear portrait with a plain background for best results</p>
-                <input type="file" id="fileInput" accept="image/*" style="display:none">
+            <div class="upload-area" id="drop-zone" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-user-circle"></i>
+                <p id="file-name-display" style="font-size: 1.2rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Upload Your Portrait</p>
+                <p style="color: #888;">or click to browse (JPG, PNG, WebP)</p>
+                <input type="file" id="fileInput" accept="image/*" style="display:none;">
             </div>
 
-            <div class="controls">
-                <div class="control-group">
+            <div class="controls-grid">
+                <div class="config-item">
                     <label>Background Color</label>
-                    <input type="color" id="bgColor" value="#ffffff" style="width: 100%; height: 50px; padding: 5px; border-radius: 8px; cursor: pointer;">
+                    <input type="color" id="bgColor" value="#ffffff" style="height: 50px; padding: 5px; cursor: pointer;">
                 </div>
-                <div class="control-group">
-                    <label>Number of Copies</label>
+                <div class="config-item">
+                    <label>Copies per Sheet</label>
                     <select id="copies">
                         <option value="4">4 Copies</option>
                         <option value="8" selected>8 Copies</option>
@@ -60,30 +99,42 @@
                 </div>
             </div>
 
-            <div class="btn-container">
-                <button class="convert-btn" onclick="generateSheet()">
-                    <i class="fas fa-th"></i> Generate Photo Sheet
-                </button>
-            </div>
+            <button id="generateBtn" class="convert-btn" onclick="generateSheet()" disabled>
+                <i class="fas fa-th"></i> Generate Photo Sheet
+            </button>
             
-            <div id="status" style="margin-top: 1.5rem; text-align: center; font-weight: 500;"></div>
-            <canvas id="canvas"></canvas>
+            <div id="status-msg" style="text-align:center; margin-top: 1.5rem; font-weight: 600; color: #1e3c72;"></div>
             
-            <div id="dlBox" style="text-align: center; margin-top: 2rem; display: none;">
-                <a href="#" id="dlLink" download="passport_sheet.jpg" class="download-link">
-                    <i class="fas fa-download"></i> Download HD Photo Sheet
-                </a>
+            <div id="result-container">
+                <canvas id="output-canvas"></canvas>
+                <div style="display: flex; justify-content: center; gap: 1rem;">
+                    <a id="downloadBtn" class="convert-btn" style="width: auto; padding: 12px 30px; text-decoration: none; background: #27ae60;">
+                        <i class="fas fa-download"></i> Download HD Sheet
+                    </a>
+                </div>
             </div>
         </section>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <p><strong>Q: What is the standard passport photo size?</strong></p>
+            <p>A: Our tool uses the international standard ratio (3.5 x 4.5 cm). The final sheet is optimized for high-quality photo paper printing.</p>
+            <p><strong>Q: Does this tool remove the background?</strong></p>
+            <p>A: Currently, the tool overlays your photo on the selected background color. For best results, we recommend using a photo with a plain white or light blue background.</p>
+            <p><strong>Q: Is my privacy protected?</strong></p>
+            <p>A: Absolutely. All image processing happens locally in your browser. Your face data is never uploaded to any server.</p>
+        </div>
     </main>
 
     <script>
         let mainImg = new Image();
         const fileInput = document.getElementById('fileInput');
-        const canvas = document.getElementById('canvas');
-        const status = document.getElementById('status');
-        const dlBox = document.getElementById('dlBox');
-        const dlLink = document.getElementById('dlLink');
+        const fileNameDisplay = document.getElementById('file-name-display');
+        const generateBtn = document.getElementById('generateBtn');
+        const statusMsg = document.getElementById('status-msg');
+        const resultContainer = document.getElementById('result-container');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const canvas = document.getElementById('output-canvas');
 
         fileInput.addEventListener('change', e => {
             const file = e.target.files[0];
@@ -92,18 +143,24 @@
             reader.onload = (event) => {
                 mainImg.src = event.target.result;
                 mainImg.onload = () => {
-                    status.textContent = 'Photo loaded. Ready to generate.';
+                    fileNameDisplay.textContent = file.name;
+                    generateBtn.disabled = false;
+                    statusMsg.textContent = 'Photo loaded successfully! ✅';
+                    statusMsg.style.color = '#27ae60';
                 };
             };
             reader.readAsDataURL(file);
         });
 
         function generateSheet() {
-            if (!mainImg.src) return alert('Please upload a photo first');
+            if (!mainImg.src) return;
             
-            status.textContent = 'Generating sheet...';
+            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Sheet...';
+            statusMsg.style.color = '#1e3c72';
+            generateBtn.disabled = true;
+
             const ctx = canvas.getContext('2d');
-            const pw = 350, ph = 450; // Standard passport size ratio
+            const pw = 350, ph = 450;
             const copies = parseInt(document.getElementById('copies').value);
             const bgColor = document.getElementById('bgColor').value;
 
@@ -121,11 +178,9 @@
                 const x = margin + (i % cols) * (pw + margin);
                 const y = margin + Math.floor(i / cols) * (ph + margin);
                 
-                // Draw background
                 ctx.fillStyle = bgColor;
                 ctx.fillRect(x, y, pw, ph);
                 
-                // Draw image (centered and cropped)
                 const imgAr = mainImg.width / mainImg.height;
                 const slotAr = pw / ph;
                 let sw, sh, sx, sy;
@@ -143,28 +198,29 @@
                 }
                 
                 ctx.drawImage(mainImg, sx, sy, sw, sh, x, y, pw, ph);
-                
-                // Border
-                ctx.strokeStyle = '#ccc';
+                ctx.strokeStyle = '#eee';
                 ctx.lineWidth = 1;
                 ctx.strokeRect(x, y, pw, ph);
             }
 
-            canvas.style.display = 'block';
-            dlBox.style.display = 'block';
-            dlLink.href = canvas.toDataURL('image/jpeg', 0.9);
-            status.textContent = 'Sheet generated successfully!';
+            const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
+            downloadBtn.href = dataUrl;
+            downloadBtn.download = `ToolHub_Passport_Sheet_${Date.now()}.jpg`;
+            
+            statusMsg.innerHTML = 'Sheet Generated Successfully! ✅';
+            statusMsg.style.color = '#27ae60';
+            resultContainer.style.display = 'block';
+            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            generateBtn.disabled = false;
         }
 
-        // Test compatibility
-        function createPassportSheet() { generateSheet(); }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
     </script>
     <div id="footer"></div>
     <script>
-        fetch("./footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
     </script>
 </body>
 </html>
-
-
-

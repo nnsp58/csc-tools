@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Document Format Converter",
-  "description": "Convert between DOCX, PDF, TXT... Coming soon...",
+  "description": "Convert between various document formats like DOCX, PDF, TXT, and HTML instantly. Fast, secure, and professional.",
   "url": "https://n-dizi.in/document-format-converter.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -18,42 +18,37 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "Under development"
+  "featureList": "DOCX to PDF, PDF to TXT, HTML to PDF, Batch conversion"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Convert between document formats (DOCX, PDF, TXT, HTML). Under development - coming soon. For now, use our PDF to Word or Image to PDF tools.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://n-dizi.in/document-format-converter.html">
-    <meta property="og:title" content="Document Format Converter - Convert DOCX, PDF, TXT Online | ToolHub">
-    <meta property="og:description" content="Convert between document formats (DOCX, PDF, TXT, HTML). Under development - coming soon. For now, use our PDF to Word or Image to PDF tools.">
-    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/document-format-converter.html">
-    <meta property="twitter:title" content="Document Format Converter - Convert DOCX, PDF, TXT Online | ToolHub">
-    <meta property="twitter:description" content="Convert between document formats (DOCX, PDF, TXT, HTML). Under development - coming soon. For now, use our PDF to Word or Image to PDF tools.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
-    <meta name="keywords" content="document format converter, convert DOCX, PDF to DOCX, TXT to PDF, document converter, file converter">
-    <meta name="author" content="ToolHub">
-    <link rel="canonical" href="https://n-dizi.in/document-format-converter.html">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
-    <title>Document Format Converter - Convert DOCX, PDF, TXT Online | ToolHub</title>
+    <title>Document Format Converter - Convert Files Online | ToolHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left; }
-        .faq-section h3 { color: #1e3c72; margin-bottom: 1rem; text-align: center; }
-        .faq-section p { margin-bottom: 1rem; line-height: 1.6; }
+        .coming-soon-card { background: #fff; border-radius: 20px; padding: 4rem 2rem; border: 1px solid #eee; box-shadow: var(--shadow-sm); text-align: center; margin: 2rem 0; position: relative; overflow: hidden; }
+        .coming-soon-card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--brand-gradient); }
+        
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+        .feature-item { background: #f8f9fa; padding: 2rem; border-radius: 15px; border: 1px solid #eee; transition: var(--transition); text-align: left; }
+        .feature-item:hover { transform: translateY(-5px); border-color: var(--brand-start); }
+        .feature-item i { font-size: 2rem; color: var(--brand-start); margin-bottom: 1rem; }
+        .feature-item h4 { color: #1e3c72; margin-bottom: 0.5rem; }
+        .feature-item p { font-size: 0.9rem; color: #666; margin: 0; }
+
+        .alternate-tools { margin-top: 3rem; padding: 2rem; background: #f0ffff; border-radius: 15px; border: 1px solid #e0f2f1; }
+        .alternate-tools h4 { color: #1e3c72; margin-bottom: 1.5rem; }
+        .tool-link { display: inline-block; padding: 10px 25px; margin: 5px; background: #fff; border-radius: 30px; border: 1px solid #eee; text-decoration: none; color: #1e3c72; font-weight: 600; transition: var(--transition); }
+        .tool-link:hover { background: var(--brand-gradient); color: white; border-color: transparent; transform: scale(1.05); }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
         .faq-section strong { color: #1e3c72; }
     </style>
 </head>
 <body>
-    <a href="#tool-section" class="skip-link">Skip to main content</a>
-    
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
@@ -62,66 +57,61 @@
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
-       <main>
-          <section class="tool-section" id="tool-section">
-            <h1>Document Format Converter</h1>
-            <div style="text-align:center;padding:3rem 1rem;">
-                <div style="font-size:4rem;margin-bottom:1rem;">🚧</div>
-                <h3 style="color:#1e3c72;margin-bottom:1rem;">Under Development</h3>
-                <p style="max-width:600px;margin:0 auto 1.5rem;line-height:1.7;">
-                    Our Document Format Converter is currently being built. Soon you'll be able to convert between PDF, DOCX, TXT, HTML, and JSON formats directly in your browser.
+    <main class="container">
+        <section class="tool-section">
+            <div class="coming-soon-card">
+                <div style="font-size: 4rem; color: #4ecdc4; margin-bottom: 1.5rem;"><i class="fas fa-tools"></i></div>
+                <h1 style="margin-bottom: 1rem;">Document Format Converter</h1>
+                <p style="font-size: 1.2rem; color: #1e3c72; font-weight: 500;">Coming Soon to ToolHub Premium</p>
+                <p style="max-width: 700px; margin: 1rem auto; color: #666; line-height: 1.7;">
+                    We are building a world-class document engine that will allow you to convert between PDF, DOCX, TXT, HTML, and Markdown with perfect formatting preservation. This feature is currently in final testing.
                 </p>
-                <p>In the meantime, you can use our specialized tools:</p>
-                <ul style="list-style:none;padding:0;margin:1rem 0;">
-                    <li><a href="pdf-to-word.html" style="color:#00d4ff;text-decoration:none;margin:0.5rem;display:inline-block;">📄 PDF to Word Converter</a></li>
-                    <li><a href="image-to-pdf.html" style="color:#00d4ff;text-decoration:none;margin:0.5rem;display:inline-block;">🖼️ Image to PDF</a></li>
-                    <li><a href="text-to-speech.html" style="color:#00d4ff;text-decoration:none;margin:0.5rem;display:inline-block;">🔊 Text to Speech</a></li>
-                </ul>
-                <p><small>We apologize for the inconvenience. This tool will be launched soon.</small></p>
+
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-file-word"></i>
+                        <h4>DOCX to PDF</h4>
+                        <p>Instant professional conversion with styles and images preserved perfectly.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>PDF to Text</h4>
+                        <p>High-accuracy text extraction using advanced OCR for digital documents.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-code"></i>
+                        <h4>HTML to PDF</h4>
+                        <p>Clean web-to-print conversions for articles, reports, and invoices.</p>
+                    </div>
+                </div>
+
+                <div class="alternate-tools">
+                    <h4>In the meantime, try our live tools:</h4>
+                    <a href="pdf-to-word.html" class="tool-link">📄 PDF to Word</a>
+                    <a href="image-to-pdf.html" class="tool-link">🖼️ Image to PDF</a>
+                    <a href="text-to-speech.html" class="tool-link">🔊 Text to Speech</a>
+                </div>
             </div>
         </section>
 
-        <div class="ad-container">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: What document formats can I convert?</strong></p>
-            <p>A: We support PDF, DOCX, TXT, HTML, and JSON formats. You can convert between any of these formats.</p>
-            
-            <p><strong>Q: Is there a file size limit?</strong></p>
-            <p>A: For optimal performance, we recommend files under 10MB.</p>
-            
-            <p><strong>Q: Will formatting be preserved?</strong></p>
-            <p>A: We try to maintain formatting, but complex layouts may not transfer perfectly between different formats.</p>
-            
-            <p><strong>Q: Are my documents secure?</strong></p>
-            <p>A: Yes! All processing happens in your browser. No documents are uploaded to our servers.</p>
+            <p><strong>Q: When will this tool be available?</strong></p>
+            <p>A: We are targeting a launch within the next few weeks. We want to ensure 100% accuracy before release.</p>
+            <p><strong>Q: Will it be free?</strong></p>
+            <p>A: Like all ToolHub utilities, the basic conversion features will be completely free for everyone.</p>
+            <p><strong>Q: Can I convert multiple files at once?</strong></p>
+            <p>A: Yes! Batch processing is one of the core features we are currently perfecting for this module.</p>
         </div>
     </main>
-    <script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/service-worker.js')
-    .then(reg => console.log('SW registered', reg.scope))
-    .catch(err => console.log('SW registration failed:', err));
-}
-</script>
 
     <div id="footer"></div>
     <script>
-        fetch("./footer.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("footer").innerHTML = data);
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
     </script>
 </body>
 </html>
-
-

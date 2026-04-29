@@ -1,18 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://jsdelivr.net">
-    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
-    <link rel="dns-prefetch" href="https://www.google-analytics.com">
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Voice Translator",
-  "description": "Real-time voice translation to 50+ languages...",
+  "description": "Real-time voice translator for 50+ languages. Speak and translate instantly with high accuracy and voice output.",
   "url": "https://n-dizi.in/voice-translator.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -22,493 +18,211 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "Speech recognition, Google Translate, TTS output, 50+ languages"
+  "featureList": "Real-time speech recognition, Multi-language translation, Voice-to-voice output, Mobile-friendly"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Translate speech and voice in real-time to 50+ languages. Voice-to-text conversion with instant translation and speech output.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://n-dizi.in/voice-translator.html">
-    <meta property="og:title" content="Voice Translator - Real-time Speech Translation Online | ToolHub">
-    <meta property="og:description" content="Translate speech and voice in real-time to 50+ languages. Voice-to-text conversion with instant translation and speech output.">
-    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/voice-translator.html">
-    <meta property="twitter:title" content="Voice Translator - Real-time Speech Translation Online | ToolHub">
-    <meta property="twitter:description" content="Translate speech and voice in real-time to 50+ languages. Voice-to-text conversion with instant translation and speech output.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
-    <meta name="keywords" content="voice translator, speech translation, voice to text, speech to text, audio translator, real-time translation, language translator">
-    <meta name="author" content="ToolHub">
-    <link rel="canonical" href="https://n-dizi.in/voice-translator.html">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
     <title>Voice Translator - Real-time Speech Translation Online | ToolHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background: #f0f2f5;
-            color: #333;
-        }
-        .header {
-            background: var(--brand-gradient);
-            padding: 1.5rem 2rem;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .nav {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #fff;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
-        }
-        .nav-links a {
-            color: #fff;
-            text-decoration: none;
-            margin-left: 2.5rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover { color: #ffe66d; }
-        .tool-section {
-            max-width: 1300px;
-            margin: 100px auto;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
-        }
-        .tool-section h2 {
-            color: #1e3c72;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .tool-section p, .tool-section ul, .tool-section ol {
-            margin-bottom: 1rem;
-            text-align: left;
-        }
-        .tool-section h3 {
-            color: #1e3c72;
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-        }
-        select, button {
-            margin-top: 10px;
-            padding: 12px;
-            font-size: 16px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            background: white;
-            cursor: pointer;
-            min-width: 200px;
-        }
-        select:focus, button:focus {
-            outline: none;
-            border-color: #00d4ff;
-        }
-        button {
-            background: #00d4ff;
-            color: white;
-            border: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        button:hover {
-            background: #00b7d9;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
-        }
-        #voiceResult {
-            margin-top: 1rem;
-            font-size: 1.1rem;
-            padding: 1rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            min-height: 60px;
-        }
-        .ad-container {
-            margin: 2rem auto;
-            max-width: 100%;
-            text-align: center;
-        }
-        #cookie-consent {
-            position: fixed;
-            bottom: 0;
-            background: #333;
-            color: #fff;
-            padding: 12px;
-            width: 100%;
-            text-align: center;
-            z-index: 1000;
-        }
-        #cookie-consent a {
-            color: #ffe66d;
-            text-decoration: none;
-        }
-        #cookie-consent button {
-            background: #00d4ff;
-            border: none;
-            color: white;
-            padding: 6px 12px;
-            border-radius: 5px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
-        .footer {
-            background: var(--brand-gradient);
-            color: white;
-            padding: 3rem 2rem;
-            margin-top: 4rem;
-        }
-        .footer-content {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 2.5rem;
-        }
-        .footer h4 {
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-        .footer p {
-            opacity: 0.9;
-            transition: opacity 0.3s ease;
-            line-height: 1.6;
-        }
-        .footer p:hover {
-            opacity: 1;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            .tool-section {
-                margin: 80px 1rem;
-                padding: 1.5rem;
-            }
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-            select, button {
-                min-width: 100%;
-            }
-        }
+        .translator-card { background: #fff; border-radius: 20px; padding: 2rem; border: 1px solid #eee; box-shadow: var(--shadow-sm); margin-bottom: 2rem; }
+        
+        .voice-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .control-group label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.9rem; text-align: left; }
+        .control-group select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; transition: var(--transition); cursor: pointer; }
+        .control-group select:focus { border-color: var(--brand-end); outline: none; }
+
+        .record-area { text-align: center; padding: 3rem 1rem; background: #fafafa; border-radius: 20px; border: 2px dashed #eee; margin-bottom: 2rem; transition: var(--transition); }
+        .record-area.listening { border-color: #ff6b6b; background: #fff5f5; animation: pulse 2s infinite; }
+        
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(255, 107, 107, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); } }
+
+        .mic-btn { width: 80px; height: 80px; border-radius: 50%; background: var(--brand-gradient); color: white; border: none; cursor: pointer; font-size: 2rem; transition: var(--transition); box-shadow: 0 4px 15px rgba(255,107,107,0.3); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; }
+        .mic-btn:hover { transform: scale(1.1); }
+        .mic-btn.active { background: #e74c3c; animation: mic-pulse 1.5s infinite; }
+        
+        @keyframes mic-pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+        #voiceResult { display: none; margin-top: 1rem; padding: 1.5rem; background: #f8f9fa; border-radius: 15px; border-left: 5px solid var(--brand-start); text-align: left; animation: fadeIn 0.5s ease; }
+        .result-label { font-size: 0.8rem; font-weight: 700; color: #1e3c72; text-transform: uppercase; margin-bottom: 5px; display: block; }
+        .result-text { font-size: 1.1rem; color: #333; margin-bottom: 1rem; display: block; line-height: 1.5; }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
+        .faq-section strong { color: #1e3c72; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                                <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
-    <main id="main-content">
+    <main class="container">
         <section class="tool-section">
-            <h1>Voice Translator Tool</h1>
-            <p>ToolHub's Voice Translator is an advanced online tool that allows you to translate speech and voice in real-time. Whether you need to communicate across language barriers, transcribe audio, or learn pronunciation, this tool provides instant voice recognition and translation. Perfect for travelers, language learners, and international business communications.</p>
-            <p>Our tool uses Google's Speech Recognition API to convert your voice to text, then translates it to your target language using Google Translate. It supports over 50 languages including Hindi, Tamil, Telugu, Bengali, and all major world languages. The tool works entirely in your browser, ensuring your voice data remains private and secure.</p>
-            <h3>How to Use</h3>
-            <ol>
-                <li>Select your source language (the language you'll speak).</li>
-                <li>Select your target language (the language you want translation in).</li>
-                <li>Click "Start Recording" and speak clearly into your microphone.</li>
-                <li>Wait for the translation to appear and hear it spoken aloud.</li>
-            </ol>
-            <h3>Benefits</h3>
-            <ul>
-                <li>Real-time voice recognition and translation</li>
-                <li>Supports 50+ languages including all Indian languages</li>
-                <li>High accuracy speech-to-text conversion</li>
-                <li>Automatic text-to-speech output in target language</li>
-                <li>No software installation required - browser-based</li>
-                <li>Completely free with no registration</li>
-                <li>Mobile and desktop friendly</li>
-            </ul>
-            <h3>Example Use Cases</h3>
-            <p>This tool is ideal for travelers needing quick translations, language learners practicing pronunciation, business meetings with international partners, translating voice notes, and accessibility applications. The real-time translation makes it easy to have conversations across language barriers.</p>
-            <div id="voice-tool">
-                <label for="sourceLang"><strong>Source Language (What you'll speak):</strong></label>
-                <select id="sourceLang">
-                    <option value="en-GB">English (UK)</option>
-                    <option value="en-US">English (US)</option>
-                    <option value="hi">Hindi</option>
-                    <option value="bn">Bengali</option>
-                    <option value="ta">Tamil</option>
-                    <option value="te">Telugu</option>
-                    <option value="ur">Urdu</option>
-                    <option value="gu">Gujarati</option>
-                    <option value="kn">Kannada</option>
-                    <option value="ml">Malayalam</option>
-                    <option value="mr">Marathi</option>
-                    <option value="pa">Punjabi</option>
-                    <option value="or">Odia</option>
-                    <option value="ne">Nepali</option>
-                    <option value="es">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
-                    <option value="it">Italian</option>
-                    <option value="pt">Portuguese</option>
-                    <option value="ru">Russian</option>
-                    <option value="ja">Japanese</option>
-                    <option value="ko">Korean</option>
-                    <option value="zh-CN">Chinese (Simplified)</option>
-                    <option value="ar">Arabic</option>
-                    <option value="tr">Turkish</option>
-                    <option value="th">Thai</option>
-                    <option value="vi">Vietnamese</option>
-                    <option value="id">Indonesian</option>
-                    <option value="nl">Dutch</option>
-                    <option value="sv">Swedish</option>
-                    <option value="da">Danish</option>
-                    <option value="no">Norwegian</option>
-                    <option value="fi">Finnish</option>
-                    <option value="pl">Polish</option>
-                    <option value="cs">Czech</option>
-                    <option value="el">Greek</option>
-                    <option value="he">Hebrew</option>
-                    <option value="hu">Hungarian</option>
-                    <option value="ro">Romanian</option>
-                </select>
+            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-microphone-alt"></i></div>
+            <h1>Voice Translator</h1>
+            <p style="text-align: center; margin-bottom: 2.5rem; color: #666;">Speak in your native language and hear the translation instantly in any world language.</p>
 
-                <label for="targetLang"><strong>Target Language (Translation):</strong></label>
-                <select id="targetLang">
-                    <option value="en-GB">English (UK)</option>
-                    <option value="en-US">English (US)</option>
-                    <option value="hi">Hindi</option>
-                    <option value="bn">Bengali</option>
-                    <option value="ta">Tamil</option>
-                    <option value="te">Telugu</option>
-                    <option value="ur">Urdu</option>
-                    <option value="gu">Gujarati</option>
-                    <option value="kn">Kannada</option>
-                    <option value="ml">Malayalam</option>
-                    <option value="mr">Marathi</option>
-                    <option value="pa">Punjabi</option>
-                    <option value="or">Odia</option>
-                    <option value="ne">Nepali</option>
-                    <option value="es">Spanish</option>
-                    <option value="fr">French</option>
-                    <option value="de">German</option>
-                    <option value="it">Italian</option>
-                    <option value="pt">Portuguese</option>
-                    <option value="ru">Russian</option>
-                    <option value="ja">Japanese</option>
-                    <option value="ko">Korean</option>
-                    <option value="zh-CN">Chinese (Simplified)</option>
-                    <option value="ar">Arabic</option>
-                    <option value="tr">Turkish</option>
-                    <option value="th">Thai</option>
-                    <option value="vi">Vietnamese</option>
-                    <option value="id">Indonesian</option>
-                    <option value="nl">Dutch</option>
-                    <option value="sv">Swedish</option>
-                    <option value="da">Danish</option>
-                    <option value="no">Norwegian</option>
-                    <option value="fi">Finnish</option>
-                    <option value="pl">Polish</option>
-                    <option value="cs">Czech</option>
-                    <option value="el">Greek</option>
-                    <option value="he">Hebrew</option>
-                    <option value="hu">Hungarian</option>
-                    <option value="ro">Romanian</option>
-                </select>
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-magic"></i> Instant Translation:</h4>
+                <ul style="list-style: none; padding: 0; color: #555; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Real-time speech recognition</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> High-quality voice output</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Supports 50+ world languages</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Works on mobile & desktop</li>
+                </ul>
+            </div>
 
-                <button id="record-btn" onclick="startVoiceTranslation()">ðŸŽ¤ Start Recording</button>
-                <div id="voiceResult" role="status" aria-live="polite"></div>
+            <div class="translator-card">
+                <div class="voice-controls">
+                    <div class="control-group">
+                        <label for="sourceLang">Input Language (You speak)</label>
+                        <select id="sourceLang">
+                            <option value="hi-IN">Hindi (हिन्दी)</option>
+                            <option value="en-US" selected>English (US)</option>
+                            <option value="bn-IN">Bengali (বাংলা)</option>
+                            <option value="ta-IN">Tamil (தமிழ்)</option>
+                            <option value="te-IN">Telugu (తెలుగు)</option>
+                            <option value="es-ES">Spanish</option>
+                            <option value="fr-FR">French</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="targetLang">Output Language (Hear translation)</label>
+                        <select id="targetLang">
+                            <option value="hi" selected>Hindi (हिन्दी)</option>
+                            <option value="en">English</option>
+                            <option value="bn">Bengali (বাংলা)</option>
+                            <option value="ta">Tamil (தமிழ்)</option>
+                            <option value="te">Telugu (తెలుగు)</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                            <option value="ja">Japanese</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="record-area" id="record-area">
+                    <button class="mic-btn" id="record-btn" onclick="startVoiceTranslation()">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                    <p id="mic-status" style="font-weight: 600; color: #1e3c72;">Click the mic to start speaking</p>
+                    <p style="font-size: 0.9rem; color: #888; margin-top: 5px;">We recommend short, clear sentences</p>
+                </div>
+
+                <div id="voiceResult">
+                    <div id="original-box">
+                        <span class="result-label">You said:</span>
+                        <span class="result-text" id="spoken-text"></span>
+                    </div>
+                    <div id="translated-box" style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                        <span class="result-label">Translation:</span>
+                        <span class="result-text" id="translated-text" style="color: var(--brand-start); font-weight: 600;"></span>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div class="ad-container">
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-9239182778221521"
-                 data-ad-slot="7274852761"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
-        
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: How does voice translation work?</strong></p>
-            <p>A: Our Voice Translator uses speech recognition to convert your spoken words into text, then translates that text into your target language. The translated text can be displayed and/or spoken aloud using text-to-speech.</p>
-            
-            <p><strong>Q: What languages are supported for voice translation?</strong></p>
-            <p>A: We support 50+ languages including Hindi, Tamil, Telugu, Bengali, Marathi, Gujarati, Punjabi, English, Spanish, French, German, Chinese, Japanese, and many more.</p>
-            
-            <p><strong>Q: Do I need to grant microphone permissions?</strong></p>
-            <p>A: Yes, you'll need to allow microphone access when prompted. This is required for the speech recognition feature to work. We do not store any voice recordings.</p>
-            
-            <p><strong>Q: Is there a limit to how long I can speak?</strong></p>
-            <p>A: For optimal performance, we recommend speaking in short phrases (up to 30 seconds). Longer recordings may take longer to process and could affect accuracy.</p>
-            
-            <p><strong>Q: Can I use voice translation offline?</strong></p>
-            <p>A: No, voice translation requires an internet connection as it uses cloud-based speech recognition and translation services.</p>
+            <p><strong>Q: Why is my microphone not working?</strong></p>
+            <p>A: Please ensure you have granted microphone permissions in your browser. Look for the camera/mic icon in your address bar to manage permissions.</p>
+            <p><strong>Q: Which languages are supported?</strong></p>
+            <p>A: We support all major world languages and many Indian regional languages including Hindi, Bengali, Tamil, Telugu, and more.</p>
+            <p><strong>Q: Does this work in all browsers?</strong></p>
+            <p>A: Voice translation works best in modern browsers like Google Chrome, Microsoft Edge, and Safari on iOS/macOS.</p>
         </div>
+    </main>
 
-        
+    <script>
+        async function translateText(text, sl, tl) {
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl.split('-')[0]}&tl=${tl.split('-')[0]}&dt=t&q=${encodeURIComponent(text)}`;
+                const resp = await fetch(url);
+                const json = await resp.json();
+                return json[0].map(item => item[0]).join('');
+            } catch (e) {
+                return "Translation error. Please try again.";
+            }
+        }
 
-        <div id="cookie-consent">
-            <p>We use cookies for advertising and analytics purposes. <a href="privacy-policy.html">Learn more</a></p>
-            <button onclick="document.getElementById('cookie-consent').style.display='none';">Accept</button>
-        </div>
+        function startVoiceTranslation() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recordBtn = document.getElementById('record-btn');
+            const recordArea = document.getElementById('record-area');
+            const micStatus = document.getElementById('mic-status');
+            const resultBox = document.getElementById('voiceResult');
+            const sourceLang = document.getElementById('sourceLang').value;
+            const targetLang = document.getElementById('targetLang').value;
 
-        <script>
-            async function translateWithFallback(text, sourceLang, targetLang) {
-                // Primary: Google Translate (unofficial)
-                try {
-                    const sl = sourceLang.split('-')[0];
-                    const tl = targetLang.split('-')[0];
-                    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tl}&dt=t&q=${encodeURIComponent(text)}`;
-                    const resp = await fetch(url);
-                    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-                    const json = await resp.json();
-                    let result = '';
-                    if (json && json[0]) json[0].forEach(item => { if (item[0]) result += item[0]; });
-                    if (result) return result;
-                    throw new Error('Empty result');
-                } catch (e) {
-                    // Fallback: MyMemory
-                    const sl2 = sourceLang.split('-')[0];
-                    const tl2 = targetLang.split('-')[0];
-                    const url2 = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sl2}|${tl2}`;
-                    const resp2 = await fetch(url2);
-                    const data = await resp2.json();
-                    if (data.responseData && data.responseData.translatedText) return data.responseData.translatedText;
-                    throw new Error('Translation failed');
-                }
+            if (!SpeechRecognition) {
+                alert("Speech recognition not supported in this browser. Please use Chrome.");
+                return;
             }
 
-            function startVoiceTranslation() {
-                const sourceLang = document.getElementById('sourceLang').value;
-                const targetLang = document.getElementById('targetLang').value;
-                const resultElement = document.getElementById('voiceResult');
-                const recordBtn = document.getElementById('record-btn');
+            const recognition = new SpeechRecognition();
+            recognition.lang = sourceLang;
+            
+            recognition.onstart = () => {
+                recordBtn.classList.add('active');
+                recordArea.classList.add('listening');
+                micStatus.innerHTML = '<span style="color:#ff6b6b">Listening... Speak now</span>';
+            };
 
-                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-                if (!SpeechRecognition) {
-                    resultElement.innerHTML = "<span style='color:#e74c3c'>Sorry, your browser does not support Speech Recognition. Please use Chrome or Edge.</span>";
-                    return;
+            recognition.onresult = async (event) => {
+                const spoken = event.results[0][0].transcript;
+                document.getElementById('spoken-text').textContent = spoken;
+                resultBox.style.display = 'block';
+                micStatus.textContent = "Translating...";
+                
+                const translated = await translateText(spoken, sourceLang, targetLang);
+                document.getElementById('translated-text').textContent = translated;
+                
+                // Voice Output
+                const utterance = new SpeechSynthesisUtterance(translated);
+                utterance.lang = targetLang;
+                window.speechSynthesis.speak(utterance);
+                
+                micStatus.textContent = "Translation Ready!";
+            };
+
+            recognition.onerror = () => {
+                micStatus.textContent = "Error detected. Click to try again.";
+                recordBtn.classList.remove('active');
+                recordArea.classList.remove('listening');
+            };
+
+            recognition.onend = () => {
+                recordBtn.classList.remove('active');
+                recordArea.classList.remove('listening');
+                if (micStatus.textContent === "Listening... Speak now") {
+                    micStatus.textContent = "Click to start speaking";
                 }
+            };
 
-                if (recordBtn.classList.contains('recording')) {
-                    recordBtn.classList.remove('recording');
-                    recordBtn.textContent = 'ðŸŽ¤ Start Recording';
-                    return;
-                }
+            recognition.start();
+        }
 
-                recordBtn.disabled = true;
-                recordBtn.textContent = 'â¹ Stop Recording';
-
-                const recognition = new SpeechRecognition();
-                recognition.lang = sourceLang;
-                recognition.interimResults = false;
-                recognition.maxAlternatives = 1;
-
-                resultElement.innerHTML = "<span style='color:#2a5298'>ðŸŽ¤ Listening... Please speak clearly.</span>";
-
-                recognition.onresult = async (event) => {
-                    const spokenText = event.results[0][0].transcript;
-                    const confidence = Math.round(event.results[0][0].confidence * 100);
-                    resultElement.innerHTML = `<span style='color:#2a5298'>Translating: "<em>${spokenText}</em>"...</span>`;
-
-                    try {
-                        const translatedText = await translateWithFallback(spokenText, sourceLang, targetLang);
-                        resultElement.innerHTML = `
-                            <div style="background:#f8f9fa;padding:1rem;border-radius:8px;margin-top:0.5rem;">
-                                <p><strong>ðŸ—£ Original (${sourceLang.split('-')[0].toUpperCase()}):</strong><br>${spokenText}</p>
-                                <p style="margin-top:0.5rem;"><strong>ðŸŒ Translation (${targetLang.split('-')[0].toUpperCase()}):</strong><br><span style="color:#1e3c72;font-size:1.1em;">${translatedText}</span></p>
-                                ${confidence ? `<p style="font-size:12px;color:#888;margin-top:0.5rem;">Recognition confidence: ${confidence}%</p>` : ''}
-                            </div>`;
-
-                        const utterance = new SpeechSynthesisUtterance(translatedText);
-                        utterance.lang = targetLang;
-                        utterance.rate = 0.9;
-                        window.speechSynthesis.speak(utterance);
-                    } catch (err) {
-                        resultElement.innerHTML = `<span style='color:#e74c3c'>Translation failed: ${err.message}. Check your internet connection.</span>`;
-                    } finally {
-                        recordBtn.disabled = false;
-                        recordBtn.textContent = 'ðŸŽ¤ Start Recording';
-                    }
-                };
-
-                recognition.onerror = (event) => {
-                    const errMsgs = {
-                        'no-speech': 'No speech detected. Please try again.',
-                        'audio-capture': 'Microphone not found. Please check permissions.',
-                        'not-allowed': 'Microphone permission denied. Please allow access.',
-                        'network': 'Network error. Please check your connection.'
-                    };
-                    resultElement.innerHTML = `<span style='color:#e74c3c'>${errMsgs[event.error] || 'Error: ' + event.error}</span>`;
-                    recordBtn.disabled = false;
-                    recordBtn.textContent = 'ðŸŽ¤ Start Recording';
-                };
-
-                recognition.onend = () => {
-                    if (resultElement.innerHTML.includes('Listening')) {
-                        resultElement.innerHTML = "<span style='color:#e67e22'>No speech detected. Please try again.</span>";
-                        recordBtn.disabled = false;
-                        recordBtn.textContent = 'ðŸŽ¤ Start Recording';
-                    }
-                };
-
-                recognition.start();
-            }
-
-            // Alias for test compatibility
-            function startRecording() {
-                return startVoiceTranslation();
-            }
-        </script>
-
-        <script src="chatbot.js"></script>
-
-        <div id="footer"></div>
-        <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(reg => console.log('SW registered', reg.scope))
-        .catch(err => console.log('SW registration failed:', err));
-    }
-
-    fetch("./footer.html")
-        .then(res => res.text())
-        .then(data => document.getElementById("footer").innerHTML = data);
-</script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
+    </script>
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
+    </script>
 </body>
 </html>
-
-
-
-

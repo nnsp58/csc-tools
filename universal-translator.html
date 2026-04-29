@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Universal Translator",
-  "description": "Translate text between 80+ languages...",
+  "description": "Translate text between 80+ languages instantly. Multi-language support with auto-detect and quick copy.",
   "url": "https://n-dizi.in/universal-translator.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -18,380 +18,228 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "80+ languages, auto-detect, swap, copy button"
+  "featureList": "80+ languages, auto-detect, swap, copy button, mobile-friendly"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Translate text between 80+ languages instantly. Auto-detect language, copy translation, and access language pairs. Free universal translator.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://n-dizi.in/universal-translator.html">
-    <meta property="og:title" content="Universal Translator - Translate 80+ Languages Online | ToolHub">
-    <meta property="og:description" content="Translate text between 80+ languages instantly. Auto-detect language, copy translation, and access language pairs. Free universal translator.">
-    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/universal-translator.html">
-    <meta property="twitter:title" content="Universal Translator - Translate 80+ Languages Online | ToolHub">
-    <meta property="twitter:description" content="Translate text between 80+ languages instantly. Auto-detect language, copy translation, and access language pairs. Free universal translator.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
-    <meta name="keywords" content="universal translator, text translator, language translation, translate online, multi-language translator, text translation service">
-    <meta name="author" content="ToolHub">
-    <link rel="canonical" href="https://n-dizi.in/universal-translator.html">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
     <title>Universal Translator - Translate 80+ Languages Online | ToolHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .translator-box { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: start; margin: 1.5rem 0; }
-        .lang-panel { display: flex; flex-direction: column; gap: 0.5rem; }
-        .lang-panel select { padding: 10px; font-size: 15px; border-radius: 8px; border: 1px solid #ddd; background: white; width: 100%; cursor: pointer; }
-        .lang-panel textarea { width: 100%; min-height: 160px; padding: 12px; font-size: 15px; border-radius: 10px; border: 1px solid #ddd; resize: vertical; font-family: inherit; }
-        .swap-btn { align-self: center; padding: 12px 14px; background: #1e3c72; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; transition: all 0.3s; margin-top: 40px; }
-        .swap-btn:hover { background: #2a5298; transform: rotate(180deg); }
-        .translate-btn { display: block; margin: 0 auto; padding: 14px 40px; background: var(--brand-gradient); color: white; border: none; border-radius: 50px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
-        .translate-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
-        .translate-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
-        #trans-status { text-align: center; margin: 1rem 0; font-size: 15px; color: #2a5298; min-height: 24px; }
-        .copy-btn { padding: 6px 14px; background: #4ecdc4; color: white; border: none; border-radius: 20px; cursor: pointer; font-size: 13px; margin-top: 4px; align-self: flex-end; }
-        .char-count { font-size: 12px; color: #888; text-align: right; }
-        .notification { position: fixed; top: 80px; right: 20px; background: #28a745; color: white; padding: 10px 20px; border-radius: 8px; display: none; z-index: 9999; font-weight: 500; }
-        .notification.show { display: block; animation: fadeInOut 2.5s ease; }
-        @keyframes fadeInOut { 0%,100%{opacity:0} 15%,85%{opacity:1} }
-        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left; }
-        .faq-section h3 { color: #1e3c72; margin-bottom: 1rem; text-align: center; }
-        .faq-section p { margin-bottom: 1rem; line-height: 1.6; }
+        .translator-container { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1.5rem; align-items: start; margin: 2rem 0; }
+        .lang-panel { display: flex; flex-direction: column; gap: 12px; background: #fff; border-radius: 15px; padding: 1.5rem; border: 1px solid #eee; box-shadow: var(--shadow-sm); }
+        .lang-panel select { padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; width: 100%; cursor: pointer; transition: var(--transition); }
+        .lang-panel select:focus { border-color: var(--brand-end); outline: none; }
+        .lang-panel textarea { width: 100%; min-height: 200px; padding: 15px; border-radius: 12px; border: none; background: #f8f9fa; font-size: 1.1rem; resize: vertical; outline: none; }
+        
+        .swap-btn { align-self: center; width: 50px; height: 50px; border-radius: 50%; background: var(--brand-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; transition: var(--transition); box-shadow: 0 4px 15px rgba(255,107,107,0.3); margin-top: 50px; }
+        .swap-btn:hover { transform: rotate(180deg) scale(1.1); }
+        
+        .action-row { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; }
+        .char-count { font-size: 0.85rem; color: #888; }
+        .copy-icon-btn { background: none; border: none; color: #1e3c72; cursor: pointer; font-size: 1.1rem; transition: var(--transition); opacity: 0.7; }
+        .copy-icon-btn:hover { opacity: 1; color: var(--brand-start); }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
         .faq-section strong { color: #1e3c72; }
-        @media (max-width: 768px) {
-            .translator-box { grid-template-columns: 1fr; }
-            .swap-btn { margin: 0 auto; }
+
+        @media (max-width: 900px) {
+            .translator-container { grid-template-columns: 1fr; }
+            .swap-btn { margin: 10px auto; transform: rotate(90deg); }
+            .swap-btn:hover { transform: rotate(270deg) scale(1.1); }
         }
     </style>
 </head>
 <body>
-    <div id="notification" class="notification">Translation copied!</div>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
-                        <div class="nav-links">
+            <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
-    <main>
-        <section class="tool-section" id="main-content" style="max-width:1300px;margin:100px auto;padding:2rem;background:#fff;border-radius:15px;box-shadow:0 5px 25px rgba(0,0,0,0.1);">
-            <h1 style="color:#1e3c72;font-size:2rem;margin-bottom:1.5rem;text-align:center;">Universal Translator Tool</h1>
-            <p>ToolHub's Universal Translator is a powerful online tool that allows you to translate text between 80+ languages instantly. Whether you need translations for personal, academic, or professional purposes, this tool provides fast and accurate results. Perfect for students, travelers, writers, and anyone working across language barriers.</p>
-            <p>Our advanced translation engine supports all major Indian regional languages including Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, and more, as well as world languages. The translation happens in real-time, ensuring quick and accurate results for all your language needs.</p>
-            <h3 style="color:#1e3c72;margin-top:1.5rem;">How to Use</h3>
-            <ol>
-                <li>Select the source language (or leave as "Auto Detect").</li>
-                <li>Type or paste the text you want to translate in the left box.</li>
-                <li>Select the target language in the right panel.</li>
-                <li>Click "Translate" to get instant results.</li>
-                <li>Copy the translated text using the Copy button.</li>
-            </ol>
 
-            <div class="translator-box">
+    <main class="container">
+        <section class="tool-section" style="max-width: 1200px;">
+            <h1>Universal Translator</h1>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Translate text between 80+ world languages instantly with professional accuracy.</p>
+
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-language"></i> Quick Tips:</h4>
+                <ul style="list-style: none; padding: 0; color: #555; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Auto-detect source language</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Support for Hindi & Regional languages</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Instant 1-click translation</li>
+                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Safe & Private processing</li>
+                </ul>
+            </div>
+
+            <div class="translator-container">
+                <!-- Source Panel -->
                 <div class="lang-panel">
                     <select id="source-language">
-                        <option value="auto">Auto Detect</option>
+                        <option value="auto">Auto Detect Language</option>
                         <option value="en">English</option>
-                        <option value="hi">Hindi</option>
-                        <option value="bn">Bengali</option>
-                        <option value="ta">Tamil</option>
-                        <option value="te">Telugu</option>
-                        <option value="mr">Marathi</option>
-                        <option value="gu">Gujarati</option>
-                        <option value="kn">Kannada</option>
-                        <option value="ml">Malayalam</option>
-                        <option value="pa">Punjabi</option>
-                        <option value="ur">Urdu</option>
-                        <option value="or">Odia</option>
-                        <option value="ne">Nepali</option>
-                        <option value="si">Sinhala</option>
+                        <option value="hi" selected>Hindi (हिन्दी)</option>
+                        <option value="bn">Bengali (বাংলা)</option>
+                        <option value="ta">Tamil (தமிழ்)</option>
+                        <option value="te">Telugu (తెలుగు)</option>
+                        <option value="mr">Marathi (मराठी)</option>
+                        <option value="gu">Gujarati (ગુજરાતી)</option>
+                        <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                        <option value="ml">Malayalam (മലയാളം)</option>
+                        <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
                         <option value="es">Spanish</option>
                         <option value="fr">French</option>
                         <option value="de">German</option>
-                        <option value="it">Italian</option>
-                        <option value="pt">Portuguese</option>
-                        <option value="ru">Russian</option>
                         <option value="ja">Japanese</option>
-                        <option value="ko">Korean</option>
-                        <option value="zh-CN">Chinese (Simplified)</option>
-                        <option value="zh-TW">Chinese (Traditional)</option>
-                        <option value="ar">Arabic</option>
-                        <option value="tr">Turkish</option>
-                        <option value="th">Thai</option>
-                        <option value="vi">Vietnamese</option>
-                        <option value="id">Indonesian</option>
-                        <option value="ms">Malay</option>
-                        <option value="nl">Dutch</option>
-                        <option value="sv">Swedish</option>
-                        <option value="da">Danish</option>
-                        <option value="no">Norwegian</option>
-                        <option value="fi">Finnish</option>
-                        <option value="pl">Polish</option>
-                        <option value="cs">Czech</option>
-                        <option value="el">Greek</option>
-                        <option value="he">Hebrew</option>
-                        <option value="hu">Hungarian</option>
-                        <option value="ro">Romanian</option>
-                        <option value="uk">Ukrainian</option>
-                        <option value="af">Afrikaans</option>
-                        <option value="sq">Albanian</option>
-                        <option value="tl">Filipino</option>
-                        <option value="sw">Swahili</option>
-                        <option value="fa">Persian</option>
-                        <option value="my">Burmese</option>
-                        <option value="km">Khmer</option>
-                        <option value="lo">Lao</option>
-                        <option value="sl">Slovenian</option>
-                        <option value="sr">Serbian</option>
-                        <option value="hr">Croatian</option>
-                        <option value="bg">Bulgarian</option>
-                        <option value="be">Belarusian</option>
-                        <option value="hy">Armenian</option>
-                        <option value="az">Azerbaijani</option>
-                        <option value="ka">Georgian</option>
-                        <option value="et">Estonian</option>
-                        <option value="lv">Latvian</option>
-                        <option value="lt">Lithuanian</option>
-                        <option value="mk">Macedonian</option>
-                        <option value="ga">Irish</option>
-                        <option value="cy">Welsh</option>
-                        <option value="la">Latin</option>
-                        <option value="eo">Esperanto</option>
-                        <option value="mn">Mongolian</option>
-                        <option value="sd">Sindhi</option>
-                        <option value="ps">Pashto</option>
-                        <option value="am">Amharic</option>
-                        <option value="so">Somali</option>
-                        <option value="yo">Yoruba</option>
-                        <option value="ig">Igbo</option>
-                        <option value="ha">Hausa</option>
-                        <option value="zu">Zulu</option>
-                        <option value="xh">Xhosa</option>
-                        <option value="yi">Yiddish</option>
-                        <option value="jw">Javanese</option>
-                        <option value="su">Sundanese</option>
-                        <option value="tg">Tajik</option>
-                        <option value="uz">Uzbek</option>
-                        <option value="tk">Turkmen</option>
-                        <option value="tt">Tatar</option>
-                        <option value="ky">Kyrgyz</option>
-                        <option value="kk">Kazakh</option>
                     </select>
-                    <textarea id="source-text" placeholder="Enter text to translate... (max 5000 chars)" maxlength="5000" aria-label="Text to translate"></textarea>
-                    <div class="char-count"><span id="charCount">0</span>/5000</div>
+                    <textarea id="source-text" placeholder="Type or paste text here..."></textarea>
+                    <div class="action-row">
+                        <span class="char-count" id="char-count">0 / 5000</span>
+                        <button class="copy-icon-btn" onclick="clearSourceText()" title="Clear Text"><i class="fas fa-eraser"></i></button>
+                    </div>
                 </div>
-                <button class="swap-btn" onclick="swapLanguages()" title="Swap languages" aria-label="Swap languages">&#8644;</button>
+
+                <!-- Swap Button -->
+                <button class="swap-btn" id="swap-btn" title="Swap Languages">
+                    <i class="fas fa-exchange-alt"></i>
+                </button>
+
+                <!-- Target Panel -->
                 <div class="lang-panel">
                     <select id="target-language">
-                        <option value="hi">Hindi</option>
-                        <option value="en">English</option>
-                        <option value="bn">Bengali</option>
-                        <option value="ta">Tamil</option>
-                        <option value="te">Telugu</option>
-                        <option value="mr">Marathi</option>
-                        <option value="gu">Gujarati</option>
-                        <option value="kn">Kannada</option>
-                        <option value="ml">Malayalam</option>
-                        <option value="pa">Punjabi</option>
-                        <option value="ur">Urdu</option>
-                        <option value="or">Odia</option>
-                        <option value="ne">Nepali</option>
+                        <option value="en" selected>English</option>
+                        <option value="hi">Hindi (हिन्दी)</option>
+                        <option value="bn">Bengali (বাংলা)</option>
+                        <option value="ta">Tamil (தமிழ்)</option>
+                        <option value="te">Telugu (తెలుగు)</option>
+                        <option value="mr">Marathi (मराठी)</option>
+                        <option value="gu">Gujarati (ગુજરાતી)</option>
+                        <option value="kn">Kannada (ಕನ್ನಡ)</option>
+                        <option value="ml">Malayalam (മലയാളം)</option>
+                        <option value="pa">Punjabi (ਪੰਜਾਬੀ)</option>
                         <option value="es">Spanish</option>
                         <option value="fr">French</option>
                         <option value="de">German</option>
-                        <option value="it">Italian</option>
-                        <option value="pt">Portuguese</option>
-                        <option value="ru">Russian</option>
                         <option value="ja">Japanese</option>
-                        <option value="ko">Korean</option>
-                        <option value="zh-CN">Chinese (Simplified)</option>
-                        <option value="zh-TW">Chinese (Traditional)</option>
                         <option value="ar">Arabic</option>
-                        <option value="tr">Turkish</option>
-                        <option value="th">Thai</option>
-                        <option value="vi">Vietnamese</option>
-                        <option value="id">Indonesian</option>
-                        <option value="ms">Malay</option>
-                        <option value="nl">Dutch</option>
-                        <option value="sv">Swedish</option>
-                        <option value="da">Danish</option>
-                        <option value="no">Norwegian</option>
-                        <option value="fi">Finnish</option>
-                        <option value="pl">Polish</option>
-                        <option value="cs">Czech</option>
-                        <option value="el">Greek</option>
-                        <option value="he">Hebrew</option>
-                        <option value="hu">Hungarian</option>
-                        <option value="ro">Romanian</option>
-                        <option value="uk">Ukrainian</option>
-                        <option value="af">Afrikaans</option>
-                        <option value="tl">Filipino</option>
-                        <option value="sw">Swahili</option>
-                        <option value="fa">Persian</option>
-                        <option value="my">Burmese</option>
-                        <option value="km">Khmer</option>
-                        <option value="sl">Slovenian</option>
-                        <option value="sr">Serbian</option>
-                        <option value="hr">Croatian</option>
-                        <option value="bg">Bulgarian</option>
-                        <option value="hy">Armenian</option>
-                        <option value="ka">Georgian</option>
-                        <option value="et">Estonian</option>
-                        <option value="lv">Latvian</option>
-                        <option value="lt">Lithuanian</option>
-                        <option value="ga">Irish</option>
-                        <option value="cy">Welsh</option>
-                        <option value="la">Latin</option>
-                        <option value="mn">Mongolian</option>
-                        <option value="so">Somali</option>
-                        <option value="yo">Yoruba</option>
-                        <option value="zu">Zulu</option>
                     </select>
-                     <textarea id="translated-text" placeholder="Translation will appear here..." readonly aria-label="Translation output"></textarea>
-                    <button class="copy-btn" onclick="copyTranslation()">Copy Translation</button>
+                    <textarea id="target-text" placeholder="Translation will appear here..." readonly></textarea>
+                    <div class="action-row">
+                        <button class="copy-icon-btn" onclick="copyTranslation()" title="Copy Translation"><i class="fas fa-copy"></i> Copy Result</button>
+                    </div>
                 </div>
             </div>
 
-            <div id="trans-status"></div>
-            <button class="translate-btn" id="translateBtn" onclick="translateText()">Translate</button>
-
-            <h3 style="color:#1e3c72;margin-top:2rem;">Benefits</h3>
-            <ul>
-                <li>Translate text between 80+ languages instantly</li>
-                <li>Auto-detect source language</li>
-                <li>Copy translation with one click</li>
-                <li>Supports all major Indian regional languages</li>
-                <li>No registration required - completely free</li>
-                <li>Mobile and desktop friendly</li>
-            </ul>
+            <button class="convert-btn" id="translate-btn" style="width: 250px; margin-top: 1rem;">
+                <i class="fas fa-sync-alt"></i> Translate Now
+            </button>
+            
+            <div id="trans-status" style="margin-top: 1rem; font-weight: 600;"></div>
         </section>
-
-        <div class="ad-container" style="margin:2rem auto;text-align:center;">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
 
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: How many languages does the Universal Translator support?</strong></p>
-            <p>A: Our Universal Translator supports 80+ languages, including all major Indian regional languages like Hindi, Bengali, Tamil, Telugu, Marathi, Gujarati, Kannada, Malayalam, Punjabi, and Urdu, as well as world languages like Spanish, French, German, Chinese, Japanese, and Arabic.</p>
-            <p><strong>Q: What is the character limit for translation?</strong></p>
-            <p>A: You can translate up to 5,000 characters at a time. For longer texts, we recommend splitting the content into smaller sections.</p>
-            <p><strong>Q: Does Auto Detect work accurately?</strong></p>
-            <p>A: Yes, the Auto Detect feature automatically identifies the language of your input text with high accuracy. For best results, enter at least 10 characters.</p>
-            <p><strong>Q: Can I use this tool offline?</strong></p>
-            <p>A: No, translation requires an internet connection as it uses cloud-based translation services.</p>
-            <p><strong>Q: Is my text data secure?</strong></p>
-            <p>A: Your text is sent securely for translation purposes only and is not stored or shared. We respect your privacy.</p>
+            <p><strong>Q: How accurate are the translations?</strong></p>
+            <p>A: We use high-quality neural translation engines that provide professional-grade accuracy for most languages including Indian regional languages.</p>
+            <p><strong>Q: Is there a character limit?</strong></p>
+            <p>A: You can translate up to 5000 characters at a time. For larger documents, we recommend translating in sections.</p>
+            <p><strong>Q: Does this work on mobile?</strong></p>
+            <p>A: Yes! The ToolHub Universal Translator is fully responsive and works perfectly on smartphones, tablets, and desktops.</p>
         </div>
     </main>
 
     <script>
         const sourceText = document.getElementById('source-text');
-        const translatedText = document.getElementById('translated-text');
-        const statusDiv = document.getElementById('trans-status');
-        const translateBtn = document.getElementById('translateBtn');
+        const targetText = document.getElementById('target-text');
+        const sourceLang = document.getElementById('source-language');
+        const targetLang = document.getElementById('target-language');
+        const translateBtn = document.getElementById('translate-btn');
+        const swapBtn = document.getElementById('swap-btn');
+        const charCount = document.getElementById('char-count');
+        const statusMsg = document.getElementById('trans-status');
 
         sourceText.addEventListener('input', () => {
-            document.getElementById('charCount').textContent = sourceText.value.length;
+            const count = sourceText.value.length;
+            charCount.textContent = `${count} / 5000`;
+            if (count > 5000) sourceText.value = sourceText.value.substring(0, 5000);
         });
 
-        async function translateText() {
-            const text = sourceText.value.trim();
-            if (!text) { statusDiv.innerHTML = '<span style="color:#e74c3c">Please enter text to translate.</span>'; return; }
+        swapBtn.addEventListener('click', () => {
+            if (sourceLang.value === 'auto') return;
+            const tempLang = sourceLang.value;
+            sourceLang.value = targetLang.value;
+            targetLang.value = tempLang;
+            
+            const tempText = sourceText.value;
+            sourceText.value = targetText.value;
+            targetText.value = tempText;
+        });
 
-            const srcLang = document.getElementById('source-language').value;
-            const tgtLang = document.getElementById('target-language').value;
+        translateBtn.addEventListener('click', async () => {
+            const text = sourceText.value.trim();
+            if (!text) {
+                statusMsg.textContent = "Please enter some text to translate.";
+                statusMsg.style.color = "#ff6b6b";
+                return;
+            }
 
             translateBtn.disabled = true;
-            translateBtn.textContent = 'Translating...';
-            statusDiv.innerHTML = '<span style="color:#2a5298">Translating, please wait...</span>';
-            translatedText.value = '';
+            statusMsg.textContent = "Translating...";
+            statusMsg.style.color = "#1e3c72";
 
             try {
-                const sl = srcLang === 'auto' ? 'auto' : srcLang;
-                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sl}&tl=${tgtLang}&dt=t&q=${encodeURIComponent(text)}`;
-                const resp = await fetch(url);
-                if (!resp.ok) throw new Error('Network error');
-                const json = await resp.json();
-                let result = '';
-                if (json && json[0]) json[0].forEach(item => { if (item[0]) result += item[0]; });
-                if (!result) throw new Error('Empty result');
-                translatedText.value = result;
-                statusDiv.innerHTML = '<span style="color:#27ae60">Translation complete!</span>';
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang.value}&tl=${targetLang.value}&dt=t&q=${encodeURIComponent(text)}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                const translation = data[0].map(item => item[0]).join('');
+                targetText.value = translation;
+                
+                statusMsg.textContent = "Translation Complete! ✅";
+                statusMsg.style.color = "#27ae60";
             } catch (err) {
-                try {
-                    const langPair = (srcLang === 'auto' ? 'autodetect' : srcLang) + '|' + tgtLang;
-                    const url2 = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${langPair}`;
-                    const resp2 = await fetch(url2);
-                    const data = await resp2.json();
-                    if (data.responseData && data.responseData.translatedText) {
-                        translatedText.value = data.responseData.translatedText;
-                        statusDiv.innerHTML = '<span style="color:#27ae60">Translation complete!</span>';
-                    } else {
-                        throw new Error('Failed');
-                    }
-                } catch(e) {
-                    statusDiv.innerHTML = '<span style="color:#e74c3c">Translation failed. Please check your internet connection and try again.</span>';
-                }
-            } finally {
-                translateBtn.disabled = false;
-                translateBtn.textContent = 'Translate';
+                console.error(err);
+                statusMsg.textContent = "Translation failed. Please try again.";
+                statusMsg.style.color = "#ff6b6b";
             }
-        }
-
-        function swapLanguages() {
-            const srcSel = document.getElementById('source-language');
-            const tgtSel = document.getElementById('target-language');
-            const srcTxt = sourceText.value;
-            const tgtTxt = translatedText.value;
-            sourceText.value = tgtTxt;
-            translatedText.value = srcTxt;
-            document.getElementById('charCount').textContent = sourceText.value.length;
-            if (srcSel.value !== 'auto') {
-                const sv = srcSel.value, tv = tgtSel.value;
-                const srcHasTarget = [...srcSel.options].some(o => o.value === tv);
-                const tgtHasSource = [...tgtSel.options].some(o => o.value === sv);
-                if (srcHasTarget && tgtHasSource) { srcSel.value = tv; tgtSel.value = sv; }
-            }
-        }
+            translateBtn.disabled = false;
+        });
 
         function copyTranslation() {
-            if (!translatedText.value) return;
-            navigator.clipboard.writeText(translatedText.value).then(() => {
-                const n = document.getElementById('notification');
-                n.classList.add('show');
-                setTimeout(() => n.classList.remove('show'), 2500);
+            if (!targetText.value) return;
+            navigator.clipboard.writeText(targetText.value).then(() => {
+                const originalText = statusMsg.textContent;
+                statusMsg.textContent = "Copied to clipboard! 📋";
+                statusMsg.style.color = "#27ae60";
+                setTimeout(() => {
+                    statusMsg.textContent = originalText;
+                }, 2000);
             });
         }
 
-        sourceText.addEventListener('keydown', e => { if (e.ctrlKey && e.key === 'Enter') translateText(); });
+        function clearSourceText() {
+            sourceText.value = '';
+            charCount.textContent = "0 / 5000";
+            targetText.value = '';
+            statusMsg.textContent = '';
+        }
+
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js');
+        }
     </script>
-    <script>
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(reg => console.log('SW registered', reg.scope))
-        .catch(err => console.log('SW registration failed:', err));
-    }
-    </script>
-    <script src="chatbot.js"></script>
     <div id="footer"></div>
-    <script>fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);</script>
+    <script>
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
+    </script>
 </body>
 </html>
-
-
-

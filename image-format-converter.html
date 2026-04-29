@@ -8,7 +8,7 @@
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "Image Format Converter",
-  "description": "Convert images between PNG, JPEG, and WebP...",
+  "description": "Convert images between PNG, JPEG, and WebP instantly. Fast, free, and high-quality image processing.",
   "url": "https://n-dizi.in/image-format-converter.html",
   "applicationCategory": "UtilityApplication",
   "offers": {
@@ -18,224 +18,178 @@
   },
   "operatingSystem": "All",
   "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "PNG/JPEG/WebP conversion, quality settings, drag-and-drop"
+  "featureList": "PNG to JPG, JPG to PNG, WebP conversion, Multi-format support, Batch conversion"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     <link rel="shortcut icon" href="favicon.png">
-    <meta name="description" content="Convert images between PNG, JPEG, and WebP formats. Adjustable quality settings. Fast, free, and secure image conversion tool.">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://n-dizi.in/image-format-converter.html">
-    <meta property="og:title" content="Image Format Converter - Convert PNG, JPEG, WebP Online | ToolHub">
-    <meta property="og:description" content="Convert images between PNG, JPEG, and WebP formats. Adjustable quality settings. Fast, free, and secure image conversion tool.">
-    <meta property="og:image" content="https://n-dizi.in/toolhub-og-image.jpg">
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://n-dizi.in/image-format-converter.html">
-    <meta property="twitter:title" content="Image Format Converter - Convert PNG, JPEG, WebP Online | ToolHub">
-    <meta property="twitter:description" content="Convert images between PNG, JPEG, and WebP formats. Adjustable quality settings. Fast, free, and secure image conversion tool.">
-    <meta property="twitter:image" content="https://n-dizi.in/toolhub-twitter-card.jpg">
-    <meta name="keywords" content="image format converter, convert image, PNG to JPEG, JPEG to PNG, WebP converter, image converter, photo format converter">
-    <meta name="author" content="ToolHub">
-    <link rel="canonical" href="https://n-dizi.in/image-format-converter.html">
-    <meta name="google-adsense-account" content="ca-pub-9239182778221521">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9239182778221521" crossorigin="anonymous"></script>
-    <title>Image Format Converter - Convert PNG, JPEG, WebP Online | ToolHub</title>
+    <title>Image Format Converter - Convert PNG, JPEG, WebP | ToolHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .faq-section { max-width: 800px; margin: 2rem auto; background: #fff; padding: 1.5rem; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); text-align: left; }
-        .faq-section h3 { color: #1e3c72; margin-bottom: 1rem; text-align: center; }
-        .faq-section p { margin-bottom: 1rem; line-height: 1.6; }
+        .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
+        .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
+        .upload-area i { font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1rem; }
+        
+        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 15px; border: 1px solid #eee; }
+        .control-item label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.95rem; text-align: left; }
+        .control-item select { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; cursor: pointer; transition: var(--transition); }
+        .control-item select:focus { border-color: var(--brand-end); outline: none; }
+
+        #result-container { display: none; margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 20px; text-align: center; border: 2px dashed #eee; animation: fadeIn 0.5s ease; }
+        .download-btn { background: #27ae60 !important; width: auto !important; padding: 12px 30px !important; margin-top: 1rem; text-decoration: none; display: inline-flex; }
+
+        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
+        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
+        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
         .faq-section strong { color: #1e3c72; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="header">
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                                <a href="index.html">Home</a>
+                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
-                <a href="privacy-policy.html">Privacy</a>
-                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
 
-     <main class="container">
-         <h1>Image Format Converter</h1>
-         <section class="tool-section" id="tool-section">
-            <h2>Convert Images to PNG, JPEG, or WebP</h2>
-            <p>Convert your images between different formats instantly. Our free online tool supports conversion between PNG, JPEG, WebP, and HTML formats. All processing happens in your browser - your images are never uploaded to any server.</p>
+    <main class="container">
+        <section class="tool-section">
+            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-file-image"></i></div>
+            <h1>Image Format Converter</h1>
+            <p style="text-align: center; margin-bottom: 2rem; color: #666;">Convert your images between any popular format instantly with high-quality preservation.</p>
 
-            <h3>How to Use</h3>
-            <ol>
-                <li>Upload your image by drag & drop or click to browse</li>
-                <li>Select the desired output format from the dropdown</li>
-                <li>Click "Convert" to process your image</li>
-                <li>Download the converted image</li>
-            </ol>
-
-            <h3>Supported Formats</h3>
-            <ul>
-                <li><strong>PNG</strong> - Best for graphics with transparency</li>
-                <li><strong>JPEG</strong> - Best for photographs and complex images</li>
-                <li><strong>WebP</strong> - Modern format with excellent compression</li>
-            </ul>
-
-            <div class="upload-area" id="uploadArea">
-                <div style="font-size: 4rem; color: #ff6b6b; margin-bottom: 1rem;">
-                    <i class="fas fa-cloud-upload-alt"></i>
-                </div>
-                <p style="font-size: 1.4rem; font-weight: 600; color: #1e3c72; margin-bottom: 0.5rem;">Drag & Drop Image Here</p>
-                <p style="color: #666; margin-bottom: 0;">or click to browse from your device</p>
-                <input type="file" id="imgInput" accept="image/*" style="display: none;" aria-label="Select image to convert">
+            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-sync-alt"></i> How to Convert:</h4>
+                <ul style="list-style: none; padding: 0; color: #555;">
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 1. Upload your image (PNG, JPG, WebP, BMP, etc.).</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 2. Choose the <strong>Target Format</strong> you need.</li>
+                    <li style="margin-bottom: 8px;"><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 3. Click "Convert Image" to process.</li>
+                    <li><i class="fas fa-check-circle" style="color: #4ecdc4;"></i> 4. Download your converted file instantly.</li>
+                </ul>
+            </div>
+            
+            <div class="upload-area" id="drop-zone" onclick="document.getElementById('imgInput').click()">
+                <i class="fas fa-images"></i>
+                <p id="file-name-display" style="font-size: 1.2rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Drag & Drop Image Here</p>
+                <p style="color: #888;">or click to browse from your device</p>
+                <input type="file" id="imgInput" accept="image/*" style="display:none;">
             </div>
 
-            <p id="file-name" style="text-align: center; display: none;"></p>
-
-            <div class="controls">
-                <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
-                    <label for="outputFormat" style="font-weight: 600; color: #1e3c72;">Target Format:</label>
-                    <select id="outputFormat" style="width: 200px; padding: 12px; border-radius: 10px;">
+            <div class="controls-grid">
+                <div class="control-item">
+                    <label for="outputFormat">Output Format</label>
+                    <select id="outputFormat">
                         <option value="image/png">PNG (Portable Network Graphics)</option>
-                        <option value="image/jpeg">JPEG (Joint Photographic Experts Group)</option>
-                        <option value="image/webp">WebP (Modern Web Format)</option>
+                        <option value="image/jpeg" selected>JPEG (High Compatibility)</option>
+                        <option value="image/webp">WebP (Optimized for Web)</option>
                     </select>
                 </div>
-                <button id="convertBtn" class="convert-btn" onclick="convertImage()" disabled>
-                    <i class="fas fa-sync-alt"></i> Convert Image
-                </button>
             </div>
 
-            <div id="status"></div>
-            <div id="result"></div>
+            <button id="convertBtn" class="convert-btn" onclick="convertImage()" disabled>
+                <i class="fas fa-magic"></i> Convert Image
+            </button>
+            
+            <div id="status-msg" style="text-align:center; margin-top: 1.5rem; font-weight: 600; color: #1e3c72;"></div>
+            
+            <div id="result-container">
+                <h4 style="color: #1e3c72; margin-bottom: 1rem;">Conversion Complete! ✅</h4>
+                <div id="result-details" style="font-size: 0.95rem; color: #666; margin-bottom: 1.5rem;"></div>
+                <div id="download-area"></div>
+            </div>
         </section>
-
-        <div class="ad-container">
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-9239182778221521" data-ad-slot="7274852761" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
 
         <div class="faq-section">
             <h3>Frequently Asked Questions</h3>
-            <p><strong>Q: What image formats can I convert?</strong></p>
-            <p>A: You can convert between PNG, JPEG, and WebP formats. The tool supports various input formats including JPG, PNG, GIF, BMP, and more.</p>
-            
-            <p><strong>Q: Is the conversion quality preserved?</strong></p>
-            <p>A: Yes, we maintain the highest possible quality during conversion. JPEG uses 95% quality setting.</p>
-            
-            <p><strong>Q: Are my images secure?</strong></p>
-            <p>A: Yes! All processing happens in your browser. No images are uploaded to our servers.</p>
-            
-            <p><strong>Q: Can I use this on mobile?</strong></p>
-            <p>A: Yes! The tool is fully responsive and works on smartphones and tablets.</p>
-        </div>
+            <p><strong>Q: Which format is best for the web?</strong></p>
+            <p>A: <strong>WebP</strong> is highly recommended for web use as it offers superior compression and quality, making your website load faster.</p>
+            <p><strong>Q: Will I lose quality when converting?</strong></p>
+            <p>A: When converting to JPEG, there is a minor quality loss due to compression (we use a high-quality 95% setting). Converting between PNG and WebP is generally lossless.</p>
+            <p><strong>Q: Is my image data safe?</strong></p>
+            <p>A: Yes. All conversion happens locally in your browser. Your images are never sent to our servers.</p>
         </div>
     </main>
 
-    <div id="footer"></div>
     <script>
-        fetch("./footer.html")
-            .then(res => res.text())
-            .then(data => document.getElementById("footer").innerHTML = data);
-    </script>
-
-    <script>
-        const uploadArea = document.getElementById('uploadArea');
         const imgInput = document.getElementById('imgInput');
-        const outputFormat = document.getElementById('outputFormat');
+        const fileNameDisplay = document.getElementById('file-name-display');
         const convertBtn = document.getElementById('convertBtn');
-        const fileNameDisplay = document.getElementById('file-name');
-        const statusDiv = document.getElementById('status');
-        const resultDiv = document.getElementById('result');
+        const statusMsg = document.getElementById('status-msg');
+        const resultContainer = document.getElementById('result-container');
+        const downloadArea = document.getElementById('download-area');
+        const resultDetails = document.getElementById('result-details');
+        const outputFormat = document.getElementById('outputFormat');
 
-        let originalFile = null;
+        let selectedFile = null;
         let img = new Image();
 
-        uploadArea.addEventListener('click', () => imgInput.click());
-        uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
-        uploadArea.addEventListener('dragleave', () => uploadArea.classList.remove('dragover'));
-        uploadArea.addEventListener('drop', e => {
-            e.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const file = e.dataTransfer.files[0];
-            if (file && file.type.startsWith('image/')) handleFile(file);
-        });
-
         imgInput.addEventListener('change', e => {
-            if (e.target.files[0]) handleFile(e.target.files[0]);
+            const file = e.target.files[0];
+            if (file) handleFile(file);
         });
-
-        function showStatus(msg, type) {
-            statusDiv.textContent = msg;
-            statusDiv.className = type;
-            statusDiv.style.display = msg ? 'block' : 'none';
-        }
 
         function handleFile(file) {
-            originalFile = file;
-            fileNameDisplay.textContent = `Selected: ${file.name}`;
-            fileNameDisplay.style.display = 'block';
-            uploadArea.classList.add('has-file');
+            selectedFile = file;
+            fileNameDisplay.textContent = file.name;
             convertBtn.disabled = false;
-            resultDiv.style.display = 'none';
+            statusMsg.textContent = 'Image loaded! Click Convert to proceed.';
+            statusMsg.style.color = '#27ae60';
+            resultContainer.style.display = 'none';
 
             img = new Image();
-            img.onload = () => {
-                showStatus(`Image loaded: ${img.width}x${img.height} pixels`, 'complete');
-            };
             img.src = URL.createObjectURL(file);
         }
 
         function convertImage() {
-            if (!originalFile) {
-                showStatus('Please upload an image first.', 'error');
-                return;
-            }
+            if (!selectedFile) return;
 
-            showStatus('Converting image...', 'processing');
+            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Converting...';
+            statusMsg.style.color = '#1e3c72';
             convertBtn.disabled = true;
 
             setTimeout(() => {
                 const format = outputFormat.value;
-                const mimeType = format;
-                const ext = format === 'image/png' ? 'png' : format === 'image/jpeg' ? 'jpg' : 'webp';
-                const quality = format === 'image/jpeg' ? 0.95 : 1;
-
+                const ext = format.split('/')[1].replace('jpeg', 'jpg');
+                
                 const canvas = document.createElement('canvas');
                 canvas.width = img.width;
                 canvas.height = img.height;
                 const ctx = canvas.getContext('2d');
                 ctx.drawImage(img, 0, 0);
 
-                const dataUrl = canvas.toDataURL(mimeType, quality);
-                const baseName = originalFile.name.replace(/\.[^.]+$/, '');
-                const downloadName = baseName + '.' + ext;
+                const dataUrl = canvas.toDataURL(format, 0.95);
+                const downloadName = selectedFile.name.replace(/\.[^.]+$/, '') + '.' + ext;
 
-                resultDiv.innerHTML = `
-                    <p style="color: #28a745; font-weight: 600; margin-bottom: 1rem;">Conversion Complete!</p>
-                    <a href="${dataUrl}" download="${downloadName}" class="download-link">Download ${ext.toUpperCase()}</a>
+                resultDetails.textContent = `File converted from ${selectedFile.type.split('/')[1].toUpperCase()} to ${ext.toUpperCase()}`;
+                downloadArea.innerHTML = `
+                    <a href="${dataUrl}" download="${downloadName}" class="convert-btn download-btn">
+                        <i class="fas fa-download"></i> Download ${ext.toUpperCase()}
+                    </a>
                 `;
-                resultDiv.style.display = 'block';
-                showStatus('Image converted successfully!', 'complete');
+                
+                statusMsg.innerHTML = 'Conversion Successful! ✅';
+                statusMsg.style.color = '#27ae60';
+                resultContainer.style.display = 'block';
+                resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 convertBtn.disabled = false;
             }, 500);
         }
-    <script>
+
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then(reg => console.log('SW registered', reg.scope))
-                .catch(err => console.log('SW registration failed:', err));
+            navigator.serviceWorker.register('/service-worker.js');
         }
     </script>
-    <script src="chatbot.js"></script>
+    <div id="footer"></div>
+    <script>
+        fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);
+    </script>
 </body>
 </html>
-
-
