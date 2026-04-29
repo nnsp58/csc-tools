@@ -231,10 +231,10 @@
                 // 2. Draw the processed image (with transparent background)
                 ctx.drawImage(tempCanvas, sx, sy, sw, sh, x, y, pw, ph);
                 
-                // 3. Draw the BORDER on top (ensures it's visible)
-                ctx.strokeStyle = '#000000'; // Black border for clarity
-                ctx.lineWidth = 2;
-                ctx.strokeRect(x, y, pw, ph);
+                // 3. Draw the BORDER - Now slightly OUTSIDE (Frames the photo perfectly)
+                ctx.strokeStyle = '#333333'; 
+                ctx.lineWidth = 1.5;
+                ctx.strokeRect(x - 1, y - 1, pw + 2, ph + 2);
             }
 
             const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
