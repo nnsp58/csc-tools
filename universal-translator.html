@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -51,7 +51,7 @@
         .lang-panel textarea { width: 100%; min-height: 160px; padding: 12px; font-size: 15px; border-radius: 10px; border: 1px solid #ddd; resize: vertical; font-family: inherit; }
         .swap-btn { align-self: center; padding: 12px 14px; background: #1e3c72; color: white; border: none; border-radius: 50%; cursor: pointer; font-size: 18px; transition: all 0.3s; margin-top: 40px; }
         .swap-btn:hover { background: #2a5298; transform: rotate(180deg); }
-        .translate-btn { display: block; margin: 0 auto; padding: 14px 40px; background: linear-gradient(120deg, #ff6b6b, #4ecdc4); color: white; border: none; border-radius: 50px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .translate-btn { display: block; margin: 0 auto; padding: 14px 40px; background: var(--brand-gradient); color: white; border: none; border-radius: 50px; font-size: 17px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
         .translate-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
         .translate-btn:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
         #trans-status { text-align: center; margin: 1rem 0; font-size: 15px; color: #2a5298; min-height: 24px; }
@@ -406,3 +406,4 @@ if ('serviceWorker' in navigator) {
     <script>fetch("./footer.html").then(r=>r.text()).then(d=>document.getElementById("footer").innerHTML=d);</script>
 </body>
 </html>
+

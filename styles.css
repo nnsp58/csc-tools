@@ -1,30 +1,45 @@
-/* ToolHub Base UI Styles */
+/* ============================================
+   ToolHub — Unified Design System v2.0
+   Brand Colors: #ff6b6b → #4ecdc4 (Coral-Teal)
+   All pages use this shared stylesheet.
+   ============================================ */
 
-/* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ── CSS Variables (Design Tokens) ── */
+:root {
+    --brand-start: #ff6b6b;
+    --brand-end:   #4ecdc4;
+    --brand-gradient: linear-gradient(120deg, var(--brand-start), var(--brand-end));
+    --dark-blue:   #1e3c72;
+    --accent:      #00d4ff;
+    --text:        #333;
+    --bg:          #f0f2f5;
+    --white:       #ffffff;
+    --shadow-sm:   0 3px 10px rgba(0,0,0,0.1);
+    --shadow-md:   0 5px 25px rgba(0,0,0,0.1);
+    --shadow-lg:   0 12px 30px rgba(0,0,0,0.2);
+    --radius:      15px;
+    --transition:  all 0.3s ease;
 }
+
+/* ── Reset & Base ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Poppins', Arial, sans-serif;
     line-height: 1.6;
-    background: #f0f2f5;
-    color: #333;
-    margin: 0;
-    padding: 0;
+    background: var(--bg);
+    color: var(--text);
 }
 
-/* Header & Navigation */
+/* ── HEADER (Unified — Same on ALL pages) ── */
 .header {
-    background: linear-gradient(120deg, #1e3c72, #2a5298);
-    padding: 1.5rem 2rem;
+    background: var(--brand-gradient);
+    padding: 1rem 2rem;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
 .nav {

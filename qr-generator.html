@@ -50,7 +50,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; line-height: 1.6; background: #f0f2f5; color: #333; }
-        .header { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); padding: 1.5rem 2rem; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        
         .nav { max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 2rem; font-weight: 700; color: #fff; letter-spacing: 1px; text-shadow: 0 2px 5px rgba(0,0,0,0.3); }
         .nav-links a { color: #fff; text-decoration: none; margin-left: 2.5rem; font-weight: 500; transition: color 0.3s ease; }
@@ -66,7 +66,7 @@
         #cookie-consent { position: fixed; bottom: 0; background: #333; color: #fff; padding: 10px; width: 100%; text-align: center; z-index: 1000; }
         #cookie-consent a { color: #ffe66d; }
         #cookie-consent button { background: #00d4ff; border-radius: 5px; padding: 0.5rem 1rem; }
-        .footer { background: linear-gradient(120deg, #ff6b6b, #4ecdc4); color: white; padding: 3rem 2rem; margin-top: 4rem; }
+        .footer { background: var(--brand-gradient); color: white; padding: 3rem 2rem; margin-top: 4rem; }
         .footer-content { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2.5rem; }
         .footer h4 { margin-bottom: 1.5rem; font-size: 1.3rem; }
         .footer p { opacity: 0.9; transition: opacity 0.3s ease; }
@@ -79,11 +79,12 @@
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                <a href="index.html">Home</a>
+                                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
-                <a href="index.html#about">About</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
@@ -207,3 +208,5 @@ if ('serviceWorker' in navigator) {
     </script>
 </body>
 </html>
+
+

@@ -55,7 +55,7 @@
             color: #333;
         }
         .header {
-            background: linear-gradient(120deg, #ff6b6b, #4ecdc4);
+            background: var(--brand-gradient);
             padding: 1.5rem 2rem;
             position: fixed;
             width: 100%;
@@ -175,7 +175,7 @@
             cursor: pointer;
         }
         .footer {
-            background: linear-gradient(120deg, #ff6b6b, #4ecdc4);
+            background: var(--brand-gradient);
             color: white;
             padding: 3rem 2rem;
             margin-top: 4rem;
@@ -231,11 +231,12 @@
         <nav class="nav">
             <div class="logo">ToolHub</div>
             <div class="nav-links">
-                <a href="index.html">Home</a>
+                                <a href="index.html">Home</a>
                 <a href="index.html#tools">Tools</a>
-                <a href="index.html#about">About</a>
-                <a href="privacy-policy.html">Privacy Policy</a>
-                <a href="terms.html">Terms of Service</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy-policy.html">Privacy</a>
+                <a href="terms.html">Terms</a>
             </div>
         </nav>
     </header>
@@ -436,3 +437,5 @@ if ('serviceWorker' in navigator) {
     <script src="chatbot.js"></script>
 </body>
 </html>
+
+

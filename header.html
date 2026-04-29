@@ -1,0 +1,38 @@
+<header class="header" id="site-header">
+    <nav class="nav">
+        <a href="index.html" class="logo" style="text-decoration:none;">
+            <img src="favicon.png" alt="ToolHub Logo" class="site-logo" onerror="this.style.display='none'">
+            ToolHub
+        </a>
+        <div class="nav-links">
+            <a href="index.html">🏠 Home</a>
+            <a href="index.html#tools">🛠️ Tools</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="contact.html">📧 Contact</a>
+            <a href="privacy-policy.html">🔒 Privacy</a>
+            <a href="terms.html">📋 Terms</a>
+        </div>
+        <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation" style="display:none;background:none;border:none;color:white;font-size:1.5rem;cursor:pointer;padding:0.5rem;">☰</button>
+    </nav>
+</header>
+<script>
+function toggleMenu() {
+    const navLinks = document.querySelector('.nav-links');
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+}
+// Make hamburger visible on mobile
+if (window.innerWidth <= 768) {
+    document.getElementById('hamburger').style.display = 'block';
+}
+window.addEventListener('resize', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    if (window.innerWidth <= 768) {
+        hamburger.style.display = 'block';
+        navLinks.style.display = 'none';
+    } else {
+        hamburger.style.display = 'none';
+        navLinks.style.display = 'flex';
+    }
+});
+</script>
