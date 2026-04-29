@@ -173,17 +173,44 @@
             tempCanvas.height = mainImg.height;
             tempCtx.drawImage(mainImg, 0, 0);
 
-            // Background Removal Logic
+            // Flood Fill Algorithm (Magic Wand style)
             const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
             const data = imageData.data;
+            const width = tempCanvas.width;
+            const height = tempCanvas.height;
             const targetColor = hexToRgb(bgColor);
-            const threshold = parseInt(document.getElementById('bgStrength').value); 
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i], g = data[i+1], b = data[i+2];
-                if (r > 255 - threshold && g > 255 - threshold && b > 255 - threshold) {
-                    data[i] = targetColor.r;
-                    data[i+1] = targetColor.g;
-                    data[i+2] = targetColor.b;
+            const threshold = parseInt(document.getElementById('bgStrength').value);
+
+            const visited = new Uint8Array(width * height);
+            const stack = [
+                [0, 0], [width - 1, 0], [0, height - 1], [width - 1, height - 1],
+                [Math.floor(width/2), 0], [Math.floor(width/4), 0], [Math.floor(3*width/4), 0] // Additional top seeds
+            ]; 
+            
+            // Sample the background color (average of 4 corners for better accuracy)
+            const startR = (data[0] + data[(width-1)*4]) / 2;
+            const startG = (data[1] + data[(width-1)*4 + 1]) / 2;
+            const startB = (data[2] + data[(width-1)*4 + 2]) / 2;
+
+            while (stack.length > 0) {
+                const [x, y] = stack.pop();
+                const idx = y * width + x;
+                
+                if (x < 0 || x >= width || y < 0 || y >= height || visited[idx]) continue;
+                
+                const dIdx = idx * 4;
+                const r = data[dIdx], g = data[dIdx + 1], b = data[dIdx + 2];
+                
+                // Color distance check
+                const dist = Math.sqrt(Math.pow(r - startR, 2) + Math.pow(g - startG, 2) + Math.pow(b - startB, 2));
+                
+                if (dist < threshold) {
+                    visited[idx] = 1;
+                    data[dIdx] = targetColor.r;
+                    data[dIdx + 1] = targetColor.g;
+                    data[dIdx + 2] = targetColor.b;
+                    
+                    stack.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
                 }
             }
             tempCtx.putImageData(imageData, 0, 0);
