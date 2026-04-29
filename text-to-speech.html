@@ -320,16 +320,29 @@
                 stopMic();
             };
 
-            recognition.onend = () => { if (isListening) recognition.start(); else stopMic(); };
+            recognition.onend = () => {
+                if (isListening) {
+                    try { recognition.start(); } catch(e) {}
+                } else {
+                    stopMic();
+                }
+            };
         }
 
         function toggleMic() {
-            if (isListening) { stopMic(); return; }
-            finalTranscript = '';
-            sttOutput.innerHTML = '';
-            recognition.lang = sttLang.value;
-            micPermCard.style.display = 'none';
-            try { recognition.start(); } catch(e) {}
+            if (isListening) {
+                stopMic();
+            } else {
+                finalTranscript = '';
+                sttOutput.innerHTML = '';
+                recognition.lang = sttLang.value;
+                micPermCard.style.display = 'none';
+                try {
+                    recognition.start();
+                } catch(e) {
+                    console.error(e);
+                }
+            }
         }
 
         function stopMic() {

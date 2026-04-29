@@ -155,15 +155,41 @@
         function generateSheet() {
             if (!mainImg.src) return;
             
-            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating Sheet...';
+            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing & Generating...';
             statusMsg.style.color = '#1e3c72';
             generateBtn.disabled = true;
 
-            const ctx = canvas.getContext('2d');
-            const pw = 350, ph = 450;
             const copies = parseInt(document.getElementById('copies').value);
             const bgColor = document.getElementById('bgColor').value;
 
+            // Create a temporary canvas to process the image background
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = mainImg.width;
+            tempCanvas.height = mainImg.height;
+            tempCtx.drawImage(mainImg, 0, 0);
+
+            // Simple Background Removal Logic (Near-white to transparent then fill with bgColor)
+            const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+            const data = imageData.data;
+            const targetColor = hexToRgb(bgColor);
+
+            // Threshold for "near-white" background
+            const threshold = 40; 
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i], g = data[i+1], b = data[i+2];
+                // If pixel is very bright (near white background), replace it
+                if (r > 255 - threshold && g > 255 - threshold && b > 255 - threshold) {
+                    data[i] = targetColor.r;
+                    data[i+1] = targetColor.g;
+                    data[i+2] = targetColor.b;
+                }
+            }
+            tempCtx.putImageData(imageData, 0, 0);
+
+            // Now draw on main canvas
+            const ctx = canvas.getContext('2d');
+            const pw = 350, ph = 450;
             const cols = 4;
             const rows = Math.ceil(copies / cols);
             const margin = 40;
@@ -171,13 +197,14 @@
             canvas.width = cols * (pw + margin) + margin;
             canvas.height = rows * (ph + margin) + margin;
             
-            ctx.fillStyle = '#ffffff';
+            ctx.fillStyle = '#ffffff'; // Paper color
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             for (let i = 0; i < copies; i++) {
                 const x = margin + (i % cols) * (pw + margin);
                 const y = margin + Math.floor(i / cols) * (ph + margin);
                 
+                // Draw background color first
                 ctx.fillStyle = bgColor;
                 ctx.fillRect(x, y, pw, ph);
                 
@@ -197,8 +224,11 @@
                     sy = (mainImg.height - sh) / 2;
                 }
                 
-                ctx.drawImage(mainImg, sx, sy, sw, sh, x, y, pw, ph);
-                ctx.strokeStyle = '#eee';
+                // Draw processed image
+                ctx.drawImage(tempCanvas, sx, sy, sw, sh, x, y, pw, ph);
+                
+                // Border
+                ctx.strokeStyle = '#ddd';
                 ctx.lineWidth = 1;
                 ctx.strokeRect(x, y, pw, ph);
             }
@@ -212,6 +242,15 @@
             resultContainer.style.display = 'block';
             resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             generateBtn.disabled = false;
+        }
+
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : { r: 255, g: 255, b: 255 };
         }
 
         if ('serviceWorker' in navigator) {

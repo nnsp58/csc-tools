@@ -159,61 +159,92 @@
             }
         }
 
+        let recognition = null;
+        let isListening = false;
+
         function startVoiceTranslation() {
+            if (isListening) {
+                stopListening();
+                return;
+            }
+
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             const recordBtn = document.getElementById('record-btn');
             const recordArea = document.getElementById('record-area');
             const micStatus = document.getElementById('mic-status');
-            const resultBox = document.getElementById('voiceResult');
             const sourceLang = document.getElementById('sourceLang').value;
-            const targetLang = document.getElementById('targetLang').value;
 
             if (!SpeechRecognition) {
                 alert("Speech recognition not supported in this browser. Please use Chrome.");
                 return;
             }
 
-            const recognition = new SpeechRecognition();
+            recognition = new SpeechRecognition();
             recognition.lang = sourceLang;
+            recognition.continuous = true;
+            recognition.interimResults = false;
             
             recognition.onstart = () => {
+                isListening = true;
                 recordBtn.classList.add('active');
                 recordArea.classList.add('listening');
                 micStatus.innerHTML = '<span style="color:#ff6b6b">Listening... Speak now</span>';
             };
 
             recognition.onresult = async (event) => {
-                const spoken = event.results[0][0].transcript;
+                const targetLang = document.getElementById('targetLang').value;
+                const resultBox = document.getElementById('voiceResult');
+                const lastIdx = event.results.length - 1;
+                const spoken = event.results[lastIdx][0].transcript;
+                
                 document.getElementById('spoken-text').textContent = spoken;
                 resultBox.style.display = 'block';
                 micStatus.textContent = "Translating...";
                 
+                // Stop recognition while speaking to avoid feedback
+                recognition.stop(); 
+
                 const translated = await translateText(spoken, sourceLang, targetLang);
                 document.getElementById('translated-text').textContent = translated;
                 
                 // Voice Output
                 const utterance = new SpeechSynthesisUtterance(translated);
                 utterance.lang = targetLang;
+                utterance.onend = () => {
+                    if (isListening) {
+                        try { recognition.start(); } catch(e) {}
+                        micStatus.textContent = "Listening for more...";
+                    }
+                };
                 window.speechSynthesis.speak(utterance);
                 
-                micStatus.textContent = "Translation Ready!";
+                micStatus.textContent = "Speaking translation...";
             };
 
-            recognition.onerror = () => {
-                micStatus.textContent = "Error detected. Click to try again.";
-                recordBtn.classList.remove('active');
-                recordArea.classList.remove('listening');
+            recognition.onerror = (e) => {
+                console.error(e);
+                if (e.error === 'no-speech') return;
+                micStatus.textContent = "Error. Click to restart.";
+                stopListening();
             };
 
             recognition.onend = () => {
-                recordBtn.classList.remove('active');
-                recordArea.classList.remove('listening');
-                if (micStatus.textContent === "Listening... Speak now") {
-                    micStatus.textContent = "Click to start speaking";
-                }
+                // Do nothing here, handling restart in speech synthesis onend
             };
 
             recognition.start();
+        }
+
+        function stopListening() {
+            isListening = false;
+            window.speechSynthesis.cancel();
+            if (recognition) recognition.stop();
+            const recordBtn = document.getElementById('record-btn');
+            const recordArea = document.getElementById('record-area');
+            const micStatus = document.getElementById('mic-status');
+            recordBtn.classList.remove('active');
+            recordArea.classList.remove('listening');
+            micStatus.textContent = "Click the mic to start speaking";
         }
 
         if ('serviceWorker' in navigator) {
