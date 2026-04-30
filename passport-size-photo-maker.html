@@ -38,6 +38,11 @@
         .btn-primary { background: var(--brand-gradient); color: white; }
         .btn-secondary { background: #eee; color: #666; }
         .modal-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        /* Camera Modal Styles */
+        #cameraModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; padding: 20px; }
+        .camera-container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 20px; text-align: center; }
+        #videoFeed { width: 100%; border-radius: 15px; background: #000; margin-bottom: 15px; transform: scaleX(-1); }
+        
         .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
         .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
         .upload-area i { font-size: 3rem; color: #ff6b6b; margin-bottom: 1rem; }
@@ -72,6 +77,18 @@
     </header>
 
     <main class="container">
+        <!-- Camera Modal -->
+        <div id="cameraModal">
+            <div class="camera-container">
+                <h3 style="margin-bottom: 15px; color: #1e3c72;"><i class="fas fa-camera"></i> Live Camera</h3>
+                <video id="videoFeed" autoplay playsinline></video>
+                <div class="modal-btns">
+                    <button class="modal-btn btn-primary" onclick="capturePhoto()"><i class="fas fa-circle"></i> Capture</button>
+                    <button class="modal-btn btn-secondary" onclick="stopCamera()">Cancel</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Crop Modal -->
         <div id="cropModal">
             <div class="modal-content">
@@ -102,11 +119,16 @@
                 </ul>
             </div>
             
-            <div class="upload-area" id="drop-zone" onclick="document.getElementById('fileInput').click()">
-                <i class="fas fa-user-circle"></i>
-                <p id="file-name-display" style="font-size: 1.2rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Upload Your Portrait</p>
-                <p style="color: #888;">or click to browse (JPG, PNG, WebP)</p>
-                <input type="file" id="fileInput" accept="image/*" style="display:none;">
+            <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
+                <div class="upload-area" id="drop-zone" onclick="document.getElementById('fileInput').click()" style="flex: 1; margin-bottom: 0;">
+                    <i class="fas fa-file-upload"></i>
+                    <p id="file-name-display" style="font-size: 1.1rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Upload Photo</p>
+                    <input type="file" id="fileInput" accept="image/*" style="display:none;">
+                </div>
+                <div class="upload-area" onclick="startCamera()" style="flex: 1; margin-bottom: 0; background: #f0f4ff; border-color: #d0dbff;">
+                    <i class="fas fa-camera" style="color: #4a90e2;"></i>
+                    <p style="font-size: 1.1rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Use Camera</p>
+                </div>
             </div>
 
             <div class="controls-grid">
@@ -140,6 +162,13 @@
                 <div class="config-item">
                     <label><i class="fas fa-adjust"></i> Contrast</label>
                     <input type="range" id="contrast" min="50" max="150" value="100">
+                </div>
+                <div class="config-item">
+                    <label><i class="fas fa-bolt"></i> Processing Mode</label>
+                    <select id="processingMode">
+                        <option value="pro" selected>Advanced (BG Removal)</option>
+                        <option value="lite">Lite (Original BG)</option>
+                    </select>
                 </div>
                 <div class="config-item">
                     <label><i class="fas fa-eye-dropper"></i> Color to Remove (Original BG)</label>
@@ -194,26 +223,70 @@
         const canvas = document.getElementById('output-canvas');
         const cropModal = document.getElementById('cropModal');
         const cropImg = document.getElementById('cropImg');
+        const cameraModal = document.getElementById('cameraModal');
+        const videoFeed = document.getElementById('videoFeed');
+        let cameraStream = null;
 
+        // --- CAMERA LOGIC ---
+        async function startCamera() {
+            try {
+                cameraStream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } } 
+                });
+                videoFeed.srcObject = cameraStream;
+                cameraModal.style.display = 'block';
+            } catch (err) {
+                alert("Camera access denied or not found.");
+            }
+        }
+
+        function capturePhoto() {
+            const canvasTemp = document.createElement('canvas');
+            canvasTemp.width = videoFeed.videoWidth;
+            canvasTemp.height = videoFeed.videoHeight;
+            const ctx = canvasTemp.getContext('2d');
+            
+            // Mirror flip the capture back to normal
+            ctx.translate(canvasTemp.width, 0);
+            ctx.scale(-1, 1);
+            ctx.drawImage(videoFeed, 0, 0);
+            
+            const dataUrl = canvasTemp.toDataURL('image/jpeg', 0.95);
+            stopCamera();
+            openCropper(dataUrl);
+        }
+
+        function stopCamera() {
+            if (cameraStream) {
+                cameraStream.getTracks().forEach(track => track.stop());
+            }
+            cameraModal.style.display = 'none';
+        }
+
+        function openCropper(source) {
+            cropImg.src = source;
+            cropModal.style.display = 'block';
+            if (cropper) cropper.destroy();
+            setTimeout(() => {
+                const ratioParts = document.getElementById('photoSize').value.split('/');
+                const ratio = parseFloat(ratioParts[0]) / parseFloat(ratioParts[1]);
+                cropper = new Cropper(cropImg, {
+                    aspectRatio: ratio,
+                    viewMode: 1,
+                    autoCropArea: 1,
+                    responsive: true,
+                    restore: false,
+                });
+            }, 200);
+        }
+
+        // --- FILE UPLOAD LOGIC ---
         fileInput.addEventListener('change', e => {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
             reader.onload = (event) => {
-                cropImg.src = event.target.result;
-                cropModal.style.display = 'block';
-                if (cropper) cropper.destroy();
-                setTimeout(() => {
-                    const ratioParts = document.getElementById('photoSize').value.split('/');
-                    const ratio = parseFloat(ratioParts[0]) / parseFloat(ratioParts[1]);
-                    cropper = new Cropper(cropImg, {
-                        aspectRatio: ratio,
-                        viewMode: 1,
-                        autoCropArea: 1,
-                        responsive: true,
-                        restore: false,
-                    });
-                }, 200);
+                openCropper(event.target.result);
             };
             reader.readAsDataURL(file);
         });
@@ -292,46 +365,45 @@
             tempCtx.drawImage(mainImg, 0, 0);
             tempCtx.filter = 'none'; // Reset filter for next operations
 
-            // Safe Flood Fill Background Removal (Edge-based)
-            const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-            const data = imageData.data;
-            const width = tempCanvas.width;
-            const height = tempCanvas.height;
-            const threshold = parseInt(document.getElementById('bgStrength').value);
-            const removeColor = hexToRgb(document.getElementById('removeColor').value);
-
-            const visited = new Uint8Array(width * height);
-            const stack = [];
+            // 3. Background Processing based on Mode
+            const mode = document.getElementById('processingMode').value;
             
-            // Add all edge pixels as seeds for flood fill
-            for (let x = 0; x < width; x++) { stack.push([x, 0]); stack.push([x, height - 1]); }
-            for (let y = 0; y < height; y++) { stack.push([0, y]); stack.push([width - 1, y]); }
+            if (mode === 'pro') {
+                // Safe Flood Fill Background Removal (Edge-based)
+                const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
+                const data = imageData.data;
+                const width = tempCanvas.width;
+                const height = tempCanvas.height;
+                const threshold = parseInt(document.getElementById('bgStrength').value);
+                const removeColor = hexToRgb(document.getElementById('removeColor').value);
 
-            while (stack.length > 0) {
-                const [x, y] = stack.pop();
-                const idx = y * width + x;
-                if (visited[idx]) continue;
+                const visited = new Uint8Array(width * height);
+                const stack = [];
                 
-                const dIdx = idx * 4;
-                const r = data[dIdx], g = data[dIdx + 1], b = data[dIdx + 2];
-                
-                const dist = Math.sqrt(
-                    Math.pow(r - removeColor.r, 2) + 
-                    Math.pow(g - removeColor.g, 2) + 
-                    Math.pow(b - removeColor.b, 2)
-                );
+                for (let x = 0; x < width; x++) { stack.push([x, 0]); stack.push([x, height - 1]); }
+                for (let y = 0; y < height; y++) { stack.push([0, y]); stack.push([width - 1, y]); }
 
-                if (dist < threshold) {
-                    visited[idx] = 1;
-                    data[dIdx + 3] = 0; // Transparent
+                while (stack.length > 0) {
+                    const [x, y] = stack.pop();
+                    const idx = y * width + x;
+                    if (visited[idx]) continue;
                     
-                    if (x + 1 < width) stack.push([x + 1, y]);
-                    if (x - 1 >= 0) stack.push([x - 1, y]);
-                    if (y + 1 < height) stack.push([y, y + 1]);
-                    if (y - 1 >= 0) stack.push([x, y - 1]);
+                    const dIdx = idx * 4;
+                    const r = data[dIdx], g = data[dIdx + 1], b = data[dIdx + 2];
+                    
+                    const dist = Math.sqrt(Math.pow(r - removeColor.r, 2) + Math.pow(g - removeColor.g, 2) + Math.pow(b - removeColor.b, 2));
+
+                    if (dist < threshold) {
+                        visited[idx] = 1;
+                        data[dIdx + 3] = 0; // Transparent
+                        if (x + 1 < width) stack.push([x + 1, y]);
+                        if (x - 1 >= 0) stack.push([x - 1, y]);
+                        if (y + 1 < height) stack.push([y, y + 1]);
+                        if (y - 1 >= 0) stack.push([x, y - 1]);
+                    }
                 }
+                tempCtx.putImageData(imageData, 0, 0);
             }
-            tempCtx.putImageData(imageData, 0, 0);
 
             // Determine pw/ph based on selected size
             const sizeParts = document.getElementById('photoSize').value.split('/');
