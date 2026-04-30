@@ -142,6 +142,13 @@
                     <input type="range" id="contrast" min="50" max="150" value="100">
                 </div>
                 <div class="config-item">
+                    <label><i class="fas fa-eye-dropper"></i> Color to Remove (Original BG)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="color" id="removeColor" value="#ffffff" style="flex: 1; height: 50px; padding: 5px; cursor: pointer;">
+                        <button onclick="autoDetectBG()" class="modal-btn btn-secondary" style="font-size: 0.8rem; padding: 0 10px;">Auto Detect</button>
+                    </div>
+                </div>
+                <div class="config-item">
                     <label><i class="fas fa-magic"></i> Removal Strength: <span id="strengthVal">40</span></label>
                     <input type="range" id="bgStrength" min="10" max="150" value="40" oninput="document.getElementById('strengthVal').textContent=this.value">
                 </div>
@@ -229,8 +236,21 @@
             mainImg.onload = () => {
                 generateBtn.disabled = false;
                 fileNameDisplay.textContent = "Image Ready!";
+                autoDetectBG(); // Automatically suggest the color to remove
                 closeModal();
             };
+        }
+
+        function autoDetectBG() {
+            if (!mainImg.src) return;
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = mainImg.width;
+            tempCanvas.height = mainImg.height;
+            tempCtx.drawImage(mainImg, 0, 0);
+            const data = tempCtx.getImageData(0, 0, 1, 1).data; // Sample top-left corner
+            const hex = "#" + ((1 << 24) + (data[0] << 16) + (data[1] << 8) + data[2]).toString(16).slice(1);
+            document.getElementById('removeColor').value = hex;
         }
 
         function closeModal() {
@@ -262,29 +282,20 @@
             tempCtx.drawImage(mainImg, 0, 0);
             tempCtx.filter = 'none'; // Reset filter for next operations
 
-            // Smart Background Color Detection (Sample from corners)
+            // Background Color Removal logic
             const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
             const data = imageData.data;
-            const width = tempCanvas.width;
-            const height = tempCanvas.height;
             const threshold = parseInt(document.getElementById('bgStrength').value);
-
-            // Sample 4 corners to get the average background color
-            const corners = [0, (width - 1) * 4, (height - 1) * width * 4, ((height - 1) * width + (width - 1)) * 4];
-            let avgR = 0, avgG = 0, avgB = 0;
-            corners.forEach(idx => {
-                avgR += data[idx]; avgG += data[idx + 1]; avgB += data[idx + 2];
-            });
-            avgR /= 4; avgG /= 4; avgB /= 4;
+            const removeColor = hexToRgb(document.getElementById('removeColor').value);
 
             for (let i = 0; i < data.length; i += 4) {
                 const r = data[i], g = data[i + 1], b = data[i + 2];
                 
-                // Calculate distance from detected background color
+                // Calculate distance from the color the user wants to remove
                 const dist = Math.sqrt(
-                    Math.pow(r - avgR, 2) + 
-                    Math.pow(g - avgG, 2) + 
-                    Math.pow(b - avgB, 2)
+                    Math.pow(r - removeColor.r, 2) + 
+                    Math.pow(g - removeColor.g, 2) + 
+                    Math.pow(b - removeColor.b, 2)
                 );
 
                 if (dist < threshold) {
