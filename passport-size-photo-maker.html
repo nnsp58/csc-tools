@@ -284,11 +284,12 @@
             // Determine pw/ph based on selected size
             const sizeParts = document.getElementById('photoSize').value.split('/');
             const sizeRatio = parseFloat(sizeParts[0]) / parseFloat(sizeParts[1]);
+            const isLandscape = sizeRatio > 1;
             
             let pw, ph, cols;
-            if (sizeRatio > 1) { // Landscape
+            if (isLandscape) { 
                 pw = 450; ph = Math.round(450 / sizeRatio); cols = 3;
-            } else { // Portrait or Square
+            } else { 
                 pw = 350; ph = Math.round(350 / sizeRatio); cols = 4;
             }
 
