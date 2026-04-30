@@ -27,12 +27,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <script>
-        // Force unregister faulty service workers to stop 404 errors
+        // Aggressive Service Worker Unregistration
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(regs => {
-                for(let reg of regs) reg.unregister();
-            });
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister().then(bool => { if(bool) console.log('SW Unregistered'); });
+                }
+            }).catch(err => console.log('SW Clear Error:', err));
         }
+        // Disable any automatic registration attempts
+        Object.defineProperty(navigator, 'serviceWorker', { get: function() { return undefined; } });
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <style>
@@ -104,6 +108,10 @@
                 <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px; text-align: center;">Drag the box to select only the photo part.</p>
                 <div class="crop-container">
                     <img id="cropImg" src="">
+                </div>
+                <div class="modal-btns" style="margin-bottom: 15px;">
+                    <button class="modal-btn btn-secondary" onclick="setCropRatio(3.5/4.5)" style="font-size: 0.8rem; padding: 8px 15px;"><i class="fas fa-arrows-alt-v"></i> Portrait</button>
+                    <button class="modal-btn btn-secondary" onclick="setCropRatio(4.5/3.5)" style="font-size: 0.8rem; padding: 8px 15px;"><i class="fas fa-arrows-alt-h"></i> Landscape</button>
                 </div>
                 <div class="modal-btns">
                     <button class="modal-btn btn-primary" onclick="applyCrop()">Crop & Proceed</button>
@@ -304,6 +312,15 @@
             const ratioParts = document.getElementById('photoSize').value.split('/');
             const ratio = parseFloat(ratioParts[0]) / parseFloat(ratioParts[1]);
             cropper.setAspectRatio(ratio);
+        }
+
+        function setCropRatio(ratio) {
+            if (!cropper) return;
+            cropper.setAspectRatio(ratio);
+            // Also update the dropdown to match
+            const sizeSelect = document.getElementById('photoSize');
+            if (ratio > 1) sizeSelect.value = "4.5/3.5";
+            else sizeSelect.value = "3.5/4.5";
         }
 
         function applyCrop() {
