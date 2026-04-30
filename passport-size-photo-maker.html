@@ -11,14 +11,9 @@
   "description": "Create professional passport photo sheets with multiple copies instantly. Supports custom backgrounds and standard sizes.",
   "url": "https://n-dizi.in/passport-size-photo-maker.html",
   "applicationCategory": "UtilityApplication",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
   "operatingSystem": "All",
-  "browserRequirements": "Modern browser with JavaScript enabled",
-  "featureList": "Passport photo sheet generation, Background color selection, 4/8/12/16 copies, Auto-cropping"
+  "browserRequirements": "Modern browser with JavaScript enabled"
 }
 </script>
     <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
@@ -26,53 +21,41 @@
     <title>Passport Photo Maker - Create HD Photo Sheets Online | ToolHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
-    <script>
-        // Aggressive Service Worker Unregistration
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function(registrations) {
-                for(let registration of registrations) {
-                    registration.unregister().then(bool => { if(bool) console.log('SW Unregistered'); });
-                }
-            }).catch(err => console.log('SW Clear Error:', err));
-        }
-        // Disable any automatic registration attempts
-        Object.defineProperty(navigator, 'serviceWorker', { get: function() { return undefined; } });
-    </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <style>
-        /* Cropper Modal Styles */
-        #cropModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 9999; padding: 20px; animation: fadeIn 0.3s ease; }
-        .modal-content { background: #fff; max-width: 600px; margin: 40px auto; padding: 25px; border-radius: 20px; position: relative; box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .crop-container { height: 400px; background: #f0f0f0; margin-bottom: 20px; overflow: hidden; border-radius: 10px; }
-        #cropImg { max-width: 100%; display: block; }
-        .modal-btns { display: flex; gap: 15px; justify-content: center; }
-        .modal-btn { padding: 12px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; border: none; transition: 0.3s; }
-        .btn-primary { background: var(--brand-gradient); color: white; }
-        .btn-secondary { background: #eee; color: #666; }
-        .modal-btn:hover { transform: translateY(-2px); opacity: 0.9; }
-        /* Camera Modal Styles */
-        #cameraModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 10000; padding: 20px; }
-        .camera-container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 20px; text-align: center; }
-        #videoFeed { width: 100%; border-radius: 15px; background: #000; margin-bottom: 15px; transform: scaleX(-1); }
-        
-        .upload-area { border: 2px dashed #eee; padding: 3rem; text-align: center; border-radius: 15px; cursor: pointer; background: #fafafa; transition: var(--transition); margin-bottom: 2rem; position: relative; }
-        .upload-area:hover { border-color: var(--brand-end); background: #f0ffff; }
-        .upload-area i { font-size: 3rem; color: #ff6b6b; margin-bottom: 1rem; }
-        
-        .controls-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; background: #fff; padding: 1.5rem; border-radius: 15px; border: 1px solid #eee; }
-        .config-item label { display: block; font-weight: 600; color: #1e3c72; margin-bottom: 8px; font-size: 0.9rem; text-align: left; }
-        .config-item select, .config-item input { width: 100%; padding: 12px; border-radius: 10px; border: 2px solid #f0f2f5; font-size: 1rem; }
-        
-        #result-container { display: none; margin-top: 2rem; padding: 2rem; background: #f8f9fa; border-radius: 20px; text-align: center; border: 2px dashed #eee; animation: fadeIn 0.5s ease; }
-        #output-canvas { max-width: 100%; height: auto; border-radius: 10px; box-shadow: var(--shadow-md); margin-bottom: 1.5rem; border: 1px solid #ddd; }
-        .download-btn { background: #27ae60 !important; width: auto !important; padding: 12px 30px !important; margin-top: 1rem; text-decoration: none; display: inline-flex; }
+        /* Overlay Modals */
+        .overlay { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.88); z-index:9999; padding:20px; animation: fadeIn 0.3s ease; }
+        .modal-inner { background:#fff; max-width:600px; margin:30px auto; padding:25px; border-radius:20px; box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+        .crop-box { height:400px; width:100%; background:#000; margin-bottom:1rem; border-radius:10px; overflow:hidden; }
+        #cropTarget { max-width:100%; display:block; }
 
-        .faq-section { max-width: 800px; margin: 3rem auto; background: #fff; padding: 2rem; border-radius: 15px; box-shadow: var(--shadow-md); text-align: left; }
-        .faq-section h3 { color: #1e3c72; margin-bottom: 1.5rem; text-align: center; }
-        .faq-section p { margin-bottom: 1.2rem; line-height: 1.7; color: #444; }
-        .faq-section strong { color: #1e3c72; }
+        /* Upload Zone */
+        .upload-wrapper { display:flex; gap:1rem; margin-bottom:2rem; }
+        .action-zone { flex:1; padding:2rem 1rem; border:2px dashed #d1d5db; border-radius:15px; text-align:center; cursor:pointer; transition:0.3s; background:#fafafa; }
+        .action-zone:hover { border-color:var(--brand-start); background:#f0f7ff; transform:translateY(-2px); }
+        .action-zone i { font-size:2.5rem; color:var(--brand-start); margin-bottom:10px; display:block; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* Controls */
+        .controls-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1.2rem; margin-bottom:2rem; background:#f8f9fa; padding:1.5rem; border-radius:15px; border:1px solid #eee; }
+        .control-group label { display:block; font-weight:600; color:#1e3c72; margin-bottom:8px; font-size:0.85rem; }
+        .control-group select, .control-group input { width:100%; padding:10px; border-radius:8px; border:1px solid #d1d5db; }
+
+        /* Result Area */
+        #result-area { display:none; margin-top:2rem; animation: slideUp 0.5s ease; }
+        .comparison-row { display:flex; gap:20px; justify-content:center; margin-bottom:1.5rem; flex-wrap:wrap; }
+        .compare-card { text-align:center; background:#f8f9fa; padding:15px; border-radius:12px; border:1px solid #eee; }
+        .compare-card img { max-height:180px; border-radius:8px; margin-top:8px; }
+        .compare-card p { font-weight:600; margin:0; font-size:0.9rem; }
+        
+        #mainCanvas { max-width:100%; height:auto; border-radius:10px; box-shadow:var(--shadow-md); margin-bottom:1.5rem; border:1px solid #ddd; }
+
+        /* Orientation Buttons */
+        .orient-btns { display:flex; gap:10px; justify-content:center; margin-bottom:15px; }
+        .orient-btn { padding:8px 16px; border-radius:50px; border:2px solid #d1d5db; background:#fff; cursor:pointer; font-weight:600; font-size:0.85rem; transition:0.3s; }
+        .orient-btn.active { border-color:var(--brand-start); background:var(--brand-gradient); color:#fff; }
+
+        @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes slideUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
     </style>
 </head>
 <body>
@@ -88,453 +71,363 @@
         </nav>
     </header>
 
+    <!-- Camera Modal -->
+    <div id="camModal" class="overlay">
+        <div class="modal-inner" style="max-width:500px; text-align:center;">
+            <h3 style="color:#1e3c72;"><i class="fas fa-camera"></i> Live Camera</h3>
+            <video id="vFeed" autoplay playsinline style="width:100%; border-radius:12px; transform:scaleX(-1); background:#000; margin:15px 0;"></video>
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button class="convert-btn" onclick="snapPhoto()" style="width:auto; padding:12px 25px;"><i class="fas fa-circle"></i> Capture</button>
+                <button class="convert-btn" onclick="toggleCamera(false)" style="width:auto; padding:12px 25px; background:#94a3b8;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Crop Modal -->
+    <div id="cropModal" class="overlay">
+        <div class="modal-inner">
+            <h3 style="color:#1e3c72; text-align:center;"><i class="fas fa-crop-alt"></i> Crop Your Photo</h3>
+            <p style="text-align:center; color:#666; font-size:0.9rem; margin-bottom:15px;">Drag and resize the box to frame the subject perfectly.</p>
+            <div class="orient-btns">
+                <button class="orient-btn active" id="btnPortrait" onclick="setOrientation('portrait')"><i class="fas fa-arrows-alt-v"></i> Portrait</button>
+                <button class="orient-btn" id="btnLandscape" onclick="setOrientation('landscape')"><i class="fas fa-arrows-alt-h"></i> Landscape (Joint)</button>
+            </div>
+            <div class="crop-box"><img id="cropTarget" src=""></div>
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button class="convert-btn" onclick="finalizeCrop()" style="width:auto; padding:12px 25px;"><i class="fas fa-check"></i> Crop & Proceed</button>
+                <button class="convert-btn" onclick="closeModals()" style="width:auto; padding:12px 25px; background:#94a3b8;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <main class="container">
-        <!-- Camera Modal -->
-        <div id="cameraModal">
-            <div class="camera-container">
-                <h3 style="margin-bottom: 15px; color: #1e3c72;"><i class="fas fa-camera"></i> Live Camera</h3>
-                <video id="videoFeed" autoplay playsinline></video>
-                <div class="modal-btns">
-                    <button class="modal-btn btn-primary" onclick="capturePhoto()"><i class="fas fa-circle"></i> Capture</button>
-                    <button class="modal-btn btn-secondary" onclick="stopCamera()">Cancel</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Crop Modal -->
-        <div id="cropModal">
-            <div class="modal-content">
-                <h3 style="margin-bottom: 10px; color: #1e3c72; text-align: center;"><i class="fas fa-crop-alt"></i> Crop Your Photo</h3>
-                <p style="font-size: 0.9rem; color: #666; margin-bottom: 20px; text-align: center;">Drag the box to select only the photo part.</p>
-                <div class="crop-container">
-                    <img id="cropImg" src="">
-                </div>
-                <div class="modal-btns" style="margin-bottom: 15px;">
-                    <button class="modal-btn btn-secondary" onclick="setCropRatio(3.5/4.5)" style="font-size: 0.8rem; padding: 8px 15px;"><i class="fas fa-arrows-alt-v"></i> Portrait</button>
-                    <button class="modal-btn btn-secondary" onclick="setCropRatio(4.5/3.5)" style="font-size: 0.8rem; padding: 8px 15px;"><i class="fas fa-arrows-alt-h"></i> Landscape</button>
-                </div>
-                <div class="modal-btns">
-                    <button class="modal-btn btn-primary" onclick="applyCrop()">Crop & Proceed</button>
-                    <button class="modal-btn btn-secondary" onclick="closeModal()">Cancel</button>
-                </div>
-            </div>
-        </div>
-
         <section class="tool-section">
-            <div style="font-size: 3.5rem; color: #ff6b6b; margin-bottom: 1.5rem; text-align: center;"><i class="fas fa-id-card"></i></div>
+            <div style="font-size:3rem; text-align:center; margin-bottom:1rem;"><i class="fas fa-id-card" style="color:#ff6b6b;"></i></div>
             <h1>Passport Size Photo Maker</h1>
-            <p style="text-align: center; margin-bottom: 2.5rem; color: #666;">Convert any portrait into a professional passport photo sheet with custom copies and backgrounds.</p>
+            <p style="text-align:center; margin-bottom:2.5rem; color:#666;">Create professional passport photo sheets with HD quality. Crop, adjust, and print — all in your browser.</p>
 
-            <div class="info-card" style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: left;">
-                <h4 style="color: #1e3c72; margin-bottom: 1rem;"><i class="fas fa-camera"></i> Photography Tips:</h4>
-                <ul style="list-style: none; padding: 0; color: #555;">
-                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Use a clear portrait with good lighting.</li>
-                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Look directly at the camera with a neutral expression.</li>
-                    <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #4ecdc4;"></i> Our tool will automatically crop and align your face.</li>
-                    <li><i class="fas fa-check" style="color: #4ecdc4;"></i> Select 4, 8, 12, or 16 copies for a standard print sheet.</li>
-                </ul>
-            </div>
-            
-            <div style="display: flex; gap: 1rem; margin-bottom: 2rem;">
-                <div class="upload-area" id="drop-zone" onclick="document.getElementById('fileInput').click()" style="flex: 1; margin-bottom: 0;">
-                    <i class="fas fa-file-upload"></i>
-                    <p id="file-name-display" style="font-size: 1.1rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Upload Photo</p>
-                    <input type="file" id="fileInput" accept="image/*" style="display:none;">
+            <!-- Upload / Camera -->
+            <div class="upload-wrapper">
+                <div class="action-zone" onclick="document.getElementById('fileIn').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p style="font-weight:600; color:#1e3c72; margin:0;">Upload Photo</p>
+                    <small style="color:#888;">JPG, PNG, WebP</small>
+                    <input type="file" id="fileIn" hidden accept="image/*">
                 </div>
-                <div class="upload-area" onclick="startCamera()" style="flex: 1; margin-bottom: 0; background: #f0f4ff; border-color: #d0dbff;">
-                    <i class="fas fa-camera" style="color: #4a90e2;"></i>
-                    <p style="font-size: 1.1rem; font-weight: 600; color: #1e3c72; margin-bottom: 5px;">Use Camera</p>
+                <div class="action-zone" onclick="toggleCamera(true)" style="border-color:#fecaca; background:#fff5f5;">
+                    <i class="fas fa-camera" style="color:#ef4444;"></i>
+                    <p style="font-weight:600; color:#1e3c72; margin:0;">Use Camera</p>
+                    <small style="color:#888;">Live capture</small>
                 </div>
             </div>
 
+            <!-- Controls -->
             <div class="controls-grid">
-                <div class="config-item">
-                    <label><i class="fas fa-expand"></i> Photo Size (Standard)</label>
-                    <select id="photoSize" onchange="updateCropRatio()">
+                <div class="control-group">
+                    <label><i class="fas fa-expand"></i> Photo Size</label>
+                    <select id="sizeType" onchange="updateCropperRatio()">
                         <option value="3.5/4.5" selected>India Passport (3.5 x 4.5 cm)</option>
-                        <option value="4.5/3.5">Joint Passport (4.5 x 3.5 cm)</option>
-                        <option value="1/1">US Visa / PAN Card (2 x 2 inch)</option>
+                        <option value="4.5/3.5">Joint Passport (Landscape)</option>
+                        <option value="2/2">US Visa / PAN Card (2 x 2 in)</option>
                         <option value="2/2.5">Stamp Size (2 x 2.5 cm)</option>
                     </select>
                 </div>
-                <div class="config-item">
+                <div class="control-group">
                     <label><i class="fas fa-palette"></i> Background Color</label>
-                    <input type="color" id="bgColor" value="#ffffff" style="height: 50px; padding: 5px; cursor: pointer;">
+                    <input type="color" id="bgColor" value="#ffffff" style="height:45px; cursor:pointer;">
                 </div>
-                <div class="config-item">
-                    <label><i class="fas fa-copy"></i> Number of Copies</label>
-                    <select id="copies">
-                        <option value="4">4 Copies</option>
-                        <option value="8" selected>8 Copies</option>
-                        <option value="12">12 Copies</option>
-                        <option value="16">16 Copies</option>
-                        <option value="20">20 Copies</option>
+                <div class="control-group">
+                    <label><i class="fas fa-copy"></i> Copies</label>
+                    <select id="copyCount">
+                        <option value="4">4 Photos</option>
+                        <option value="8" selected>8 Photos</option>
+                        <option value="12">12 Photos</option>
+                        <option value="16">16 Photos</option>
+                        <option value="20">20 Photos</option>
                     </select>
                 </div>
-                <div class="config-item">
+                <div class="control-group">
                     <label><i class="fas fa-sun"></i> Brightness</label>
-                    <input type="range" id="brightness" min="50" max="150" value="100">
+                    <input type="range" id="bright" min="50" max="150" value="100">
                 </div>
-                <div class="config-item">
+                <div class="control-group">
                     <label><i class="fas fa-adjust"></i> Contrast</label>
-                    <input type="range" id="contrast" min="50" max="150" value="100">
+                    <input type="range" id="contrastCtrl" min="50" max="150" value="100">
                 </div>
-                <div class="config-item">
-                    <label><i class="fas fa-bolt"></i> Processing Mode</label>
-                    <select id="processingMode">
-                        <option value="lite" selected>Lite (No BG Change - Fast)</option>
-                        <option value="pro">Advanced (BG Removal - Slow)</option>
+                <div class="control-group">
+                    <label><i class="fas fa-bolt"></i> Mode</label>
+                    <select id="processMode">
+                        <option value="lite" selected>Lite (Fast - No BG Change)</option>
+                        <option value="pro">Advanced (BG Removal)</option>
                     </select>
-                </div>
-                <div class="config-item">
-                    <label><i class="fas fa-eye-dropper"></i> Color to Remove (Original BG)</label>
-                    <div style="display: flex; gap: 10px;">
-                        <input type="color" id="removeColor" value="#ffffff" style="flex: 1; height: 50px; padding: 5px; cursor: pointer;">
-                        <button onclick="autoDetectBG()" class="modal-btn btn-secondary" style="font-size: 0.8rem; padding: 0 10px;">Auto Detect</button>
-                    </div>
-                </div>
-                <div class="config-item">
-                    <label><i class="fas fa-magic"></i> Removal Strength: <span id="strengthVal">70</span></label>
-                    <input type="range" id="bgStrength" min="10" max="150" value="70" oninput="document.getElementById('strengthVal').textContent=this.value">
                 </div>
             </div>
 
-            <button id="generateBtn" class="convert-btn" onclick="generateSheet()" disabled>
-                <i class="fas fa-th"></i> Generate Photo Sheet
-            </button>
+            <div style="text-align:center;">
+                <button id="genBtn" class="convert-btn" disabled onclick="processImage()" style="max-width:350px;">
+                    <i class="fas fa-wand-magic-sparkles"></i> Generate Photo Sheet
+                </button>
+            </div>
             
-            <div id="status-msg" style="text-align:center; margin-top: 1.5rem; font-weight: 600; color: #1e3c72;"></div>
-            
-            <div id="result-container">
-                <!-- Comparison Section -->
-                <div id="comparison" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
-                    <div style="text-align: center;">
-                        <p style="font-weight: 600; color: #1e3c72; margin-bottom: 8px;"><i class="fas fa-image"></i> Original (Cropped)</p>
-                        <img id="originalPreview" style="max-height: 200px; border-radius: 10px; border: 2px solid #eee;">
+            <div id="status-msg" style="text-align:center; margin-top:1rem; font-weight:600;"></div>
+
+            <!-- Result Section -->
+            <div id="result-area">
+                <div class="comparison-row">
+                    <div class="compare-card">
+                        <p style="color:#1e3c72;"><i class="fas fa-image"></i> Original (Cropped)</p>
+                        <img id="originalPreview">
                     </div>
-                    <div style="text-align: center;">
-                        <p style="font-weight: 600; color: #27ae60; margin-bottom: 8px;"><i class="fas fa-check-circle"></i> Processed</p>
-                        <img id="processedPreview" style="max-height: 200px; border-radius: 10px; border: 2px solid #eee;">
+                    <div class="compare-card">
+                        <p style="color:#27ae60;"><i class="fas fa-check-circle"></i> Processed</p>
+                        <img id="processedPreview">
                     </div>
                 </div>
-                <canvas id="output-canvas"></canvas>
-                <div style="display: flex; justify-content: center; gap: 1rem;">
-                    <a id="downloadBtn" class="convert-btn" style="width: auto; padding: 12px 30px; text-decoration: none; background: #27ae60;">
+                <canvas id="mainCanvas"></canvas>
+                <div style="text-align:center; margin-top:1rem;">
+                    <a id="dlLink" class="convert-btn" style="width:auto; padding:12px 30px; text-decoration:none; background:#27ae60; display:inline-flex;">
                         <i class="fas fa-download"></i> Download HD Sheet
                     </a>
                 </div>
             </div>
         </section>
 
-        <div class="faq-section">
-            <h3>Frequently Asked Questions</h3>
+        <div class="faq-section" style="max-width:800px; margin:3rem auto; background:#fff; padding:2rem; border-radius:15px; box-shadow:var(--shadow-md); text-align:left;">
+            <h3 style="color:#1e3c72; text-align:center; margin-bottom:1.5rem;">Frequently Asked Questions</h3>
             <p><strong>Q: What is the standard passport photo size?</strong></p>
-            <p>A: Our tool uses the international standard ratio (3.5 x 4.5 cm). The final sheet is optimized for high-quality photo paper printing.</p>
-            <p><strong>Q: Does this tool remove the background?</strong></p>
-            <p>A: Currently, the tool overlays your photo on the selected background color. For best results, we recommend using a photo with a plain white or light blue background.</p>
-            <p><strong>Q: Is my privacy protected?</strong></p>
-            <p>A: Absolutely. All image processing happens locally in your browser. Your face data is never uploaded to any server.</p>
+            <p>A: India standard is 3.5 x 4.5 cm. Our tool uses the correct ratio for all major standards.</p>
+            <p><strong>Q: Can I use Joint (couple) photos?</strong></p>
+            <p>A: Yes! Select "Joint Passport (Landscape)" or click the "Landscape" button while cropping.</p>
+            <p><strong>Q: Is my photo secure?</strong></p>
+            <p>A: 100% secure. All processing happens in your browser. Nothing is uploaded.</p>
         </div>
     </main>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script>
-        let cropper = null;
-        let mainImg = new Image();
-        const fileInput = document.getElementById('fileInput');
-        const fileNameDisplay = document.getElementById('file-name-display');
-        const generateBtn = document.getElementById('generateBtn');
-        const statusMsg = document.getElementById('status-msg');
-        const resultContainer = document.getElementById('result-container');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const canvas = document.getElementById('output-canvas');
-        const cropModal = document.getElementById('cropModal');
-        const cropImg = document.getElementById('cropImg');
-        const cameraModal = document.getElementById('cameraModal');
-        const videoFeed = document.getElementById('videoFeed');
-        let cameraStream = null;
+        let activeCropper = null;
+        let baseImage = new Image();
+        let camStream = null;
+        let currentOrientation = 'portrait';
 
-        // --- CAMERA LOGIC ---
-        async function startCamera() {
-            try {
-                cameraStream = await navigator.mediaDevices.getUserMedia({ 
-                    video: { facingMode: "user", width: { ideal: 1280 }, height: { ideal: 720 } } 
-                });
-                videoFeed.srcObject = cameraStream;
-                cameraModal.style.display = 'block';
-            } catch (err) {
-                alert("Camera access denied or not found.");
-            }
-        }
-
-        function capturePhoto() {
-            const canvasTemp = document.createElement('canvas');
-            canvasTemp.width = videoFeed.videoWidth;
-            canvasTemp.height = videoFeed.videoHeight;
-            const ctx = canvasTemp.getContext('2d');
-            
-            // Mirror flip the capture back to normal
-            ctx.translate(canvasTemp.width, 0);
-            ctx.scale(-1, 1);
-            ctx.drawImage(videoFeed, 0, 0);
-            
-            const dataUrl = canvasTemp.toDataURL('image/jpeg', 0.95);
-            stopCamera();
-            openCropper(dataUrl);
-        }
-
-        function stopCamera() {
-            if (cameraStream) {
-                cameraStream.getTracks().forEach(track => track.stop());
-            }
-            cameraModal.style.display = 'none';
-        }
-
-        function openCropper(source) {
-            cropImg.src = source;
-            cropModal.style.display = 'block';
-            if (cropper) cropper.destroy();
-            setTimeout(() => {
-                const ratioParts = document.getElementById('photoSize').value.split('/');
-                const ratio = parseFloat(ratioParts[0]) / parseFloat(ratioParts[1]);
-                cropper = new Cropper(cropImg, {
-                    aspectRatio: ratio,
-                    viewMode: 1,
-                    autoCropArea: 1,
-                    responsive: true,
-                    restore: false,
-                });
-            }, 200);
-        }
-
-        // --- FILE UPLOAD LOGIC ---
-        fileInput.addEventListener('change', e => {
+        // ==================== FILE INPUT ====================
+        document.getElementById('fileIn').onchange = function(e) {
             const file = e.target.files[0];
             if (!file) return;
             const reader = new FileReader();
-            reader.onload = (event) => {
-                openCropper(event.target.result);
-            };
+            reader.onload = (event) => openCropper(event.target.result);
             reader.readAsDataURL(file);
-        });
+        };
 
-        function updateCropRatio() {
-            if (!cropper) return;
-            const ratioParts = document.getElementById('photoSize').value.split('/');
-            const ratio = parseFloat(ratioParts[0]) / parseFloat(ratioParts[1]);
-            cropper.setAspectRatio(ratio);
+        // ==================== CAMERA ====================
+        async function toggleCamera(on) {
+            if (on) {
+                try {
+                    camStream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user', width: { ideal: 1280 } } });
+                    document.getElementById('vFeed').srcObject = camStream;
+                    document.getElementById('camModal').style.display = 'block';
+                } catch(e) { alert('Camera access denied. Check browser permissions.'); }
+            } else {
+                if (camStream) camStream.getTracks().forEach(t => t.stop());
+                document.getElementById('camModal').style.display = 'none';
+            }
         }
 
-        function setCropRatio(ratio) {
-            if (!cropper) return;
-            cropper.setAspectRatio(ratio);
-            // Also update the dropdown to match
-            const sizeSelect = document.getElementById('photoSize');
-            if (ratio > 1) sizeSelect.value = "4.5/3.5";
-            else sizeSelect.value = "3.5/4.5";
+        function snapPhoto() {
+            const v = document.getElementById('vFeed');
+            const c = document.createElement('canvas');
+            c.width = v.videoWidth; c.height = v.videoHeight;
+            const ctx = c.getContext('2d');
+            ctx.translate(c.width, 0); ctx.scale(-1, 1);
+            ctx.drawImage(v, 0, 0);
+            toggleCamera(false);
+            openCropper(c.toDataURL('image/jpeg', 0.95));
         }
 
-        function applyCrop() {
-            if (!cropper) return;
-            const croppedCanvas = cropper.getCroppedCanvas({
-                maxWidth: 1200,
-                maxHeight: 1200,
-                imageSmoothingQuality: 'high'
-            });
-            mainImg.src = croppedCanvas.toDataURL('image/jpeg', 0.9);
-            mainImg.onload = () => {
-                generateBtn.disabled = false;
-                fileNameDisplay.textContent = "Image Ready!";
-                autoDetectBG(); // Automatically suggest the color to remove
-                closeModal();
+        // ==================== CROPPER ====================
+        function openCropper(src) {
+            const img = document.getElementById('cropTarget');
+            img.src = src;
+            document.getElementById('cropModal').style.display = 'block';
+            if (activeCropper) activeCropper.destroy();
+
+            const ratio = getCropRatio();
+            setTimeout(() => {
+                activeCropper = new Cropper(img, {
+                    aspectRatio: ratio,
+                    viewMode: 2,
+                    autoCropArea: 1,
+                    responsive: true
+                });
+            }, 150);
+        }
+
+        function getCropRatio() {
+            const parts = document.getElementById('sizeType').value.split('/');
+            return parseFloat(parts[0]) / parseFloat(parts[1]);
+        }
+
+        function setOrientation(orient) {
+            currentOrientation = orient;
+            document.getElementById('btnPortrait').classList.toggle('active', orient === 'portrait');
+            document.getElementById('btnLandscape').classList.toggle('active', orient === 'landscape');
+            
+            if (activeCropper) {
+                const ratio = orient === 'landscape' ? 4.5/3.5 : 3.5/4.5;
+                activeCropper.setAspectRatio(ratio);
+                // Update size dropdown too
+                document.getElementById('sizeType').value = orient === 'landscape' ? '4.5/3.5' : '3.5/4.5';
+            }
+        }
+
+        function updateCropperRatio() {
+            if (!activeCropper) return;
+            activeCropper.setAspectRatio(getCropRatio());
+        }
+
+        function finalizeCrop() {
+            if (!activeCropper) return;
+            const croppedCanvas = activeCropper.getCroppedCanvas({ maxWidth: 1200, maxHeight: 1200, imageSmoothingQuality: 'high' });
+            baseImage.src = croppedCanvas.toDataURL('image/jpeg', 0.92);
+            baseImage.onload = () => {
+                document.getElementById('genBtn').disabled = false;
+                document.getElementById('status-msg').innerHTML = '<span style="color:#27ae60;">Photo cropped & ready! ✅ Click "Generate" below.</span>';
+                closeModals();
             };
         }
 
-        function autoDetectBG() {
-            if (!mainImg.src || !mainImg.width) return;
-            const tc = document.createElement('canvas');
-            const tctx = tc.getContext('2d');
-            tc.width = mainImg.width;
-            tc.height = mainImg.height;
-            tctx.drawImage(mainImg, 0, 0);
-            
-            const w = tc.width, h = tc.height;
-            const imgData = tctx.getImageData(0, 0, w, h).data;
-            let totalR = 0, totalG = 0, totalB = 0, count = 0;
-            const step = Math.max(1, Math.floor(w / 20));
-            
-            // Sample top row, bottom row, left col, right col
-            for (let x = 0; x < w; x += step) {
-                let i = x * 4; totalR += imgData[i]; totalG += imgData[i+1]; totalB += imgData[i+2]; count++;
-                i = ((h-1) * w + x) * 4; totalR += imgData[i]; totalG += imgData[i+1]; totalB += imgData[i+2]; count++;
-            }
-            for (let y = 0; y < h; y += step) {
-                let i = (y * w) * 4; totalR += imgData[i]; totalG += imgData[i+1]; totalB += imgData[i+2]; count++;
-                i = (y * w + w - 1) * 4; totalR += imgData[i]; totalG += imgData[i+1]; totalB += imgData[i+2]; count++;
-            }
-            
-            const r = Math.round(totalR / count), g = Math.round(totalG / count), b = Math.round(totalB / count);
-            const hex = '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-            document.getElementById('removeColor').value = hex;
+        function closeModals() {
+            document.querySelectorAll('.overlay').forEach(m => m.style.display = 'none');
         }
 
-        function closeModal() {
-            cropModal.style.display = 'none';
-        }
+        // ==================== GENERATE SHEET ====================
+        function processImage() {
+            if (!baseImage.src) return;
 
+            const statusMsg = document.getElementById('status-msg');
+            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
 
-        function generateSheet() {
-            if (!mainImg.src) return;
-            
-            statusMsg.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing & Generating...';
-            statusMsg.style.color = '#1e3c72';
-            generateBtn.disabled = true;
+            // Use setTimeout to allow UI to update
+            setTimeout(() => {
+                const canvas = document.getElementById('mainCanvas');
+                const ctx = canvas.getContext('2d');
+                const count = parseInt(document.getElementById('copyCount').value);
+                const bg = document.getElementById('bgColor').value;
+                const brightVal = document.getElementById('bright').value;
+                const contrastVal = document.getElementById('contrastCtrl').value;
+                const mode = document.getElementById('processMode').value;
 
-            const copies = parseInt(document.getElementById('copies').value);
-            const bgColor = document.getElementById('bgColor').value;
+                // 1. Create processed temp canvas
+                const temp = document.createElement('canvas');
+                const tctx = temp.getContext('2d');
+                temp.width = baseImage.width;
+                temp.height = baseImage.height;
+                tctx.filter = `brightness(${brightVal}%) contrast(${contrastVal}%)`;
+                tctx.drawImage(baseImage, 0, 0);
+                tctx.filter = 'none';
 
-            const brightness = document.getElementById('brightness').value;
-            const contrast = document.getElementById('contrast').value;
-
-            // Create a temporary canvas to process the image background
-            const tempCanvas = document.createElement('canvas');
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCanvas.width = mainImg.width;
-            tempCanvas.height = mainImg.height;
-            
-            // Apply Brightness/Contrast
-            tempCtx.filter = `brightness(${brightness}%) contrast(${contrast}%)`;
-            tempCtx.drawImage(mainImg, 0, 0);
-            tempCtx.filter = 'none'; // Reset filter for next operations
-
-            // 3. Background Processing based on Mode
-            const mode = document.getElementById('processingMode').value;
-            
-            if (mode === 'pro') {
-                // Safe Flood Fill Background Removal (Edge-based)
-                const imageData = tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height);
-                const data = imageData.data;
-                const width = tempCanvas.width;
-                const height = tempCanvas.height;
-                const threshold = parseInt(document.getElementById('bgStrength').value);
-                const removeColor = hexToRgb(document.getElementById('removeColor').value);
-
-                const visited = new Uint8Array(width * height);
-                const stack = [];
-                
-                // Seed from ALL edge pixels
-                for (let x = 0; x < width; x++) { stack.push(0 * width + x); stack.push((height-1) * width + x); }
-                for (let y = 0; y < height; y++) { stack.push(y * width + 0); stack.push(y * width + width - 1); }
-
-                while (stack.length > 0) {
-                    const idx = stack.pop();
-                    if (idx < 0 || idx >= width * height || visited[idx]) continue;
+                // 2. Advanced BG Removal (Flood Fill from edges)
+                if (mode === 'pro') {
+                    const imageData = tctx.getImageData(0, 0, temp.width, temp.height);
+                    const data = imageData.data;
+                    const w = temp.width, h = temp.height;
                     
-                    const dIdx = idx * 4;
-                    const r = data[dIdx], g = data[dIdx + 1], b = data[dIdx + 2];
-                    const dist = Math.sqrt(Math.pow(r - removeColor.r, 2) + Math.pow(g - removeColor.g, 2) + Math.pow(b - removeColor.b, 2));
-
-                    if (dist < threshold) {
-                        visited[idx] = 1;
-                        data[dIdx + 3] = 0;
-                        const x = idx % width, y = Math.floor(idx / width);
-                        if (x + 1 < width) stack.push(idx + 1);
-                        if (x - 1 >= 0) stack.push(idx - 1);
-                        if (y + 1 < height) stack.push(idx + width);
-                        if (y - 1 >= 0) stack.push(idx - width);
+                    // Detect BG color from edges
+                    let totalR=0, totalG=0, totalB=0, cnt=0;
+                    const step = Math.max(1, Math.floor(w/20));
+                    for (let x=0; x<w; x+=step) {
+                        let i=x*4; totalR+=data[i]; totalG+=data[i+1]; totalB+=data[i+2]; cnt++;
+                        i=((h-1)*w+x)*4; totalR+=data[i]; totalG+=data[i+1]; totalB+=data[i+2]; cnt++;
                     }
-                }
-                
-                // Edge smoothing: soften alpha at edges
-                const alpha = new Uint8Array(width * height);
-                for (let i = 0; i < alpha.length; i++) alpha[i] = data[i * 4 + 3];
-                for (let y = 1; y < height - 1; y++) {
-                    for (let x = 1; x < width - 1; x++) {
-                        const i = y * width + x;
-                        const avg = (alpha[i-1] + alpha[i+1] + alpha[i-width] + alpha[i+width]) / 4;
-                        if (Math.abs(data[i*4+3] - avg) > 100) data[i*4+3] = Math.round(avg);
+                    for (let y=0; y<h; y+=step) {
+                        let i=(y*w)*4; totalR+=data[i]; totalG+=data[i+1]; totalB+=data[i+2]; cnt++;
+                        i=(y*w+w-1)*4; totalR+=data[i]; totalG+=data[i+1]; totalB+=data[i+2]; cnt++;
                     }
+                    const bgR=Math.round(totalR/cnt), bgG=Math.round(totalG/cnt), bgB=Math.round(totalB/cnt);
+                    const threshold = 70;
+
+                    // Flood fill from edges
+                    const visited = new Uint8Array(w * h);
+                    const stack = [];
+                    for (let x=0; x<w; x++) { stack.push(x); stack.push((h-1)*w+x); }
+                    for (let y=0; y<h; y++) { stack.push(y*w); stack.push(y*w+w-1); }
+
+                    while (stack.length > 0) {
+                        const idx = stack.pop();
+                        if (idx<0 || idx>=w*h || visited[idx]) continue;
+                        const di = idx*4;
+                        const dr=data[di]-bgR, dg=data[di+1]-bgG, db=data[di+2]-bgB;
+                        if (Math.sqrt(dr*dr+dg*dg+db*db) < threshold) {
+                            visited[idx] = 1;
+                            data[di+3] = 0;
+                            const x=idx%w, y=Math.floor(idx/w);
+                            if (x+1<w) stack.push(idx+1);
+                            if (x-1>=0) stack.push(idx-1);
+                            if (y+1<h) stack.push(idx+w);
+                            if (y-1>=0) stack.push(idx-w);
+                        }
+                    }
+                    // Edge smoothing
+                    const alpha = new Uint8Array(w*h);
+                    for (let i=0; i<alpha.length; i++) alpha[i]=data[i*4+3];
+                    for (let y=1; y<h-1; y++) for (let x=1; x<w-1; x++) {
+                        const i=y*w+x;
+                        const avg=(alpha[i-1]+alpha[i+1]+alpha[i-w]+alpha[i+w])/4;
+                        if (Math.abs(data[i*4+3]-avg)>100) data[i*4+3]=Math.round(avg);
+                    }
+                    tctx.putImageData(imageData, 0, 0);
                 }
-                tempCtx.putImageData(imageData, 0, 0);
-            }
 
-            // Show comparison previews
-            document.getElementById('originalPreview').src = mainImg.src;
-            document.getElementById('processedPreview').src = tempCanvas.toDataURL();
+                // 3. Show comparison previews
+                document.getElementById('originalPreview').src = baseImage.src;
+                document.getElementById('processedPreview').src = temp.toDataURL();
 
-            // Determine pw/ph based on selected size
-            const sizeParts = document.getElementById('photoSize').value.split('/');
-            const sizeRatio = parseFloat(sizeParts[0]) / parseFloat(sizeParts[1]);
-            const isLandscape = sizeRatio > 1;
-            
-            let pw, ph, cols;
-            if (isLandscape) { 
-                pw = 450; ph = Math.round(450 / sizeRatio); cols = 3;
-            } else { 
-                pw = 350; ph = Math.round(350 / sizeRatio); cols = 4;
-            }
+                // 4. Determine layout
+                const ratio = getCropRatio();
+                const isLandscape = ratio > 1;
+                let pw, ph, cols;
+                if (isLandscape) { pw=450; ph=Math.round(450/ratio); cols=3; }
+                else { pw=350; ph=Math.round(350/ratio); cols=4; }
 
-            const ctx = canvas.getContext('2d');
-            const rows = Math.ceil(copies / cols);
-            const margin = 40;
-            
-            canvas.width = cols * (pw + margin) + margin;
-            canvas.height = rows * (ph + margin) + margin;
-            
-            ctx.fillStyle = '#ffffff'; 
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                const rows = Math.ceil(count / cols);
+                const gutter = 30;
 
-            for (let i = 0; i < copies; i++) {
-                const x = margin + (i % cols) * (pw + margin);
-                const y = margin + Math.floor(i / cols) * (ph + margin);
-                
-                // 1. Draw the user's chosen background color
-                ctx.fillStyle = bgColor;
-                ctx.fillRect(x, y, pw, ph);
-                
-                const imgAr = mainImg.width / mainImg.height;
-                const slotAr = pw / ph;
-                let sw, sh, sx, sy;
-                
-                if (imgAr > slotAr) {
-                    sh = mainImg.height; sw = sh * slotAr;
-                    sx = (mainImg.width - sw) / 2; sy = 0;
-                } else {
-                    sw = mainImg.width; sh = sw / slotAr;
-                    sx = 0; sy = (mainImg.height - sh) / 2;
+                canvas.width = cols*(pw+gutter)+gutter;
+                canvas.height = rows*(ph+gutter)+gutter;
+
+                // 5. White sheet background
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // 6. Draw each photo
+                for (let i=0; i<count; i++) {
+                    const x = gutter + (i%cols)*(pw+gutter);
+                    const y = gutter + Math.floor(i/cols)*(ph+gutter);
+
+                    // BG color slot
+                    ctx.fillStyle = bg;
+                    ctx.fillRect(x, y, pw, ph);
+
+                    // Draw photo
+                    ctx.drawImage(temp, 0, 0, temp.width, temp.height, x, y, pw, ph);
+
+                    // Border
+                    ctx.strokeStyle = '#444';
+                    ctx.lineWidth = 1.5;
+                    ctx.strokeRect(x-1, y-1, pw+2, ph+2);
                 }
-                
-                // 2. Draw the processed image (with transparent background)
-                ctx.drawImage(tempCanvas, sx, sy, sw, sh, x, y, pw, ph);
-                
-                // 3. Draw the BORDER - Now slightly OUTSIDE (Frames the photo perfectly)
-                ctx.strokeStyle = '#333333'; 
-                ctx.lineWidth = 1.5;
-                ctx.strokeRect(x - 1, y - 1, pw + 2, ph + 2);
-            }
 
-            const dataUrl = canvas.toDataURL('image/jpeg', 0.95);
-            downloadBtn.href = dataUrl;
-            downloadBtn.download = `ToolHub_${isLandscape ? 'Joint' : 'Passport'}_Sheet_${Date.now()}.jpg`;
-            
-            statusMsg.innerHTML = `${isLandscape ? 'Joint' : 'Single'} Sheet Generated! ✅`;
-            statusMsg.style.color = '#27ae60';
-            resultContainer.style.display = 'block';
-            resultContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            generateBtn.disabled = false;
+                // 7. Download link
+                const link = document.getElementById('dlLink');
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+                link.download = `ToolHub_${isLandscape?'Joint':'Passport'}_Sheet_${Date.now()}.jpg`;
+
+                // 8. Show result
+                document.getElementById('result-area').style.display = 'block';
+                statusMsg.innerHTML = `<span style="color:#27ae60;">${isLandscape?'Joint':'Single'} Sheet Generated! ✅</span>`;
+                document.getElementById('result-area').scrollIntoView({ behavior:'smooth', block:'nearest' });
+            }, 50);
         }
-
-
-        function hexToRgb(hex) {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : { r: 255, g: 255, b: 255 };
-        }
-
-        // Service Worker registration removed to prevent 404 errors
     </script>
     <div id="footer"></div>
     <script>
