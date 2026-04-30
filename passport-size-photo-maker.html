@@ -206,6 +206,17 @@
             <div id="status-msg" style="text-align:center; margin-top: 1.5rem; font-weight: 600; color: #1e3c72;"></div>
             
             <div id="result-container">
+                <!-- Comparison Section -->
+                <div id="comparison" style="display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <p style="font-weight: 600; color: #1e3c72; margin-bottom: 8px;"><i class="fas fa-image"></i> Original (Cropped)</p>
+                        <img id="originalPreview" style="max-height: 200px; border-radius: 10px; border: 2px solid #eee;">
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-weight: 600; color: #27ae60; margin-bottom: 8px;"><i class="fas fa-check-circle"></i> Processed</p>
+                        <img id="processedPreview" style="max-height: 200px; border-radius: 10px; border: 2px solid #eee;">
+                    </div>
+                </div>
                 <canvas id="output-canvas"></canvas>
                 <div style="display: flex; justify-content: center; gap: 1rem;">
                     <a id="downloadBtn" class="convert-btn" style="width: auto; padding: 12px 30px; text-decoration: none; background: #27ae60;">
@@ -423,12 +434,16 @@
                         data[dIdx + 3] = 0; // Transparent
                         if (x + 1 < width) stack.push([x + 1, y]);
                         if (x - 1 >= 0) stack.push([x - 1, y]);
-                        if (y + 1 < height) stack.push([y, y + 1]);
+                        if (y + 1 < height) stack.push([x, y + 1]);
                         if (y - 1 >= 0) stack.push([x, y - 1]);
                     }
                 }
                 tempCtx.putImageData(imageData, 0, 0);
             }
+
+            // Show comparison previews
+            document.getElementById('originalPreview').src = mainImg.src;
+            document.getElementById('processedPreview').src = tempCanvas.toDataURL();
 
             // Determine pw/ph based on selected size
             const sizeParts = document.getElementById('photoSize').value.split('/');
@@ -502,9 +517,7 @@
             } : { r: 255, g: 255, b: 255 };
         }
 
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js');
-        }
+        // Service Worker registration removed to prevent 404 errors
     </script>
     <div id="footer"></div>
     <script>
